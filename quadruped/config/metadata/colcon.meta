@@ -1,0 +1,33 @@
+{
+  "names": {
+    "CycloneDDS-CXX": {
+      "cmake-args": [],
+      "dependencies": [
+        "cyclonedds"
+      ]
+    },
+    "robot_sim": {
+      "cmake-args": []
+    },
+    "protobuf": {
+      "cmake-args": [
+        "-Dprotobuf_BUILD_TESTS=OFF"
+      ]
+    },
+    "spdlog_vendor": {
+      "cmake-args": [
+        "-DFORCE_BUILD_VENDOR_PKG=ON"
+      ]
+    },
+    "yaml_cpp_vendor": {
+      "cmake-args": [
+        "-DFORCE_BUILD_VENDOR_PKG=ON"
+      ]
+    },
+    "qpOASES": {
+      "cmake-args": [
+        "-DQPOASES_BUILD_EXAMPLES=OFF"
+      ]
+    }
+  }
+}

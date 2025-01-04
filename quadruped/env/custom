@@ -1,0 +1,78 @@
+# use `cd ...` equal `cd ../..`
+function cd() {
+  if [[ $1 =~ ^\.{2,}$ ]]; then
+    local count=${#1}
+    local path=""
+    for ((i = 1; i < count; i++)); do
+      path+="../"
+    done
+    builtin cd "$path"
+  else
+    builtin cd "$@"
+  fi
+}
+
+# import quad repo
+function import-quad-src() {
+
+  echo "importing quad src..."
+
+  # 创建 src 目录，存在时不报错
+  if ! mkdir -p ./src; then
+    echo "Error: Failed to create ./src directory." >&2
+    return 1
+  fi
+
+  # 导入仓库
+  if ! vcs import ./src <"$QUAD_REPO"; then
+    echo "Error: Failed to import repositories using vcs." >&2
+    return 1
+  fi
+
+  echo "Import completed successfully."
+  return 0
+}
+
+function ignore-colcon-pkg() {
+  # 忽略指定目录的函数
+  function ignore_directory() {
+    local ignore_file="./src/.colcon-ignore-$1"
+    local path_pattern="*/$2"
+
+    if [[ ! -e $ignore_file ]]; then
+      touch "$ignore_file"
+      echo -e "\033[1;31mYou should \`touch ./src/$2/COLCON_IGNORE\`\033[0m"
+
+      for dir in $(find ./ -type d -path "$path_pattern" 2>/dev/null); do
+        if [[ -d "$dir" ]]; then
+          if ! touch "$dir/COLCON_IGNORE"; then
+            echo -e "\033[1;31mWarning: Failed to create COLCON_IGNORE in $dir.\033[0m" >&2
+          else
+            echo "Created COLCON_IGNORE in $dir"
+          fi
+        fi
+      done
+    fi
+  }
+
+  # 需要忽略的目录列表
+  declare -A IGNORE_LIST=(
+    [protobuf-python]="protobuf/python"
+    [ros2-control]="ros2_control"
+    [ros2-controllers]="ros2_controllers"
+    [gazebo-dev]="gazebo_dev"
+    [gazebo-ros]="gazebo_ros"
+    [gazebo-ros-control]="gazebo_ros_control"
+    [gazebo-plugins]="gazebo_plugins"
+    [gazebo-ros2-control]="gazebo_ros2_control"
+    [reference]="reference"
+    [simulation-xpp]="simulation/xpp"
+    [sensors-witmotion]="sensors/witmotion"
+    [wit-standar-protocol]="sensors/imu/witmotion/wit-standar-protocol"
+  )
+
+  # 遍历忽略目录
+  for key in "${!IGNORE_LIST[@]}"; do
+    ignore_directory "$key" "${IGNORE_LIST[$key]}"
+  done
+}

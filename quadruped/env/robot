@@ -1,0 +1,123 @@
+# env
+if [ -n "$BASH_VERSION" ]; then
+    source /opt/ros/*/setup.bash
+    source ${HOME}/project/model_ws/install/setup.bash
+elif [ -n "$ZSH_VERSION" ]; then
+    source /opt/ros/*/setup.zsh
+    source ${HOME}/project/model_ws/install/setup.zsh
+fi
+
+# rmw
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+# export CYCLONEDDS_URI=
+
+# gazebo
+architecture=$(uname -m)
+if [[ "$architecture" == "x86_64" ]]; then
+    source /usr/share/gazebo/setup.sh
+    #export GZ_VERSION=fortress
+    export GAZEBO_PLUGIN_PATH=$GAZEBO_PLUGIN_PATH:/opt/ros/${ROS_DISTRO}/lib
+    # "/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/${ROS_DISTRO}/opt/rviz_ogre_vendor/lib:/opt/rti.com/rti_connext_dds-6.0.1/lib/x64Linux4gcc7.3.0:/opt/rti.com/rti_connext_dds-6.0.1/bin:/opt/ros/${ROS_DISTRO}/lib/x86_64-linux-gnu:/usr/share/gurumdds/cmake/../../../lib:/opt/ros/${ROS_DISTRO}/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins::/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:"
+elif [[ "$architecture" == "aarch64" ]]; then
+    echo "Current machine is ARM architecture"
+else
+    echo "Unknown CPU Architecture: $architecture"
+fi
+
+# ros2
+function install_despendency() {
+    # sudo rosdep init
+    # rosdep update
+    rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-6.0.1 urdfdom_headers"
+}
+
+# colcon build
+function colcon_ws() {
+    declare -A paths=(
+        ["model"]="/project/model_ws"
+        ["control"]="/project/control_ws"
+        ["demo"]="/project/demo_ws"
+        ["unitree"]="/project/unitree_ws"
+        ["gazebo"]="/project/gazebo_ws"
+        ["sim"]="/project/sim_ws"
+    )
+
+    if [[ -z ${paths[$1]} ]]; then
+        echo "Invalid argument. Usage: colcon_ws [control|demo|unitree] [custom_args]"
+        return 1
+    fi
+
+    cd ${HOME}/"${paths[$1]}"
+    shift
+    #[parallel work](https://colcon.readthedocs.io/en/released/reference/executor-arguments.html)
+    #[make/colcon thread number](https://robotics.stackexchange.com/questions/97896/colcon-build-number-of-threads)
+    colcon build "$@"
+}
+
+function colcon_remove() {
+    # Usage example:
+    # colcon_remove package_1 package_2
+    if [ $# -eq 0 ]; then
+        echo "Usage: colcon_remove <package_1> <package_2> ... <package_N>"
+        return 1
+    fi
+
+    for package in "$@"; do
+        install_dir="install/$package"
+        build_dir="build/$package"
+
+        if [ -d "$install_dir" ]; then
+            echo "Removing $install_dir"
+            rm -rf "$install_dir"
+        else
+            echo "$install_dir does not exist."
+        fi
+
+        if [ -d "$build_dir" ]; then
+            echo "Removing $build_dir"
+            rm -rf "$build_dir"
+        else
+            echo "$build_dir does not exist."
+        fi
+    done
+}
+
+# workspace
+function cd_ws() {
+    declare -A paths=(
+        ["model"]="/project/model_ws"
+        ["control"]="/project/control_ws"
+        ["demo"]="/project/demo_ws"
+        ["unitree"]="/project/unitree_ws"
+        ["gazebo"]="/project/gazebo_ws"
+        ["sim"]="/project/sim_ws"
+    )
+
+    if [[ -z ${paths[$1]} ]]; then
+        echo "Invalid argument. Usage: cd workspace [control|demo|unitree] [custom_args]"
+        return 1
+    fi
+
+    cd ${HOME}/"${paths[$1]}"
+
+    if [ -n "$BASH_VERSION" ]; then
+        source ${HOME}/"${paths[$1]}"/install/setup.bash
+    elif [ -n "$ZSH_VERSION" ]; then
+        source ${HOME}/"${paths[$1]}"/install/setup.zsh
+    fi
+}
+
+alias catkin_dev='sudo chmod a+rw /dev/i2c-1'
+
+# add colcon
+source ${QUAD_WORKDIR}/.env/colcon_cd.sh
+source ${QUAD_WORKDIR}/.env/colcon-argcomplete.bash
+export _colcon_cd_root=/opt/ros/${ROS_DISTRO}/
+
+# set colcon::build
+export COLCON_DEFAULTS_FILE=${QUAD_WORKDIR}/.config/build-args.yaml # for `colcon build`
+export COLCON_HOME=${QUAD_WORKDIR}/.config/                         # for colcon.meta
+
+# add vcs-complete
+source ${QUAD_WORKDIR}/.env/vcs.bash
+export QUAD_REPO=${QUAD_WORKDIR}/.config/quadruped.repos
