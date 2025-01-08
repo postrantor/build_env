@@ -13,19 +13,12 @@ vcs import \
     --inport https://raw.githubusercontent.com/postrantor/build_env/main/quadruped/config/quadruped.repos \
   src
 
-ln -s ~/project/model_ws/src/quadruped/model-control/.env ~/project/model_ws/.env
-ln -s ~/project/model_ws/src/quadruped/model-control/.config ~/project/model_ws/.config
-ln -s ~/project/model_ws/src/quadruped/model-control/.vscode ~/project/model_ws/.vscode
-
 cp ~/project/model_ws/src/quadruped/model-control/.env/.bashrc ~/.bashrc
-
 source ~/.bashrc
 
 import-quad-src
-
 ignore-colcon-pkg
-
-install_despendency
+install-despendencies
 
 colcon build
 ```

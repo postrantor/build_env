@@ -1,8 +1,10 @@
 repositories:
-  quadruped/model-control:
+  quadruped/model-predictive-control:
     type: git
     url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/quadruped/quadruped-robot.git
     version: model_ws
+  # quadruped/reinforcement-learning-control:
+
   quadruped/thirdpart/suit-sparse:
     type: git
     # url: https://github.com/DrTimothyAldenDavis/SuiteSparse.git
