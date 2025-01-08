@@ -14,65 +14,56 @@ function cd() {
 
 # import quad repo
 function import-quad-src() {
-
   echo "importing quad src..."
-
   # 创建 src 目录，存在时不报错
   if ! mkdir -p ./src; then
     echo "Error: Failed to create ./src directory." >&2
     return 1
   fi
-
   # 导入仓库
-  if ! vcs import ./src <"$QUAD_REPO"; then
+  if ! vcs import --retry 3 --force -w 5 --input "$QUAD_REPO" ./src; then
     echo "Error: Failed to import repositories using vcs." >&2
     return 1
   fi
-
   echo "Import completed successfully."
   return 0
 }
 
-function ignore-colcon-pkg() {
-  # 忽略指定目录的函数
-  function ignore_directory() {
-    local ignore_file="./src/.colcon-ignore-$1"
-    local path_pattern="*/$2"
+# 忽略指定目录的函数
+function ignore-directory() {
+  local ignore_file="./src/.colcon-ignore-$1"
+  local path_pattern="*/$2"
 
-    if [[ ! -e $ignore_file ]]; then
-      touch "$ignore_file"
-      echo -e "\033[1;31mYou should \`touch ./src/$2/COLCON_IGNORE\`\033[0m"
+  if [[ ! -e $ignore_file ]]; then
+    touch "$ignore_file"
+    echo -e "\033[1;31mYou should \`touch ./src/$2/COLCON_IGNORE\`\033[0m"
 
-      for dir in $(find ./ -type d -path "$path_pattern" 2>/dev/null); do
-        if [[ -d "$dir" ]]; then
-          if ! touch "$dir/COLCON_IGNORE"; then
-            echo -e "\033[1;31mWarning: Failed to create COLCON_IGNORE in $dir.\033[0m" >&2
-          else
-            echo "Created COLCON_IGNORE in $dir"
-          fi
+    for dir in $(find ./ -type d -maxdepth 3 -path "$path_pattern" 2>/dev/null); do
+      if [[ -d "$dir" ]]; then
+        if ! touch "$dir/COLCON_IGNORE"; then
+          echo -e "\033[1;31mWarning: Failed to create COLCON_IGNORE in $dir.\033[0m" >&2
+        else
+          echo "Created COLCON_IGNORE in $dir"
         fi
-      done
-    fi
-  }
+      fi
+    done
+  fi
+}
 
-  # 需要忽略的目录列表
+# 需要忽略的目录列表
+function ignore-colcon-pkg() {
   declare -A IGNORE_LIST=(
-    [protobuf-python]="protobuf/python"
-    [ros2-control]="ros2_control"
-    [ros2-controllers]="ros2_controllers"
-    [gazebo-dev]="gazebo_dev"
-    [gazebo-ros]="gazebo_ros"
-    [gazebo-ros-control]="gazebo_ros_control"
-    [gazebo-plugins]="gazebo_plugins"
-    [gazebo-ros2-control]="gazebo_ros2_control"
+    [control]="ros2-control/ros2-control"
+    [controllers]="ros2-control/ros2-controllers"
+    [parameter]="ros2-control/generate-parameter-library"
+    [infrastructure]="ros2-infrastructure"
     [reference]="reference"
-    [simulation-xpp]="simulation/xpp"
-    [sensors-witmotion]="sensors/witmotion"
-    [wit-standar-protocol]="sensors/imu/witmotion/wit-standar-protocol"
+    [interfaces]="interfaces/geometry2"
+    [simulation]="simulation"
   )
 
   # 遍历忽略目录
   for key in "${!IGNORE_LIST[@]}"; do
-    ignore_directory "$key" "${IGNORE_LIST[$key]}"
+    ignore-directory "$key" "${IGNORE_LIST[$key]}"
   done
 }

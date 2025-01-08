@@ -9,6 +9,17 @@
     "robot_sim": {
       "cmake-args": []
     },
+    "quadruped": {
+      "cmake-args": [
+        "-DUSE_AVX2=OFF"
+      ]
+    },
+    "SuiteSparse": {
+      "cmake-args": [
+        "-DSUITESPARSE_ENABLE_PROJECTS=amd",
+        "-DSUITESPARSE_CONFIG_USE_OPENMP=OFF"
+      ]
+    },
     "protobuf": {
       "cmake-args": [
         "-Dprotobuf_BUILD_TESTS=OFF"

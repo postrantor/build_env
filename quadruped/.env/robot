@@ -25,10 +25,27 @@ else
 fi
 
 # ros2
-function install_despendency() {
+function install-dependencies() {
     # sudo rosdep init
     # rosdep update
-    rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-6.0.1 urdfdom_headers"
+    rosdep install \
+        -y \
+        --from-paths "$@" \
+        --ignore-src \
+        --skip-keys "serial \
+                unitree_msgs \
+                unitree_sdk \
+                quadruped \
+                tinynurbs \
+                tiny_ekf \
+                quadprog \
+                matplotlib_cpp \
+                qpOASES \
+                SuiteSparse \
+                message_generation \
+                message_runtime \
+                catkin \
+                xpp_msgs"
 }
 
 # colcon build
