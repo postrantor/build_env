@@ -70,7 +70,7 @@ function import-quad-src() {
     return 1
   fi
   # 导入仓库
-  if ! vcs import --retry 3 --force -w 5 --input "$QUAD_REPO" ./src; then
+  if ! vcs import --retry 3 --force -w 5 --input "${QUAD_REPO}" ./src; then
     echo "Error: Failed to import repositories using vcs." >&2
     return 1
   fi
