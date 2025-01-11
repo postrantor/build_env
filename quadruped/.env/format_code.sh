@@ -22,7 +22,8 @@
 # it only formats C and C++ sources, i.e., *.h, *.c, *.hpp, and *.cpp. It only
 # formats code in certain directories, see below for the full list.
 
-WS_ROOT="$(cd $(dirname "$0") && pwd)"
+# WS_ROOT="$(cd $(dirname "$0") && pwd)"
+WS_ROOT="${QUAD_WORKDIR}"
 
 # format_c_cpp_dir_r DIR [EXCUDE_PATTERN...]
 #
@@ -30,7 +31,7 @@ WS_ROOT="$(cd $(dirname "$0") && pwd)"
 # directory for the recursive formatting. The optional EXCLUDE_PATTERN is an
 # Extended Regex matched against each file path, where the file is excluded from
 # formatting if it matches. There can be multiple exclude patterns.
-
+# e.g. `format_c_cpp_dir_r src ".*/test/.*"``
 function format_c_cpp_dir_r {
   include_dir="$1"
   exclude_patterns=("${@:2}")
@@ -47,7 +48,6 @@ function format_c_cpp_dir_r {
     | xargs clang-format -i
 }
 
-format_c_cpp_dir_r "${WS_ROOT}/model"
-format_c_cpp_dir_r "${WS_ROOT}/sensors"
+format_c_cpp_dir_r "${WS_ROOT}/src/quadruped/model-predictive-control"
 
 exit 0
