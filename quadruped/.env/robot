@@ -45,3 +45,6 @@ source ${ENV_DIR}/format-code.bash
 
 # manage-project
 source ${ENV_DIR}/manage-project.bash
+
+# manage-ide
+source ${ENV_DIR}/manage-ide.bash

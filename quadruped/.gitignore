@@ -2,5 +2,3 @@ __pycache__/
 build/
 install/
 log/
-
-.vscode/extensions/
