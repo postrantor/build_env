@@ -226,20 +226,18 @@ function ignore-directory() {
   local ignore_file="${QUAD_WORKDIR}/src/.colcon-ignore-$1"
   local path_pattern="*/$2"
 
-  if [[ ! -e $ignore_file ]]; then
-    touch "$ignore_file"
-    echo -e "\033[1;31mYou should \`touch ./src/$2/COLCON_IGNORE\`\033[0m"
+  touch "$ignore_file"
+  echo -e "\033[1;31mYou should \`touch ./src/$2/COLCON_IGNORE\`\033[0m"
 
-    for dir in $(find ./ -type d -maxdepth 3 -path "$path_pattern" 2>/dev/null); do
-      if [[ -d "$dir" ]]; then
-        if ! touch "$dir/COLCON_IGNORE"; then
-          echo -e "\033[1;31mWarning: Failed to create COLCON_IGNORE in $dir.\033[0m" >&2
-        else
-          echo "Created COLCON_IGNORE in $dir"
-        fi
+  for dir in $(find ./ -type d -maxdepth 3 -path "$path_pattern" 2>/dev/null); do
+    if [[ -d "$dir" ]]; then
+      if ! touch "$dir/COLCON_IGNORE"; then
+        echo -e "\033[1;31mWarning: Failed to create COLCON_IGNORE in $dir.\033[0m" >&2
+      else
+        echo "Created COLCON_IGNORE in $dir"
       fi
-    done
-  fi
+    fi
+  done
 }
 
 ## @function ignore-colcon-pkg
