@@ -28,6 +28,8 @@
 #  This function checks if rosdep is initialized and updates it if necessary.
 #  It should be run with `sudo` to ensure proper permissions.
 #
+#  @note This function requires `sudo` privileges.
+#  @note https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/sources.list.d/20-default.list
 #  Example usage:
 #  @code
 #  sudo -E bash ${QUAD_WORKDIR}/.env/update-rosdep.bash

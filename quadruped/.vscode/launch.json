@@ -6,7 +6,7 @@
       "type": "cppdbg",
       "request": "launch",
       "MIMode": "gdb",
-      "program": "${workspaceFolder}/install/robot_sim/lib/robot_sim/example_gazebo",
+      "program": "${workspaceFolder}/install/example_mpc/lib/example_mpc/example_gazebo",
       "args": [],
       "preLaunchTask": "colcon: build package",
       "stopAtEntry": true,

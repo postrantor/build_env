@@ -9,6 +9,8 @@
   },
 
   // @editor
+  // "editor.fontSize": 16,
+  // "editor.fontFamily": "'trantor', 'CaskaydiaCove Nerd Font Mono', 'ubuntu mono'",
   "editor.stickyScroll.enabled": false,
   "editor.unicodeHighlight.ambiguousCharacters": false,
   "editor.unicodeHighlight.nonBasicASCII": false,
@@ -18,8 +20,6 @@
   "editor.rulers": [120],
   "editor.wordWrap": "on",
   "editor.wordWrapColumn": 150,
-  "editor.fontSize": 16,
-  "editor.fontFamily": "'trantor', 'CaskaydiaCove Nerd Font Mono', 'ubuntu mono'",
   "editor.fontLigatures": true,
   "editor.formatOnType": true,
   "editor.formatOnSave": true,
@@ -52,8 +52,10 @@
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "markdown.preview.fontSize": 16,
-  "markdown.preview.fontFamily": "Trantor, -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
+  // "markdown.preview.fontSize": 16,
+  // "markdown.preview.fontFamily": "Trantor, -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
+
+  // @python
   "[python]": {
     "editor.formatOnSaveMode": "file",
     "editor.formatOnSave": true,
@@ -74,7 +76,7 @@
   "python.globalModuleInstallation": true,
 
   // @c_cpp
-  "C_Cpp.default.compilerPath": "/usr/bin/clang++",
+  "C_Cpp.default.compilerPath": "/usr/bin/clang",
   "C_Cpp.formatting": "clangFormat",
   "C_Cpp.codeAnalysis.clangTidy.enabled": true,
   "C_Cpp.codeAnalysis.runAutomatically": true,
@@ -87,7 +89,8 @@
   "[cpp]": {
     "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
   },
-  // "uncrustify.configPath.linux": "uncrustify.cfg",
+  "uncrustify.configPath.linux": "{workspaceFolder}/uncrustify.cfg",
+
   // @cmake
   "cmake.pinnedCommands": [
     "workbench.action.tasks.configureTaskRunner",
@@ -104,41 +107,5 @@
   },
   "[ignore]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
-  "python.autoComplete.extraPaths": [
-    "/home/trantor/project/model_ws/install/xpp_msgs/local/lib/python3.10/dist-packages",
-    "/home/trantor/project/model_ws/install/unitree_msgs/local/lib/python3.10/dist-packages",
-    "/home/trantor/project/model_ws/build/generate_parameter_module_example",
-    "/home/trantor/project/model_ws/install/generate_parameter_module_example/lib/python3.10/site-packages",
-    "/home/trantor/project/model_ws/install/cmake_generate_parameter_module_example/local/lib/python3.10/dist-packages",
-    "/home/trantor/project/model_ws/build/joint_state_publisher_gui",
-    "/home/trantor/project/model_ws/install/joint_state_publisher_gui/lib/python3.10/site-packages",
-    "/home/trantor/project/model_ws/build/joint_state_publisher",
-    "/home/trantor/project/model_ws/install/joint_state_publisher/lib/python3.10/site-packages",
-    "/home/trantor/project/model_ws/build/generate_parameter_library_py",
-    "/home/trantor/project/model_ws/install/generate_parameter_library_py/lib/python3.10/site-packages",
-    "/home/trantor/project/model_ws/install/gazebo_msgs/local/lib/python3.10/dist-packages",
-    "/home/trantor/project/model_ws/build/ament_index_python",
-    "/home/trantor/project/model_ws/install/ament_index_python/lib/python3.10/site-packages",
-    "/opt/ros/humble/lib/python3.10/site-packages",
-    "/opt/ros/humble/local/lib/python3.10/dist-packages"
-  ],
-  "python.analysis.extraPaths": [
-    "/home/trantor/project/model_ws/install/xpp_msgs/local/lib/python3.10/dist-packages",
-    "/home/trantor/project/model_ws/install/unitree_msgs/local/lib/python3.10/dist-packages",
-    "/home/trantor/project/model_ws/build/generate_parameter_module_example",
-    "/home/trantor/project/model_ws/install/generate_parameter_module_example/lib/python3.10/site-packages",
-    "/home/trantor/project/model_ws/install/cmake_generate_parameter_module_example/local/lib/python3.10/dist-packages",
-    "/home/trantor/project/model_ws/build/joint_state_publisher_gui",
-    "/home/trantor/project/model_ws/install/joint_state_publisher_gui/lib/python3.10/site-packages",
-    "/home/trantor/project/model_ws/build/joint_state_publisher",
-    "/home/trantor/project/model_ws/install/joint_state_publisher/lib/python3.10/site-packages",
-    "/home/trantor/project/model_ws/build/generate_parameter_library_py",
-    "/home/trantor/project/model_ws/install/generate_parameter_library_py/lib/python3.10/site-packages",
-    "/home/trantor/project/model_ws/install/gazebo_msgs/local/lib/python3.10/dist-packages",
-    "/home/trantor/project/model_ws/build/ament_index_python",
-    "/home/trantor/project/model_ws/install/ament_index_python/lib/python3.10/site-packages",
-    "/opt/ros/humble/lib/python3.10/site-packages",
-    "/opt/ros/humble/local/lib/python3.10/dist-packages"
-  ]
+  }
 }

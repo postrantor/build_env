@@ -4,13 +4,7 @@
     // Build tasks
     {
       "type": "colcon",
-      "args": [
-        "build",
-        "--event-handlers",
-        "console_cohesion+",
-        "--packages-select",
-        "${input:packages_name}"
-      ],
+      "args": ["build", "--packages-select", "${input:packages_name}"],
       "problemMatcher": ["$gcc"],
       "options": {
         "cwd": "${workspaceFolder}"
@@ -29,11 +23,7 @@
     },
     {
       "type": "colcon",
-      "args": [
-        "build",
-        "--event-handlers",
-        "console_cohesion+",
-      ],
+      "args": ["build"],
       "problemMatcher": ["$gcc"],
       "options": {
         "cwd": "${workspaceFolder}"
@@ -50,6 +40,80 @@
       },
       "label": "colcon: build whole workspace"
     },
+    {
+      "type": "colcon",
+      "args": ["list"],
+      "problemMatcher": ["$gcc"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": true,
+        "echo": true
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "label": "colcon: list all packages"
+    },
+    // install dependencies
+    {
+      "label": "install: install dependencies for workspace",
+      "detail": "install dependencies for whole workspace",
+      "type": "shell",
+      "command": "install-dependencies ${workspaceFolder}",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": true,
+        "echo": true
+      },
+      "problemMatcher": "$gcc"
+    },
+    // import repos
+    {
+      "label": "install: import src from quad.repos",
+      "detail": "import quadruped repos to workspces, and ignore some packages",
+      "type": "shell",
+      "command": "import-quad-src && ignore-colcon-pkg",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": false,
+        "echo": true
+      },
+      "problemMatcher": "$gcc"
+    },
+    // update rosdep
+    {
+      "label": "install: update rosdep",
+      "detail": "update rosdep for workspace",
+      "type": "shell",
+      "command": "update-rosdep",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": false,
+        "echo": true
+      },
+      "problemMatcher": "$gcc"
+    },
+    // debug
     {
       "label": "debug",
       "detail": "Build workspace (debug)",
