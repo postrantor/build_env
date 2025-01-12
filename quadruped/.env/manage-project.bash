@@ -1,19 +1,37 @@
+#!/bin/bash
+
 # ---
 # date: 2025-01-11
 # author: postrantor
 # description: manage project
 # ---
 
-## @file update-rosdep.bash
-#  @brief Script to update rosdep configuration and sources.
+## @file manage-project.bash
+#  @brief Script to manage ROS2-based quadruped robot project.
 #
-#  This script initializes and updates rosdep if necessary.
+#  This script provides utility functions for managing a ROS2 workspace,
+#  including updating rosdep, building packages, importing repositories,
+#  installing dependencies, and ignoring specific packages.
+#
+#  Example usage:
+#  @code
+#  source /home/trantor/build_env/quadruped/.env/manage-project.bash
+#  update-rosdep
+#  import-quad-src
+#  install-dependencies ./src
+#  colcon_ws model
+#  @endcode
+
+## @function update-rosdep
+#  @brief Initialize and update rosdep configuration and sources.
+#
+#  This function checks if rosdep is initialized and updates it if necessary.
 #  It should be run with `sudo` to ensure proper permissions.
 #
 #  Example usage:
 #  @code
 #  sudo -E bash ${QUAD_WORKDIR}/.env/update-rosdep.bash
-## @endcode
+#  @endcode
 function update-rosdep() {
   # Check if rosdep is initialized
   if [ ! -f /etc/ros/rosdep/sources.list.d/20-default.list ]; then
@@ -38,7 +56,18 @@ function update-rosdep() {
   echo "rosdep update completed successfully."
 }
 
-# go to workspace
+## @function cd_ws
+#  @brief Change directory to a specific workspace and source its setup file.
+#
+#  This function navigates to a specified workspace and sources the appropriate
+#  setup file (bash or zsh) based on the current shell.
+#
+#  @param $1 Workspace name (e.g., "model", "control", "unitree").
+#
+#  Example usage:
+#  @code
+#  cd_ws model
+#  @endcode
 function cd_ws() {
   declare -A paths=(
     ["model"]="${QUAD_WORKDIR}"
@@ -60,16 +89,38 @@ function cd_ws() {
   fi
 }
 
-# colcon build target workspace
+## @function colcon_ws
+#  @brief Build a specific workspace using colcon.
+#
+#  This function changes to the specified workspace and runs `colcon build`
+#  with optional arguments.
+#
+#  @param $1 Workspace name (e.g., "model", "control", "unitree").
+#  @param $@ Additional arguments passed to `colcon build`.
+#
+#  Example usage:
+#  @code
+#  colcon_ws model --symlink-install
+#  @endcode
 function colcon_ws() {
   cd_ws $1
   shift # drop before args
   colcon build "$@"
 }
 
+## @function colcon_remove
+#  @brief Remove build and install directories for specified packages.
+#
+#  This function removes the build and install directories for one or more
+#  packages in the current workspace.
+#
+#  @param $@ List of packages to remove.
+#
+#  Example usage:
+#  @code
+#  colcon_remove package_1 package_2
+#  @endcode
 function colcon_remove() {
-  # Usage example:
-  # colcon_remove package_1 package_2
   if [ $# -eq 0 ]; then
     echo "Usage: colcon_remove <package_1> <package_2> ... <package_N>"
     return 1
@@ -95,15 +146,24 @@ function colcon_remove() {
   done
 }
 
-# import quad repo
+## @function import-quad-src
+#  @brief Import quadruped robot source repositories using vcs.
+#
+#  This function imports the source repositories specified in the `QUAD_REPO`
+#  file into the `./src` directory.
+#
+#  Example usage:
+#  @code
+#  import-quad-src
+#  @endcode
 function import-quad-src() {
   echo "importing quad src..."
-  # 创建 src 目录，存在时不报错
+  # Create src directory if it doesn't exist
   if ! mkdir -p ./src; then
     echo "Error: Failed to create ./src directory." >&2
     return 1
   fi
-  # 导入仓库
+  # Import repositories using vcs
   if ! vcs import --retry 3 --force -w 5 --input "${QUAD_REPO}" ./src; then
     echo "Error: Failed to import repositories using vcs." >&2
     return 1
@@ -112,10 +172,21 @@ function import-quad-src() {
   return 0
 }
 
-# install dependencies from packages.xml
+## @function install-dependencies
+#  @brief Install dependencies for specified packages using rosdep.
+#
+#  This function installs dependencies for the specified packages using rosdep.
+#  It skips certain keys that are not required or already installed.
+#
+#  @param $@ List of paths to packages.xml files.
+#
+#  Example usage:
+#  @code
+#  install-dependencies ./src
+#  @endcode
 function install-dependencies() {
-  # sudo rosdep init
-  # rosdep update
+  update-rosdep
+
   rosdep install \
     -y \
     --from-paths "$@" \
@@ -136,7 +207,19 @@ function install-dependencies() {
               xpp_msgs"
 }
 
-# ignore target folder
+## @function ignore-directory
+#  @brief Ignore a specific directory by creating a COLCON_IGNORE file.
+#
+#  This function creates a `.colcon-ignore-<key>` file and adds a COLCON_IGNORE
+#  file to the specified directory.
+#
+#  @param $1 Key for the ignore file (e.g., "control").
+#  @param $2 Directory pattern to ignore (e.g., "ros2-control/ros2-control").
+#
+#  Example usage:
+#  @code
+#  ignore-directory control "ros2-control/ros2-control"
+#  @endcode
 function ignore-directory() {
   local ignore_file="./src/.colcon-ignore-$1"
   local path_pattern="*/$2"
@@ -157,7 +240,16 @@ function ignore-directory() {
   fi
 }
 
-# ignore colcon packages
+## @function ignore-colcon-pkg
+#  @brief Ignore specific colcon packages by creating COLCON_IGNORE files.
+#
+#  This function ignores a predefined list of packages by creating
+#  COLCON_IGNORE files in their respective directories.
+#
+#  Example usage:
+#  @code
+#  ignore-colcon-pkg
+#  @endcode
 function ignore-colcon-pkg() {
   declare -A IGNORE_LIST=(
     [control]="ros2-control/ros2-control"
@@ -169,7 +261,7 @@ function ignore-colcon-pkg() {
     [simulation]="simulation"
   )
 
-  # 遍历忽略目录
+  # Iterate over the ignore list
   for key in "${!IGNORE_LIST[@]}"; do
     ignore-directory "$key" "${IGNORE_LIST[$key]}"
   done
