@@ -1,7 +1,7 @@
-# 设置环境变量
+# for current env_path
 ENV_DIR=${QUAD_WORKDIR}/.env/
 
-# env
+# choose shell version to source differene scripts
 if [ -n "$BASH_VERSION" ]; then
   source /opt/ros/${ROS_DISTRO}/setup.bash
   source ${QUAD_WORKDIR}/install/setup.bash
@@ -10,41 +10,41 @@ elif [ -n "$ZSH_VERSION" ]; then
   source ${QUAD_WORKDIR}/install/setup.zsh
 fi
 
-# rmw
+# source rmw version
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 # export CYCLONEDDS_URI=""
 
-# gazebo
+# enable gazebo env
 architecture=$(uname -m)
 if [[ "$architecture" == "x86_64" ]]; then
   source /usr/share/gazebo/setup.sh
   export GAZEBO_PLUGIN_PATH=$GAZEBO_PLUGIN_PATH:/opt/ros/${ROS_DISTRO}/lib
   #export GZ_VERSION=fortress
-  # "/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/${ROS_DISTRO}/opt/rviz_ogre_vendor/lib:/opt/rti.com/rti_connext_dds-6.0.1/lib/x64Linux4gcc7.3.0:/opt/rti.com/rti_connext_dds-6.0.1/bin:/opt/ros/${ROS_DISTRO}/lib/x86_64-linux-gnu:/usr/share/gurumdds/cmake/../../../lib:/opt/ros/${ROS_DISTRO}/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins::/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:"
 elif [[ "$architecture" == "aarch64" ]]; then
   echo "Current machine is ARM architecture"
 else
   echo "Unknown CPU Architecture: $architecture"
 fi
 
-# add colcon
-export _colcon_cd_root=${QUAD_WORKDIR}
+## colcon
+# add colcon related command
+export _colcon_cd_root=${QUAD_WORKDIR} # for `colcon_cd`
 source ${ENV_DIR}/colcon_cd.sh
 source ${ENV_DIR}/colcon-argcomplete.bash
 
-# set colcon::build
+# set colcon build args
 export COLCON_DEFAULTS_FILE=${QUAD_WORKDIR}/.config/build-args.yaml # for `colcon build`
 export COLCON_HOME=${QUAD_WORKDIR}/.config/                         # for colcon.meta
 
-# add vcs-complete
+# add vcs tool
 source ${ENV_DIR}/vcs.bash
 export QUAD_REPO=${QUAD_WORKDIR}/.config/quadruped.repos
 
-# add format
+# add format tool
 source ${ENV_DIR}/format-code.bash
 
-# manage-project
+# add manage-project function
 source ${ENV_DIR}/manage-project.bash
 
-# manage-ide
+# add manage-ide function
 source ${ENV_DIR}/manage-ide.bash
