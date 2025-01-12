@@ -41,20 +41,38 @@ if [[ "$1" == "--help" ]]; then
   exit 0
 fi
 
+# check system env
+read -p "Enter P7XXTM1_SSH_IP [default: 192.168.31.201]: " P7XXTM1_SSH_IP
+export P7XXTM1_SSH_IP=${P7XXTM1_SSH_IP:-192.168.31.201}
+read -p "Enter P7XXTM1_PROXY_PORT [default: 7891]: " P7XXTM1_PROXY_PORT
+export P7XXTM1_PROXY_PORT=${P7XXTM1_PROXY_PORT:-7891}
+export http_proxy=http://${P7XXTM1_SSH_IP}:${P7XXTM1_PROXY_PORT}
+export https_proxy=http://${P7XXTM1_SSH_IP}:${P7XXTM1_PROXY_PORT}
+
+# 生成ssh key
+ssh-keygen -t rsa -b 4096 -f ${HOME}/.ssh/id_rsa -N ""
+cat ${HOME}/.ssh/id_rsa.pub
+
+# 等待用户按下回车键
+echo "should add id_rsa.pub to p7xxtm1 ssh keys"
+read -p "press [Enter] to continue..."
+
 # Initialize the workspace for the quadruped project
 echo "initializing quadruped workspace..."
 
-# Create the workspace directory
 # 获取当前脚本的绝对路径
 SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-# 打印脚本路径
 echo "current script path: ${SCRIPT_PATH}"
 
+# install ros2
+bash ${SCRIPT_PATH}/.env/install-ros2.bash
+export ROS_DISTRO=humble
+export QUAD_WORKDIR=${SCRIPT_PATH}
+
 # source bash script
-source ${SCRIPT_PATH}/.env/bashrc.bash
-source ${SCRIPT_PATH}/.env/system.bash
-source ${SCRIPT_PATH}/.env/robot.bash
+source ${QUAD_WORKDIR}/.env/bashrc.bash
+source ${QUAD_WORKDIR}/.env/system.bash
+source ${QUAD_WORKDIR}/.env/robot.bash
 
 # Initialize the workspace
 update-gitconfig
@@ -64,8 +82,8 @@ update-rosdep
 
 import-quad-src
 ignore-colcon-pkg
-install-dependencies ${SCRIPT_PATH}
-
-colcon build
+install-dependencies ${QUAD_WORKDIR}
 
 echo "quadruped workspace initialized."
+echo "please run the following command to start the quadruped project:"
+echo "colcon build"

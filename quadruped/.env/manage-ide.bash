@@ -101,7 +101,7 @@ function update-gitconfig() {
   fi
 
   # 读取 .env/config 文件内容并替换 user_name 信息
-  CONFIG_CONTENT=$(cat ${QUAD_WORKDIR}.env/gitconfig)
+  CONFIG_CONTENT=$(cat ${QUAD_WORKDIR}/.env/gitconfig)
   CONFIG_CONTENT=$(echo "$CONFIG_CONTENT" | sed "s/user_name/$CURRENT_USER_NAME/g")
   CONFIG_CONTENT=$(echo "$CONFIG_CONTENT" | sed "s/user_name@gmail.com/$CURRENT_USER_EMAIL/g")
 
@@ -114,10 +114,22 @@ function update-gitconfig() {
 function update-bashrc-config() {
   # 读取 .env/bashrc 文件内容并替换 replace_to_script_path 信息
   CONFIG_CONTENT=$(cat ${QUAD_WORKDIR}/.env/bashrc)
-  CONFIG_CONTENT=$(echo "$CONFIG_CONTENT" | sed "s/replace_to_script_path/$QUAD_WORKDIR/g")
+  CONFIG_CONTENT=$(echo "$CONFIG_CONTENT" | sed "s|replace_to_script_path|$QUAD_WORKDIR|g")
 
   # 将替换后的内容追加到 ~/.bashrc 中
-  echo "$CONFIG_CONTENT" >~/.bashrc
+  echo "$CONFIG_CONTENT" >${HOME}/.bashrc
+  source ${HOME}/.bashrc
 
   echo "bashrc configuration has been updated and appended to ~/.bashrc."
+}
+
+function update-ssh-config() {
+  # 读取 .env/ssh 文件内容并替换 replace_to_script_path 信息
+  CONFIG_CONTENT=$(cat ${QUAD_WORKDIR}/.env/sshconfig)
+  CONFIG_CONTENT=$(echo "$CONFIG_CONTENT" | sed "s|p7xxtm1_ssh_ip|$P7XXTM1_SSH_IP|g")
+
+  # 将替换后的内容追加到 ~/.ssh 中
+  echo "$CONFIG_CONTENT" > ${HOME}/.ssh/config
+
+  echo "ssh configuration has been updated and appended to ~/.ssh/config."
 }
