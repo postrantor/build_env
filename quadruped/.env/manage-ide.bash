@@ -108,5 +108,16 @@ function update-gitconfig() {
   # 将替换后的内容追加到 ~/.gitconfig 中
   echo "$CONFIG_CONTENT" >~/.gitconfig
 
-  echo "Git configuration has been updated and appended to ~/.gitconfig."
+  echo "git configuration has been updated and appended to ~/.gitconfig."
+}
+
+function update-bashrc-config() {
+  # 读取 .env/bashrc 文件内容并替换 replace_to_script_path 信息
+  CONFIG_CONTENT=$(cat ${QUAD_WORKDIR}/.env/bashrc)
+  CONFIG_CONTENT=$(echo "$CONFIG_CONTENT" | sed "s/replace_to_script_path/$QUAD_WORKDIR/g")
+
+  # 将替换后的内容追加到 ~/.bashrc 中
+  echo "$CONFIG_CONTENT" >~/.bashrc
+
+  echo "bashrc configuration has been updated and appended to ~/.bashrc."
 }

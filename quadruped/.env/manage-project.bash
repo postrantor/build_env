@@ -121,6 +121,8 @@ function colcon_ws() {
 #  colcon_remove package_1 package_2
 #  @endcode
 function colcon_remove() {
+  cd_ws $1
+
   if [ $# -eq 0 ]; then
     echo "Usage: colcon_remove <package_1> <package_2> ... <package_N>"
     return 1
@@ -221,7 +223,7 @@ function install-dependencies() {
 #  ignore-directory control "ros2-control/ros2-control"
 #  @endcode
 function ignore-directory() {
-  local ignore_file="./src/.colcon-ignore-$1"
+  local ignore_file="${QUAD_WORKDIR}/src/.colcon-ignore-$1"
   local path_pattern="*/$2"
 
   if [[ ! -e $ignore_file ]]; then
