@@ -4,6 +4,40 @@
 # description: manage project
 # ---
 
+## @file update-rosdep.bash
+#  @brief Script to update rosdep configuration and sources.
+#
+#  This script initializes and updates rosdep if necessary.
+#  It should be run with `sudo` to ensure proper permissions.
+#
+#  Example usage:
+#  @code
+#  sudo -E bash ${QUAD_WORKDIR}/.env/update-rosdep.bash
+## @endcode
+function update-rosdep() {
+  # Check if rosdep is initialized
+  if [ ! -f /etc/ros/rosdep/sources.list.d/20-default.list ]; then
+    echo "rosdep is not initialized, initializing..."
+    sudo -E rosdep init || {
+      echo "Failed to initialize rosdep. Please check your network connection or permissions."
+      exit 1
+    }
+  fi
+
+  # Check if rosdep needs to be updated
+  if [ ! -d ~/.ros/rosdep ]; then
+    echo "rosdep is not updated, updating..."
+    sudo -u $(logname) -E rosdep update || {
+      echo "Failed to update rosdep. Please check your network connection or permissions."
+      exit 1
+    }
+  else
+    echo "rosdep is already initialized, skipping update."
+  fi
+
+  echo "rosdep update completed successfully."
+}
+
 # go to workspace
 function cd_ws() {
   declare -A paths=(
