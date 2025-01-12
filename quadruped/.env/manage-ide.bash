@@ -63,3 +63,50 @@ function import-vscode-extensions() {
     return 1
   fi
 }
+
+##
+# @brief 更新 Git 配置
+#
+# 该函数用于读取当前用户的信息（Git 用户名和邮箱），并将其替换到 `.env/config` 文件中的 `[user]` 部分。
+# 替换后的内容将追加到 `~/.gitconfig` 文件中。
+#
+# @details
+# 函数会检查当前用户的 Git 配置（用户名和邮箱），如果未设置，则使用系统用户名和主机名作为默认值。
+# 替换操作会修改 `.env/config` 文件中的 `[user]` 部分，并将结果追加到 `~/.gitconfig` 文件中。
+#
+# @return 返回值为 0 表示成功，非 0 表示失败。
+#
+# @note
+# - 确保 `.env/config` 文件存在且格式正确。
+# - 确保当前用户有权限读取 `.env/config` 文件并写入 `~/.gitconfig` 文件。
+#
+# @example
+# 调用示例：
+# ```
+# update-gitconfig
+# ```
+##
+function update-gitconfig() {
+  # 获取当前用户的用户名和邮箱
+  CURRENT_USER_NAME=$(git config --global user.name)
+  CURRENT_USER_EMAIL=$(git config --global user.email)
+
+  # 如果用户没有设置全局的 Git 用户名或邮箱，则使用系统用户名
+  if [ -z "$CURRENT_USER_NAME" ]; then
+    CURRENT_USER_NAME=$(whoami)
+  fi
+
+  if [ -z "$CURRENT_USER_EMAIL" ]; then
+    CURRENT_USER_EMAIL="$CURRENT_USER_NAME@$(hostname)"
+  fi
+
+  # 读取 .env/config 文件内容并替换 user_name 信息
+  CONFIG_CONTENT=$(cat ${QUAD_WORKDIR}.env/gitconfig)
+  CONFIG_CONTENT=$(echo "$CONFIG_CONTENT" | sed "s/user_name/$CURRENT_USER_NAME/g")
+  CONFIG_CONTENT=$(echo "$CONFIG_CONTENT" | sed "s/user_name@gmail.com/$CURRENT_USER_EMAIL/g")
+
+  # 将替换后的内容追加到 ~/.gitconfig 中
+  echo "$CONFIG_CONTENT" >~/.gitconfig
+
+  echo "Git configuration has been updated and appended to ~/.gitconfig."
+}
