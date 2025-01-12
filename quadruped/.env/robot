@@ -28,9 +28,9 @@ else
 fi
 
 # add colcon
+export _colcon_cd_root=${QUAD_WORKDIR}
 source ${ENV_DIR}/colcon_cd.sh
 source ${ENV_DIR}/colcon-argcomplete.bash
-export _colcon_cd_root=/opt/ros/${ROS_DISTRO}/
 
 # set colcon::build
 export COLCON_DEFAULTS_FILE=${QUAD_WORKDIR}/.config/build-args.yaml # for `colcon build`
