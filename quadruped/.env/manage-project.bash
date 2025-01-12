@@ -168,11 +168,32 @@ function import-quad-src() {
     return 1
   fi
   # Import repositories using vcs
-  if ! vcs import --retry 3 --force -w 5 --input "${QUAD_REPO}" ./src; then
+  if ! vcs import --retry 3 --force --workers 5 --input "${QUAD_REPO}" ./src; then
     echo "Error: Failed to import repositories using vcs." >&2
     return 1
   fi
-  echo "Import completed successfully."
+  echo "import completed successfully."
+  return 0
+}
+
+## @function pull-quad-src
+#  @brief Import quadruped robot source repositories using vcs.
+#
+#  This function imports the source repositories specified in the `QUAD_REPO`
+#  file into the `./src` directory.
+#
+#  Example usage:
+#  @code
+#  pull-quad-src
+#  @endcode
+function pull-quad-src() {
+  echo "pulling quad src..."
+  # pull repositories using vcs
+  if ! vcs pull --workers 5 --repos ./src; then
+    echo "Error: Failed to pull repositories using vcs." >&2
+    return 1
+  fi
+  echo "pull completed successfully."
   return 0
 }
 
