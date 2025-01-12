@@ -6,59 +6,59 @@
 
 # go to workspace
 function cd_ws() {
-    declare -A paths=(
-        ["model"]="${QUAD_WORKDIR}"
-        ["control"]="${HOME}/project/control_ws"
-        ["unitree"]="${HOME}/project/unitree_ws"
-    )
+  declare -A paths=(
+    ["model"]="${QUAD_WORKDIR}"
+    ["control"]="${HOME}/project/control_ws"
+    ["unitree"]="${HOME}/project/unitree_ws"
+  )
 
-    if [[ -z ${paths[$1]} ]]; then
-        echo "Invalid argument. Usage: cd workspace [control|demo|unitree] [custom_args]"
-        return 1
-    fi
+  if [[ -z ${paths[$1]} ]]; then
+    echo "Invalid argument. Usage: cd workspace [control|demo|unitree] [custom_args]"
+    return 1
+  fi
 
-    cd "${paths[$1]}"
+  cd "${paths[$1]}"
 
-    if [ -n "$BASH_VERSION" ]; then
-        source "./install/setup.bash"
-    elif [ -n "$ZSH_VERSION" ]; then
-        source "./install/setup.zsh"
-    fi
+  if [ -n "$BASH_VERSION" ]; then
+    source "./install/setup.bash"
+  elif [ -n "$ZSH_VERSION" ]; then
+    source "./install/setup.zsh"
+  fi
 }
 
 # colcon build target workspace
 function colcon_ws() {
-    cd_ws $1
-    shift # drop before args
-    colcon build "$@"
+  cd_ws $1
+  shift # drop before args
+  colcon build "$@"
 }
 
 function colcon_remove() {
-    # Usage example:
-    # colcon_remove package_1 package_2
-    if [ $# -eq 0 ]; then
-        echo "Usage: colcon_remove <package_1> <package_2> ... <package_N>"
-        return 1
+  # Usage example:
+  # colcon_remove package_1 package_2
+  if [ $# -eq 0 ]; then
+    echo "Usage: colcon_remove <package_1> <package_2> ... <package_N>"
+    return 1
+  fi
+
+  for package in "$@"; do
+    install_dir="install/$package"
+    build_dir="build/$package"
+
+    if [ -d "$install_dir" ]; then
+      echo "Removing $install_dir"
+      rm -rf "$install_dir"
+    else
+      echo "$install_dir does not exist."
     fi
 
-    for package in "$@"; do
-        install_dir="install/$package"
-        build_dir="build/$package"
-
-        if [ -d "$install_dir" ]; then
-            echo "Removing $install_dir"
-            rm -rf "$install_dir"
-        else
-            echo "$install_dir does not exist."
-        fi
-
-        if [ -d "$build_dir" ]; then
-            echo "Removing $build_dir"
-            rm -rf "$build_dir"
-        else
-            echo "$build_dir does not exist."
-        fi
-    done
+    if [ -d "$build_dir" ]; then
+      echo "Removing $build_dir"
+      rm -rf "$build_dir"
+    else
+      echo "$build_dir does not exist."
+    fi
+  done
 }
 
 # import quad repo
@@ -80,26 +80,26 @@ function import-quad-src() {
 
 # install dependencies from packages.xml
 function install-dependencies() {
-    # sudo rosdep init
-    # rosdep update
-    rosdep install \
-        -y \
-        --from-paths "$@" \
-        --ignore-src \
-        --skip-keys "serial \
-                unitree_msgs \
-                unitree_sdk \
-                quadruped \
-                tinynurbs \
-                tiny_ekf \
-                quadprog \
-                matplotlib_cpp \
-                qpOASES \
-                SuiteSparse \
-                message_generation \
-                message_runtime \
-                catkin \
-                xpp_msgs"
+  # sudo rosdep init
+  # rosdep update
+  rosdep install \
+    -y \
+    --from-paths "$@" \
+    --ignore-src \
+    --skip-keys "serial \
+              unitree_msgs \
+              unitree_sdk \
+              quadruped \
+              tinynurbs \
+              tiny_ekf \
+              quadprog \
+              matplotlib_cpp \
+              qpOASES \
+              SuiteSparse \
+              message_generation \
+              message_runtime \
+              catkin \
+              xpp_msgs"
 }
 
 # ignore target folder
