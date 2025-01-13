@@ -1,4 +1,5 @@
 # https://github.com/ros/rosdistro/blob/master/humble/distribution.yaml
+# https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/base.yaml
 repositories:
   quadruped/model-predictive-control:
     type: git
