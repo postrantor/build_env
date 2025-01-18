@@ -18,6 +18,7 @@ setup_shell() {
     source /opt/ros/${ROS_DISTRO}/setup.zsh
     source ${QUAD_WORKDIR}/install/setup.zsh
   fi
+  export PATH=${QUAD_WORKDIR}/install/af_configurator/lib/af_configurator:$PATH
 }
 
 # 3. RMW Implementation
