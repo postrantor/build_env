@@ -73,15 +73,14 @@ repositories:
     url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/ros2-control/quad-controllers.git
     version: humble
 
+  # for humble ros2-control
   ros2-control/realtime_tools:
     type: git
-    # url: https://github.com/ros-controls/realtime_tools.git
-    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/ros2-control/realtime_tools.git
+    url: https://github.com/ros-controls/realtime_tools.git
     version: humble
   ros2-control/control_msgs:
     type: git
-    # url: https://github.com/ros-controls/control_msgs.git
-    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/ros2-control/control_msgs.git
+    url: https://github.com/ros-controls/control_msgs.git
     version: humble
 
   ros2-infrastructure/joint-state-publisher:
@@ -163,3 +162,13 @@ repositories:
     type: git
     url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/interfaces/xpp_msgs.git
     version: ros2
+
+  # af red
+  red/tools:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/red/tools.git
+    version: dev
+  red/examples:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/red/examples.git
+    version: dev

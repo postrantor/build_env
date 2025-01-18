@@ -87,7 +87,7 @@
     "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
   },
   "[cpp]": {
-    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+    "editor.defaultFormatter": "zachflower.uncrustify"
   },
   "uncrustify.configPath.linux": "{workspaceFolder}/uncrustify.cfg",
 
@@ -107,5 +107,24 @@
   },
   "[ignore]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "python.autoComplete.extraPaths": [
+    "/opt/ros/humble/lib/python3.10/site-packages",
+    "/opt/ros/humble/local/lib/python3.10/dist-packages"
+  ],
+  "python.analysis.extraPaths": [
+    "/opt/ros/humble/lib/python3.10/site-packages",
+    "/opt/ros/humble/local/lib/python3.10/dist-packages"
+  ],
+  "files.associations": {
+    "*.m": "matlab",
+    ".clang-format": "markdown",
+    "*.repos": "yaml",
+    "*.meta": "json",
+    "*.ipp": "cpp",
+    "typeindex": "cpp",
+    "typeinfo": "cpp",
+    "chrono": "cpp",
+    "text_encoding": "cpp"
   }
 }
