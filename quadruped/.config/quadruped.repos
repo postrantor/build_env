@@ -162,13 +162,3 @@ repositories:
     type: git
     url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/interfaces/xpp_msgs.git
     version: ros2
-
-  # af red
-  red/tools:
-    type: git
-    url: ssh://p7xxtm1/~/repositories/hirain/af/red/tools.git
-    version: dev
-  red/examples:
-    type: git
-    url: ssh://p7xxtm1/~/repositories/hirain/af/red/examples.git
-    version: dev

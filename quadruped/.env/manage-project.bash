@@ -229,7 +229,17 @@ function install-dependencies() {
               message_generation \
               message_runtime \
               catkin \
-              xpp_msgs"
+              xpp_msgs \
+              af_interfaces \
+              af_toolbox \
+              beatles \
+              dds \
+              events_executor \
+              examples \
+              hpc-matrix \
+              performance \
+              reference-system \
+              tools"
 }
 
 ## @function ignore-directory
