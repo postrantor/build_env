@@ -89,7 +89,7 @@
   "[cpp]": {
     "editor.defaultFormatter": "zachflower.uncrustify"
   },
-  "uncrustify.configPath.linux": "{workspaceFolder}/uncrustify.cfg",
+  "uncrustify.configPath.linux": "${workspaceFolder}/uncrustify.cfg",
 
   // @cmake
   "cmake.pinnedCommands": [
