@@ -1,13 +1,17 @@
 {
   "names": {
+    "beatles": {
+      "cmake-args": [
+        "-DCMAKE_C_COMPILER=clang",
+        "-DCMAKE_CXX_COMPILER=clang++"
+      ],
+      "dependencies": []
+    },
     "CycloneDDS-CXX": {
       "cmake-args": [],
       "dependencies": [
         "cyclonedds"
       ]
-    },
-    "robot_sim": {
-      "cmake-args": []
     },
     "quadruped": {
       "cmake-args": [

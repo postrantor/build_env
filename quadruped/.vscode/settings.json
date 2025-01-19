@@ -125,7 +125,8 @@
     "typeindex": "cpp",
     "typeinfo": "cpp",
     "chrono": "cpp",
-    "text_encoding": "cpp"
+    "text_encoding": "cpp",
+    "type_traits": "cpp"
   },
   "xml.downloadExternalResources.enabled": true
 }
