@@ -1,0 +1,5 @@
+# P7XXTM1
+Host p7xxtm1.local p7xxtm1
+  HostName p7xxtm1_ssh_ip
+  User trantor
+  Port 22

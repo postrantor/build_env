@@ -1,0 +1,164 @@
+# https://github.com/ros/rosdistro/blob/master/humble/distribution.yaml
+# https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/base.yaml
+repositories:
+  quadruped/model-predictive-control:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/quadruped/quadruped-robot.git
+    version: model_ws
+  # quadruped/reinforcement-learning-control:
+
+  quadruped/thirdpart/suit-sparse:
+    type: git
+    # url: https://github.com/DrTimothyAldenDavis/SuiteSparse.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/quadruped/thirdpart/suit-sparse.git
+    version: ros2
+  quadruped/thirdpart/matplotlib-cpp:
+    type: git
+    # url: https://github.com/lava/matplotlib-cpp.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/quadruped/thirdpart/matplotlib-cpp.git
+    version: ros2
+  quadruped/thirdpart/qpoases:
+    type: git
+    # url: https://github.com/coin-or/qpOASES.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/quadruped/thirdpart/qpOASES.git
+    version: ros2
+  quadruped/thirdpart/quadprog:
+    type: git
+    # url: https://github.com/liuq/QuadProgpp.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/quadruped/thirdpart/QuadProgpp.git
+    version: ros2
+  quadruped/thirdpart/tiny-ekf:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/quadruped/thirdpart/tiny-ekf.git
+    version: ros2
+  quadruped/thirdpart/tinynurbs:
+    type: git
+    # url: https://github.com/pradeep-pyro/tinynurbs.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/quadruped/thirdpart/tinynurbs.git
+    version: ros2
+
+  reference/quadruped-robot:
+    type: git
+    # url: https://github.com/TopHillRobotics/quadruped-robot.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/reference/quadruped-robot.git
+    version: mpc-wbc
+  reference/legged-control:
+    type: git
+    # url: https://github.com/qiayuanl/legged_control.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/reference/legged_control.git
+    version: master
+  reference/wit-standar-protocol: # demo
+    type: git
+    # url: https://github.com/WITMOTION/WitStandardProtocol_JY901.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/hardware/imu/witmotion/WitStandardProtocol_JY901.git
+    version: main
+
+  ros2-control/generate-parameter-library:
+    type: git
+    # url: https://github.com/PickNikRobotics/generate_parameter_library.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/ros2-control/generate_parameter_library.git
+    version: main
+  ros2-control/ros2-control:
+    type: git
+    # url: https://github.com/ros-controls/ros2_control.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/ros2-control/ros2_control.git
+    version: humble
+  ros2-control/ros2-controllers: # example ros2-control
+    type: git
+    # url: https://github.com/ros-controls/ros2_controllers.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/ros2-control/ros2_controllers.git
+    version: humble
+  ros2-control/quad-controllers:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/ros2-control/quad-controllers.git
+    version: humble
+
+  # for humble ros2-control
+  ros2-control/realtime_tools:
+    type: git
+    url: https://github.com/ros-controls/realtime_tools.git
+    version: humble
+  ros2-control/control_msgs:
+    type: git
+    url: https://github.com/ros-controls/control_msgs.git
+    version: humble
+
+  ros2-infrastructure/joint-state-publisher:
+    type: git
+    # url: https://github.com/ros/joint_state_publisher.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/ros2-infrastructure/joint_state_publisher.git
+    version: ros2
+  ros2-infrastructure/robot-state-publisher:
+    type: git
+    # url: https://github.com/ros/robot_state_publisher.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/ros2-infrastructure/robot_state_publisher.git
+    version: humble
+  ros2-infrastructure/ament-index-cpp:
+    type: git
+    # url: https://github.com/ament/ament_index.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/ros2-infrastructure/ament_index.git
+    version: humble
+  ros2-infrastructure/yaml-cpp-vendor:
+    type: git
+    # url: https://github.com/ros2/yaml_cpp_vendor.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/ros2-infrastructure/yaml_cpp_vendor.git
+    version: humble
+
+  simulation/gazebo-ros-pkgs:
+    type: git
+    # url: https://github.com/ros-simulation/gazebo_ros_pkgs.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/simulation/gazebo_ros_pkgs.git
+    version: ros2
+  simulation/gazebo-ros2-control:
+    type: git
+    # url: https://github.com/ros-controls/gazebo_ros2_control.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/simulation/gazebo_ros2_control.git
+    version: humble
+  simulation/xpp:
+    type: git
+    # url: https://github.com/leggedrobotics/xpp.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/simulation/xpp.git
+    version: master
+
+  hardware/serial:
+    type: git
+    # url: https://github.com/postrantor/serial-ros2.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/hardware/drive/serial.git
+    version: main
+  hardware/imu/fdilink_ahrs:
+    type: git
+    # url: https://github.com/postrantor/imu-drive.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/hardware/imu/wheeltec/fdilink_ahrs.git
+    version: ros2
+  hardware/imu/witmotion/ros2-wrapper:
+    type: git
+    # url: https://github.com/ElettraSciComp/witmotion_IMU_ros.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/hardware/imu/witmotion/witmotion_IMU_ros.git
+    version: ros2
+  hardware/imu/witmotion/ros2-wrapper/witmotion-uart-qt:
+    type: git
+    # url: https://github.com/ElettraSciComp/witmotion_IMU_QT.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/hardware/imu/witmotion/witmotion_IMU_QT.git
+    version: main
+  hardware/pressure:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/hardware/pressure/pressure.git
+    version: ros2
+  hardware/unitree-sdk:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/hardware/unitree/unitree_sdk.git
+    version: ros2
+
+  interfaces/geometry2:
+    type: git
+    # url: https://github.com/ros2/geometry2.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/interfaces/geometry2.git
+    version: humble
+  interfaces/unitree-msgs:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/interfaces/unitree_msgs.git
+    version: ros2
+  interfaces/xpp-msgs:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/interfaces/xpp_msgs.git
+    version: ros2

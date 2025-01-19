@@ -1,0 +1,76 @@
+repositories:
+  dds/cyclonedds:
+    type: git
+    url: https://github.com/eclipse-cyclonedds/cyclonedds.git
+    version: releases/0.10.x
+  dds/cyclonedds-cxx:
+    type: git
+    url: https://github.com/eclipse-cyclonedds/cyclonedds-cxx.git
+    version: releases/0.10.x
+  dds/iceoryx:
+    type: git
+    url: https://github.com/eclipse-iceoryx/iceoryx.git
+    version: release_2.0
+  dds/protobuf:
+    type: git
+    url: https://github.com/protocolbuffers/protobuf.git
+    version: v3.14.0
+
+  ros2-dep/class_loader:
+    type: git
+    url: https://github.com/ros/class_loader.git
+    version: humble
+  ros2-dep/console_bridge_vendor:
+    type: git
+    url: https://github.com/ros2/console_bridge_vendor.git
+    version: humble
+  ros2-dep/rcpputils:
+    type: git
+    url: https://github.com/ros2/rcpputils.git
+    version: humble
+  ros2-dep/rcutils:
+    type: git
+    url: https://github.com/ros2/rcutils.git
+    version: humble
+
+  # # build dependencies - ament
+  # ros2-infrastructure/ament/ament_cmake:
+  #   type: git
+  #   url: https://github.com/ament/ament_cmake.git
+  #   version: humble
+  # ros2-infrastructure/ament/ament_index:
+  #   type: git
+  #   url: https://github.com/ament/ament_index.git
+  #   version: humble
+  # ros2-infrastructure/ament/ament_lint:
+  #   type: git
+  #   url: https://github.com/ament/ament_lint.git
+  #   version: humble
+  # ros2-infrastructure/ament/ament_package:
+  #   type: git
+  #   url: https://github.com/ament/ament_package.git
+  #   version: humble
+  # ros2-infrastructure/ament/google_benchmark_vendor:
+  #   type: git
+  #   url: https://github.com/ament/google_benchmark_vendor.git
+  #   version: humble
+  # ros2-infrastructure/ament/googletest:
+  #   type: git
+  #   url: https://github.com/ament/googletest.git
+  #   version: humble
+  # ros2-infrastructure/ament/uncrustify_vendor:
+  #   type: git
+  #   url: https://github.com/ament/uncrustify_vendor.git
+  #   version: humble
+  # ros2-infrastructure/ament_cmake_ros:
+  #   type: git
+  #   url: https://github.com/ros2/ament_cmake_ros.git
+  #   version: humble
+  # ros2-infrastructure/catkin_pkg:
+  #   type: git
+  #   url: https://github.com/ros-infrastructure/catkin_pkg.git
+  #   version: master
+  # ros2-infrastructure/pyparsing:
+  #   type: git
+  #   url: https://github.com/pyparsing/pyparsing.git
+  #   version: master
