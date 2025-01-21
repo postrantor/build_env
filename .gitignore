@@ -1,4 +1,9 @@
-quadruped/src/
-quadruped/build/
-quadruped/install/
-quadruped/log/
+__pycache__/
+.cache/
+
+build/
+install/
+log/
+src/
+
+extensions.tar.gz
