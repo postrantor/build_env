@@ -20,6 +20,13 @@
       // "contextLength": 4096
     },
     {
+      "title": "deepseek-reasoner",
+      "model": "deepseek-reasoner",
+      "apiBase": "https://api.deepseek.com/v1",
+      "apiKey": "sk-e9ae3351c5b64cca94eb9beccdd0a1a0",
+      "provider": "openai"
+    },
+    {
       "title": "llama3.2:latest",
       "model": "llama3.2:latest",
       "apiBase": "http://192.168.31.205:11434/",
