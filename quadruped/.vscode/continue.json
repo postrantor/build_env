@@ -14,17 +14,31 @@
       "title": "deepseek",
       // "model": "deepseek-chat",
       "model": "deepseek-coder",
-      "apiBase": "https://api.deepseek.com/v1",
-      "apiKey": "",
+      "apiBase": "https://api.deepseek.com",
+      "apiKey": "${DEEPSEEK_API_KEY}",
       "provider": "openai"
       // "contextLength": 4096
     },
     {
       "title": "deepseek-reasoner",
       "model": "deepseek-reasoner",
-      "apiBase": "https://api.deepseek.com/v1",
-      "apiKey": "",
+      "apiBase": "https://api.deepseek.com",
+      "apiKey": "${DEEPSEEK_API_KEY}",
       "provider": "openai"
+    },
+    {
+      "title": "deepseek-r1:14b",
+      "model": "deepseek-r1:14b",
+      "apiBase": "http://192.168.31.205:11434/",
+      "apiKey": "[ollama]",
+      "provider": "ollama"
+    },
+    {
+      "title": "deepseek-coder-v2:16b",
+      "model": "deepseek-coder-v2:16b",
+      "apiBase": "http://192.168.31.205:11434/",
+      "apiKey": "[ollama]",
+      "provider": "ollama"
     },
     {
       "title": "llama3.2:latest",
@@ -34,20 +48,6 @@
       "apiKey": "[ollama]",
       "provider": "ollama"
       // "contextLength": 4096
-    },
-    {
-      "title": "phi3:medium",
-      "model": "phi3:medium",
-      "apiBase": "http://192.168.31.205:11434/",
-      "apiKey": "[ollama]",
-      "provider": "ollama"
-    },
-    {
-      "title": "codestral:latest",
-      "model": "codestral:latest",
-      "apiBase": "http://192.168.31.205:11434/",
-      "apiKey": "[ollama]",
-      "provider": "ollama"
     }
   ],
   "customCommands": [
@@ -112,7 +112,7 @@
     "title": "deepseek-tab",
     "model": "deepseek-coder",
     "apiBase": "https://api.deepseek.com/beta",
-    "apiKey": "",
+    "apiKey": "${DEEPSEEK_API_KEY}",
     "provider": "openai"
   },
   "tabAutocompleteOptions": {
