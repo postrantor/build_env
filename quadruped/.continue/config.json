@@ -11,20 +11,22 @@
   },
   "models": [
     {
+      // https://github.com/deepseek-ai/awesome-deepseek-integration/blob/main/docs/continue/README_cn.md
       "title": "deepseek",
-      // "model": "deepseek-chat",
       "model": "deepseek-coder",
+      // "model": "deepseek-chat",
       "apiBase": "https://api.deepseek.com",
-      "apiKey": "${DEEPSEEK_API_KEY}",
-      "provider": "openai"
-      // "contextLength": 4096
+      "apiKey": "",
+      "contextLength": 128000,
+      "provider": "deepseek"
     },
     {
       "title": "deepseek-reasoner",
       "model": "deepseek-reasoner",
       "apiBase": "https://api.deepseek.com",
-      "apiKey": "${DEEPSEEK_API_KEY}",
-      "provider": "openai"
+      "apiKey": "",
+      "contextLength": 128000,
+      "provider": "deepseek"
     },
     {
       "title": "deepseek-r1:14b",
@@ -66,10 +68,26 @@
       "name": "ask-quad",
       "prompt": "{{{ input }}}\n\n这是通过 MPC 算法控制四足机器人的一段代码，请按照 `@brief @param` 的风格，对每个函数添加详细的中文注释，解释其中每个函数的详细功能。我希望给出的注释可以依据函数的实现，并前后联系，给出的注释更具体详细。同时可以对函数的具体实现，分析函数的内在逻辑，也同样以详细注释的形式插入在函数的关键地方。",
       "description": "ask-quadruped"
+    },
+    {
+      "name": "onboard",
+      "description": "Familiarize yourself with the codebase"
+    },
+    {
+      "name": "commit",
+      "description": "Generate a commit message for the current changes"
+    },
+    {
+      "name": "check",
+      "description": "Check for mistakes in my code",
+      "prompt": "{{{ input }}}\n\nPlease read the highlighted code and check for any mistakes. You should look for the following, and be extremely vigilant:\n- Syntax errors\n- Logic errors\n- Security vulnerabilities\n- Performance issues\n- Anything else that looks wrong\n\nOnce you find an error, please explain it as clearly as possible, but without using extra words. For example, instead of saying 'I think there is a syntax error on line 5', you should say 'Syntax error on line 5'. Give your answer as one bullet point per mistake found."
     }
   ],
   // https://docs.continue.dev/customize/context-providers#built-in-context-providers
   "contextProviders": [
+    {
+      "name": "os"
+    },
     {
       // https://docs.continue.dev/customize/deep-dives/codebase
       "name": "codebase",
@@ -77,6 +95,50 @@
         "nRetrieve": 25,
         "nFinal": 5,
         "useReranking": true
+      }
+    },
+    {
+      "name": "folder"
+    },
+    {
+      "name": "open",
+      "params": {
+        "onlyPinned": false
+      }
+    },
+    {
+      "name": "terminal",
+      "params": {}
+    },
+    {
+      "name": "search"
+    },
+    {
+      "name": "clipboard"
+    },
+    {
+      "name": "tree"
+    },
+    {
+      "name": "problems"
+    },
+    {
+      "name": "debugger",
+      "params": {
+        "stackDepth": 3
+      }
+    },
+    {
+      "name": "repo-map",
+      "params": {
+        "includeSignatures": false // default true
+      }
+    },
+    {
+      "name": "commit",
+      "params": {
+        "Depth": 50,
+        "LastXCommitsDepth": 10
       }
     },
     {
@@ -92,15 +154,7 @@
       "params": {}
     },
     {
-      "name": "open",
-      "params": {}
-    },
-    {
       "name": "web",
-      "params": {}
-    },
-    {
-      "name": "terminal",
       "params": {}
     },
     {
@@ -112,7 +166,7 @@
     "title": "deepseek-tab",
     "model": "deepseek-coder",
     "apiBase": "https://api.deepseek.com/beta",
-    "apiKey": "${DEEPSEEK_API_KEY}",
+    "apiKey": "",
     "provider": "openai"
   },
   "tabAutocompleteOptions": {
