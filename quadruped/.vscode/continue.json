@@ -15,7 +15,7 @@
       // "model": "deepseek-chat",
       "model": "deepseek-coder",
       "apiBase": "https://api.deepseek.com/v1",
-      "apiKey": "sk-e9ae3351c5b64cca94eb9beccdd0a1a0",
+      "apiKey": "",
       "provider": "openai"
       // "contextLength": 4096
     },
@@ -23,7 +23,7 @@
       "title": "deepseek-reasoner",
       "model": "deepseek-reasoner",
       "apiBase": "https://api.deepseek.com/v1",
-      "apiKey": "sk-e9ae3351c5b64cca94eb9beccdd0a1a0",
+      "apiKey": "",
       "provider": "openai"
     },
     {
@@ -50,7 +50,6 @@
       "provider": "ollama"
     }
   ],
-
   "customCommands": [
     {
       "name": "test2",
@@ -113,14 +112,16 @@
     "title": "deepseek-tab",
     "model": "deepseek-coder",
     "apiBase": "https://api.deepseek.com/beta",
-    "apiKey": "sk-e9ae3351c5b64cca94eb9beccdd0a1a0",
+    "apiKey": "",
     "provider": "openai"
   },
   "tabAutocompleteOptions": {
     "debounceDelay": 500,
     "maxPromptTokens": 1500,
     "multilineCompletions": "always",
-    "disableInFiles": ["*.md"]
+    "disableInFiles": [
+      "*.md"
+    ]
   },
   "allowAnonymousTelemetry": false,
   // https://docs.continue.dev/customize/model-providers/ollama#embeddings-model
