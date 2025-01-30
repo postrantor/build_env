@@ -458,7 +458,3 @@ CheckOptions:
     value: ::std::basic_string;::std::basic_string_view;::std::vector;::std::array
   - key: readability-static-accessed-through-instance.NameSpecifierNestingThreshold
     value: "3"
-  - key: readability-identifier-naming.FunctionCase
-    value: CamelCase
-  - key: readability-identifier-naming.ClassCase
-    value: AnyCase
