@@ -8,7 +8,7 @@ repositories:
   quadruped/base-matlab-mpc:
     type: git
     url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/quadruped/base_matlab_mpc.git
-    version: model_ws
+    version: main
   # quadruped/reinforcement-learning-control:
 
   quadruped/rosbag:
