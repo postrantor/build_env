@@ -11,6 +11,11 @@ repositories:
     version: model_ws
   # quadruped/reinforcement-learning-control:
 
+  quadruped/rosbag:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/quadruped/rosbag.git
+    version: main
+
   quadruped/thirdpart/suit-sparse:
     type: git
     # url: https://github.com/DrTimothyAldenDavis/SuiteSparse.git
