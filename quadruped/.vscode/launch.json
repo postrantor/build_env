@@ -8,7 +8,7 @@
       "MIMode": "gdb",
       "program": "${workspaceFolder}/install/example_mpc/lib/example_mpc/example_gazebo",
       "args": [],
-      "preLaunchTask": "colcon: build package",
+      "preLaunchTask": "colcon: build select package",
       "stopAtEntry": true,
       "cwd": "${workspaceFolder}",
       "externalConsole": false,

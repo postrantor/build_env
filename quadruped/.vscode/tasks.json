@@ -348,7 +348,7 @@
       "id": "packages_name",
       "type": "promptString",
       "description": "Enter the packages to select",
-      "default": "robot_sim"
+      "default": "example_mpc"
     }
   ]
 }
