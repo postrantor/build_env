@@ -5,9 +5,13 @@ repositories:
     type: git
     url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/quadruped/quadruped-robot.git
     version: model_ws
-  quadruped/base-matlab-mpc:
+  quadruped/matlab/base-matlab-mpc:
     type: git
-    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/quadruped/base_matlab_mpc.git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/quadruped/matlab/base_matlab_mpc.git
+    version: main
+  quadruped/matlab/mpc-for-gait-planning-of-quadrupedal-robot:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/quadruped/matlab/mpc-for-gait-planning-of-quadrupedal-robot.git
     version: main
   # quadruped/reinforcement-learning-control:
 

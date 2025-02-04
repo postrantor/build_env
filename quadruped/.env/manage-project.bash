@@ -292,7 +292,7 @@ function ignore-colcon-pkg() {
     [reference]="reference"
     [interfaces]="interfaces/geometry2"
     [simulation]="simulation"
-    [matlab]="quadruped/base-matlab-mpc"
+    [matlab]="quadruped/matlab"
   )
 
   # Iterate over the ignore list
