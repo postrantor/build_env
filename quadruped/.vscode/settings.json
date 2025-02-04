@@ -85,7 +85,7 @@
     "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
   },
   "[cpp]": {
-    "editor.defaultFormatter": "zachflower.uncrustify"
+    "editor.defaultFormatter": "xaver.clang-format"
   },
   "uncrustify.configPath.linux": "${workspaceFolder}/uncrustify.cfg",
   // @cmake

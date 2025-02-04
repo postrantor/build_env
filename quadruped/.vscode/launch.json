@@ -9,7 +9,7 @@
       "program": "${workspaceFolder}/install/example_mpc/lib/example_mpc/example_gazebo",
       "args": [],
       "preLaunchTask": "colcon: build select package",
-      "stopAtEntry": true,
+      "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "externalConsole": false,
       "setupCommands": [

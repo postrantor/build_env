@@ -1,6 +1,7 @@
 {
   // https://code.visualstudio.com/docs/editor/extension-marketplace
   "recommendations": [
+    "SharzyL.cjk-word-handler", // CJK for Chinese word segmentation
     "Compulim.vscode-clock", // status bar clock
     "ms-vscode.cmake-tools",
     "ms-vscode.cpptools-extension-pack",
