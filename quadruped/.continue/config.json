@@ -29,6 +29,14 @@
       "provider": "deepseek"
     },
     {
+      "title": "deepseek-r1-distill-qwen-32b",
+      "model": "DeepSeek-R1-Distill-Qwen-32B",
+      "apiBase": "https://ai.gitee.com/v1",
+      "apiKey": "",
+      "contextLength": 128000,
+      "provider": "openai"
+    },
+    {
       "title": "deepseek-r1:14b",
       "model": "deepseek-r1:14b",
       "apiBase": "http://192.168.31.205:11434/",
@@ -46,6 +54,7 @@
       "title": "llama3.2:latest",
       "model": "llama3.2:latest",
       "apiBase": "http://192.168.31.205:11434/",
+      // "apiBase": "http://www.postrantor.com:2346",
       // "apiBase": "http://[240e:304:27f5:d900:341a:b3c6:d00:beca]:11434/",
       "apiKey": "[ollama]",
       "provider": "ollama"
@@ -173,9 +182,7 @@
     "debounceDelay": 500,
     "maxPromptTokens": 1500,
     "multilineCompletions": "always",
-    "disableInFiles": [
-      "*.md"
-    ]
+    "disableInFiles": ["*.md"]
   },
   "allowAnonymousTelemetry": false,
   // https://docs.continue.dev/customize/model-providers/ollama#embeddings-model
