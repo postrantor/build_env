@@ -125,5 +125,6 @@
     "text_encoding": "cpp",
     "type_traits": "cpp"
   },
-  "xml.downloadExternalResources.enabled": true
+  "xml.downloadExternalResources.enabled": true,
+  "ros.distro": "humble"
 }
