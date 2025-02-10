@@ -42,9 +42,9 @@ repositories:
   ## cream
   cream/examples:
     type: git
-    url: ssh://p7xxtm1/~/repositories/hirain/af/red/examples.git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/red/cream_examples.git
     version: AF_dev
   cream/cream:
     type: git
-    url: ssh://p7xxtm1/~/repositories/hirain/af/red/beatles.git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/red/cream.git
     version: AF_dev

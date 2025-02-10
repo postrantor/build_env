@@ -5,7 +5,7 @@
 # ---
 
 # format-target-folder-by-clang-format
-# 
+#
 # 功能描述：
 #   格式化指定文件夹中的 C++ 源文件（`.h`, `.cpp`, `.hpp`），使用指定的 `.clang-format` 配置文件。
 #

@@ -7,7 +7,7 @@
 # ---
 
 ## @file manage-project.bash
-#  @brief Script to manage ROS2-based quadruped robot project.
+#  @brief Script to manage ROS2-based red robot project.
 #
 #  This script provides utility functions for managing a ROS2 workspace,
 #  including updating rosdep, building packages, importing repositories,
@@ -15,9 +15,9 @@
 #
 #  Example usage:
 #  @code
-#  source /home/trantor/build_env/quadruped/.env/manage-project.bash
+#  source /home/trantor/build_env/red/.env/manage-project.bash
 #  update-rosdep
-#  import-quad-src
+#  import-red-src
 #  install-dependencies ./src
 #  colcon_ws model
 #  @endcode
@@ -32,7 +32,7 @@
 #  @note https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/sources.list.d/20-default.list
 #  Example usage:
 #  @code
-#  sudo -E bash ${QUAD_WORKDIR}/.env/update-rosdep.bash
+#  sudo -E bash ${RED_WORKDIR}/.env/update-rosdep.bash
 #  @endcode
 function update-rosdep() {
   # Check if rosdep is initialized
@@ -72,7 +72,7 @@ function update-rosdep() {
 #  @endcode
 function cd_ws() {
   declare -A paths=(
-    ["model"]="${QUAD_WORKDIR}"
+    ["model"]="${RED_WORKDIR}"
     ["control"]="${HOME}/project/control_ws"
     ["unitree"]="${HOME}/project/unitree_ws"
   )
@@ -150,25 +150,25 @@ function colcon_remove() {
   done
 }
 
-## @function import-quad-src
-#  @brief Import quadruped robot source repositories using vcs.
+## @function import-red-src
+#  @brief Import red robot source repositories using vcs.
 #
-#  This function imports the source repositories specified in the `QUAD_REPO`
+#  This function imports the source repositories specified in the `RED_REPO`
 #  file into the `./src` directory.
 #
 #  Example usage:
 #  @code
-#  import-quad-src
+#  import-red-src
 #  @endcode
-function import-quad-src() {
-  echo "importing quad src..."
+function import-red-src() {
+  echo "importing red src..."
   # Create src directory if it doesn't exist
   if ! mkdir -p ./src; then
     echo "Error: Failed to create ./src directory." >&2
     return 1
   fi
   # Import repositories using vcs
-  if ! vcs import --retry 3 --force --workers 5 --input "${QUAD_REPO}" ./src; then
+  if ! vcs import --retry 3 --force --workers 5 --input "${RED_REPO}" ./src; then
     echo "Error: Failed to import repositories using vcs." >&2
     return 1
   fi
@@ -176,18 +176,18 @@ function import-quad-src() {
   return 0
 }
 
-## @function pull-quad-src
-#  @brief Import quadruped robot source repositories using vcs.
+## @function pull-red-src
+#  @brief Import red robot source repositories using vcs.
 #
-#  This function imports the source repositories specified in the `QUAD_REPO`
+#  This function imports the source repositories specified in the `RED_REPO`
 #  file into the `./src` directory.
 #
 #  Example usage:
 #  @code
-#  pull-quad-src
+#  pull-red-src
 #  @endcode
-function pull-quad-src() {
-  echo "pulling quad src..."
+function pull-red-src() {
+  echo "pulling red src..."
   # pull repositories using vcs
   if ! vcs pull --workers 5 --repos ./src; then
     echo "Error: Failed to pull repositories using vcs." >&2
@@ -214,32 +214,9 @@ function install-dependencies() {
 
   rosdep install \
     -y \
-    --from-paths "$@" \
+    --from-paths "$1" \
     --ignore-src \
-    --skip-keys "serial \
-              unitree_msgs \
-              unitree_sdk \
-              quadruped \
-              tinynurbs \
-              tiny_ekf \
-              quadprog \
-              matplotlib_cpp \
-              qpOASES \
-              SuiteSparse \
-              message_generation \
-              message_runtime \
-              catkin \
-              xpp_msgs \
-              af_interfaces \
-              af_toolbox \
-              beatles \
-              dds \
-              events_executor \
-              examples \
-              hpc-matrix \
-              performance \
-              reference-system \
-              tools"
+    --skip-keys "$@"
 }
 
 ## @function ignore-directory
@@ -256,7 +233,7 @@ function install-dependencies() {
 #  ignore-directory control "ros2-control/ros2-control"
 #  @endcode
 function ignore-directory() {
-  local ignore_file="${QUAD_WORKDIR}/src/.colcon-ignore-$1"
+  local ignore_file="${RED_WORKDIR}/src/.colcon-ignore-$1"
   local path_pattern="*/$2"
 
   touch "$ignore_file"
@@ -286,12 +263,6 @@ function ignore-directory() {
 function ignore-colcon-pkg() {
   declare -A IGNORE_LIST=(
     [control]="ros2-control/ros2-control"
-    [controllers]="ros2-control/ros2-controllers"
-    [parameter]="ros2-control/generate-parameter-library"
-    [infrastructure]="ros2-infrastructure"
-    [reference]="reference"
-    [interfaces]="interfaces/geometry2"
-    [simulation]="simulation"
   )
 
   # Iterate over the ignore list

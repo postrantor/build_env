@@ -6,19 +6,19 @@
 
 # 1. Environment Directory
 # --------------------------
-ENV_DIR=${QUAD_WORKDIR}/.env/
+ENV_DIR=${RED_WORKDIR}/.env/
 
 # 2. Shell-Specific Setup
 # --------------------------
 setup_shell() {
   if [ -n "$BASH_VERSION" ]; then
     source /opt/ros/${ROS_DISTRO}/setup.bash
-    source ${QUAD_WORKDIR}/install/setup.bash
+    source ${RED_WORKDIR}/install/setup.bash
   elif [ -n "$ZSH_VERSION" ]; then
     source /opt/ros/${ROS_DISTRO}/setup.zsh
-    source ${QUAD_WORKDIR}/install/setup.zsh
+    source ${RED_WORKDIR}/install/setup.zsh
   fi
-  export PATH=${QUAD_WORKDIR}/install/af_configurator/lib/af_configurator:$PATH
+  export PATH=${RED_WORKDIR}/install/af_configurator/lib/af_configurator:$PATH
 }
 
 # 3. RMW Implementation
@@ -46,20 +46,20 @@ setup_gazebo() {
 # 5. Colcon Configuration
 # --------------------------
 setup_colcon() {
-  export _colcon_cd_root=${QUAD_WORKDIR}  # Set root directory for `colcon_cd`
+  export _colcon_cd_root=${RED_WORKDIR}  # Set root directory for `colcon_cd`
   source ${ENV_DIR}/colcon_cd.sh          # Source colcon_cd script
   source ${ENV_DIR}/colcon-argcomplete.bash  # Source colcon argument completion
 
   # Set colcon build arguments and home directory
-  export COLCON_DEFAULTS_FILE=${QUAD_WORKDIR}/.config/build-args.yaml  # Default build arguments
-  export COLCON_HOME=${QUAD_WORKDIR}/.config/  # Colcon configuration directory
+  export COLCON_DEFAULTS_FILE=${RED_WORKDIR}/.config/build-args.yaml  # Default build arguments
+  export COLCON_HOME=${RED_WORKDIR}/.config/  # Colcon configuration directory
 }
 
 # 6. Version Control System (VCS) Tool
 # --------------------------
 setup_vcs() {
   source ${ENV_DIR}/vcs.bash
-  export QUAD_REPO=${QUAD_WORKDIR}/.config/quadruped.repos
+  export RED_REPO=${RED_WORKDIR}/.config/red.repos
 }
 
 # 7. Code Formatting Tool

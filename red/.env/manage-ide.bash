@@ -15,13 +15,13 @@
 # 如果目标目录不存在，函数会自动创建该目录。
 # 解压完成后，函数会检查解压操作是否成功，并输出相应的提示信息。
 #
-# @param[in] extensions_tar_gz 扩展包文件路径，默认值为 `${QUAD_WORKDIR}/.vscode/extensions.tar.gz`。
+# @param[in] extensions_tar_gz 扩展包文件路径，默认值为 `${RED_WORKDIR}/.vscode/extensions.tar.gz`。
 # @param[in] target_dir 目标目录路径，默认值为 `${HOME}/.vscode-server`。
 #
 # @return 返回值为 0 表示成功，非 0 表示失败。
 #
 # @note
-# - 确保 `${QUAD_WORKDIR}` 和 `${HOME}` 变量已正确定义。
+# - 确保 `${RED_WORKDIR}` 和 `${HOME}` 变量已正确定义。
 # - 确保当前用户有权限读取扩展包文件并写入目标目录。
 # - 扩展包文件必须是有效的 `.tar.gz` 格式。
 #
@@ -36,7 +36,7 @@
 # ```
 ##
 function import-vscode-extensions() {
-  local extensions_tar_gz="${QUAD_WORKDIR}/.vscode/extensions.tar.gz"
+  local extensions_tar_gz="${RED_WORKDIR}/.vscode/extensions.tar.gz"
   local target_dir="${HOME}/.vscode-server"
 
   # 检查 extensions.tar.gz 文件是否存在
@@ -101,7 +101,7 @@ function update-gitconfig() {
   fi
 
   # 读取 .env/config 文件内容并替换 user_name 信息
-  CONFIG_CONTENT=$(cat ${QUAD_WORKDIR}/.env/gitconfig)
+  CONFIG_CONTENT=$(cat ${RED_WORKDIR}/.env/gitconfig)
   CONFIG_CONTENT=$(echo "$CONFIG_CONTENT" | sed "s/user_name/$CURRENT_USER_NAME/g")
   CONFIG_CONTENT=$(echo "$CONFIG_CONTENT" | sed "s/user_name@gmail.com/$CURRENT_USER_EMAIL/g")
 
@@ -113,8 +113,8 @@ function update-gitconfig() {
 
 function update-bashrc-config() {
   # 读取 .env/bashrc 文件内容并替换 replace_to_script_path 信息
-  CONFIG_CONTENT=$(cat ${QUAD_WORKDIR}/.env/bashrc)
-  CONFIG_CONTENT=$(echo "$CONFIG_CONTENT" | sed "s|replace_to_script_path|$QUAD_WORKDIR|g")
+  CONFIG_CONTENT=$(cat ${RED_WORKDIR}/.env/bashrc)
+  CONFIG_CONTENT=$(echo "$CONFIG_CONTENT" | sed "s|replace_to_script_path|$RED_WORKDIR|g")
 
   # 将替换后的内容追加到 ~/.bashrc 中
   echo "$CONFIG_CONTENT" >${HOME}/.bashrc
@@ -125,7 +125,7 @@ function update-bashrc-config() {
 
 function update-ssh-config() {
   # 读取 .env/ssh 文件内容并替换 replace_to_script_path 信息
-  CONFIG_CONTENT=$(cat ${QUAD_WORKDIR}/.env/sshconfig)
+  CONFIG_CONTENT=$(cat ${RED_WORKDIR}/.env/sshconfig)
   CONFIG_CONTENT=$(echo "$CONFIG_CONTENT" | sed "s|p7xxtm1_ssh_ip|$P7XXTM1_SSH_IP|g")
 
   # 将替换后的内容追加到 ~/.ssh 中
