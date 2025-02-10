@@ -7,26 +7,29 @@
       ],
       "dependencies": []
     },
+    "cream": {
+      "cmake-args": [
+        "-DCMAKE_C_COMPILER=clang",
+        "-DCMAKE_CXX_COMPILER=clang++",
+        "-DBUILD_TESTING=OFF"
+      ],
+      "dependencies": [
+        "protobuf",
+        "cyclonedds-cxx"
+      ]
+    },
     "CycloneDDS-CXX": {
       "cmake-args": [],
       "dependencies": [
         "cyclonedds"
       ]
     },
-    "quadruped": {
-      "cmake-args": [
-        "-DUSE_AVX2=OFF"
-      ]
-    },
-    "SuiteSparse": {
-      "cmake-args": [
-        "-DSUITESPARSE_ENABLE_PROJECTS=amd",
-        "-DSUITESPARSE_CONFIG_USE_OPENMP=OFF"
-      ]
-    },
     "protobuf": {
       "cmake-args": [
-        "-Dprotobuf_BUILD_TESTS=OFF"
+        "-Dprotobuf_BUILD_TESTS=OFF",
+        "-DBUILD_SHARED_LIBS=ON",
+        "-Dprotobuf_BUILD_LIBPROTOC=ON",
+        "-Dprotobuf_BUILD_EXAMPLES=ON"
       ]
     },
     "spdlog_vendor": {
@@ -37,11 +40,6 @@
     "yaml_cpp_vendor": {
       "cmake-args": [
         "-DFORCE_BUILD_VENDOR_PKG=ON"
-      ]
-    },
-    "qpOASES": {
-      "cmake-args": [
-        "-DQPOASES_BUILD_EXAMPLES=OFF"
       ]
     }
   }
