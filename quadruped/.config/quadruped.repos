@@ -19,6 +19,10 @@ repositories:
     type: git
     url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/quadruped/rosbag.git
     version: main
+  quadruped/my-urdf:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/quadruped/my-urdf.git
+    version: ros2
 
   quadruped/thirdpart/suit-sparse:
     type: git
