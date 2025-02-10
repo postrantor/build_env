@@ -1,35 +1,35 @@
 repositories:
-  # af red
-  red/examples:
+  ## beatles
+  beatles/examples:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/examples.git
     version: dev
-  red/beatles:
+  beatles/beatles:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/beatles.git
     version: dev
-  red/af_interfaces:
+  beatles/af_interfaces:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/af_interfaces.git
     version: dev
-  red/events_executor:
+  beatles/events_executor:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/events_executor.git
     version: AF_dev
 
-  red/tools:
+  beatles/tools:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/tools.git
     version: dev
-  red/dds:
+  beatles/dds:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/dds.git
     version: dev
-  red/performance:
+  beatles/performance:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/performance.git
     version: dev
-  red/reference-system:
+  beatles/reference-system:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/reference-system.git
     version: dev
@@ -38,3 +38,13 @@ repositories:
   #   type: git
   #   url: ssh://p7xxtm1/~/repositories/hirain/af/red/af_toolbox.git
   #   version: dev
+
+  ## cream
+  cream/examples:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/red/examples.git
+    version: AF_dev
+  cream/cream:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/red/beatles.git
+    version: AF_dev
