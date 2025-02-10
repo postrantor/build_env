@@ -262,7 +262,8 @@ function ignore-directory() {
 #  @endcode
 function ignore-colcon-pkg() {
   declare -A IGNORE_LIST=(
-    [control]="ros2-control/ros2-control"
+    [executor]="beatles/events_executor"
+    [reference]="beatles/reference-system"
   )
 
   # Iterate over the ignore list
