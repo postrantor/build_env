@@ -21,10 +21,6 @@ repositories:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/tools.git
     version: dev
-  beatles/dds:
-    type: git
-    url: ssh://p7xxtm1/~/repositories/hirain/af/red/dds.git
-    version: dev
   beatles/performance:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/performance.git
@@ -64,3 +60,11 @@ repositories:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/dds/cyclonedds-cxx.git
     version: releases/0.10.x
+  dds/record:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/dds/dds_record.git
+    version: AF_dev
+  dds/examples:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/dds/dds.git
+    version: dev
