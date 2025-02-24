@@ -1,0 +1,31 @@
+# https://colcon.readthedocs.io/en/released/user/using-multiple-workspaces.html
+# export COLCON_DEFAULTS_FILE=/workspaces/cream_ws/defaults.yaml
+build:
+  packages-select:
+    # - quadruped
+  cmake-args:
+    - -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+    - -DCMAKE_BUILD_TYPE=Debug
+    # - -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
+    - -DBUILD_TESTING:BOOL=OFF
+    # - -Wall
+    # - -Wextra
+    # - -Wpedantic
+    # - --trace
+    # - --debug-find
+    # - -DCMAKE_PREFIX_PATH=/home/trantor/project/cyber_ws/install
+
+  # https://colcon.readthedocs.io/en/released/user/configuration.html#meta-files
+  # metas:
+  #   - /config/colcon.meta
+  cmake-force-configure: true
+  symlink-install: true
+  merge-install: false
+  parallel-workers: 15
+  event-handlers:
+    - console_direct+
+    - console_cohesion+
+    - console_package_list+
+
+log-level:
+  - info

@@ -1,0 +1,593 @@
+From 65e7d2afebc6c603d319135b23f6b8e84a447c04 Mon Sep 17 00:00:00 2001
+From: trantor <postrantor@gmail.com>
+Date: Wed, 18 Dec 2024 18:56:30 +0800
+Subject: [PATCH 1/1] [cyber] refactor build
+
+---
+ CMakeLists.txt                                | 306 ++++++++----------
+ .../common_component_example/CMakeLists.txt   |   1 -
+ .../timer_component_example/CMakeLists.txt    |   3 +-
+ cyber/mainboard/CMakeLists.txt                |   6 +-
+ cyber/python/internal/CMakeLists.txt          |  17 +-
+ cyber/tools/CMakeLists.txt                    |   2 +-
+ package.xml                                   |  19 ++
+ 7 files changed, 169 insertions(+), 185 deletions(-)
+ create mode 100644 package.xml
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index bbfe81d..bdabb04 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1,102 +1,58 @@
+-cmake_minimum_required(VERSION 3.5.1)
+-
+-project(cyber VERSION 9.0.0) # Apollo Version
++cmake_minimum_required(VERSION 3.8)
++project(cyber VERSION 9.0.0)
++set(TARGET_NAME ${PROJECT_NAME})
+ 
+ set(CMAKE_CXX_STANDARD 14)
+-set(TARGET_NAME ${PROJECT_NAME})
+-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+-if(NOT CMAKE_BUILD_TYPE)
+-  set(CMAKE_BUILD_TYPE Debug)
+-endif()
++set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
++set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+ 
+ enable_language(ASM)
+ 
+ include(CMakePackageConfigHelpers)
+ include(GNUInstallDirs)
++
+ # ccache
+ find_program(CCACHE_FOUND ccache)
++
+ if(CCACHE_FOUND)
+   message(STATUS "### use ccache")
+   set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
+   set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache)
+ endif()
+ 
+-# fix for gcc 9
+-#set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+-#set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pie")
+-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
+-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+-
+-set(CROUTINE_FILE "cyber/croutine/detail/swap_x86_64.S")
+ if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
+-  set(CROUTINE_FILE "cyber/croutine/detail/swap_x86_64.S")
+   message("### SYSTEM_PROCESSOR: ${CMAKE_SYSTEM_PROCESSOR} ${CROUTINE_FILE}")
++  set(CROUTINE_FILE "cyber/croutine/detail/swap_x86_64.S")
+ else()
+-  set(CROUTINE_FILE "cyber/croutine/detail/swap_aarch64.S")
+   message("### SYSTEM_PROCESSOR: ${CMAKE_SYSTEM_PROCESSOR} ${CROUTINE_FILE}")
++  set(CROUTINE_FILE "cyber/croutine/detail/swap_aarch64.S")
+ endif()
+ 
+-find_package(Threads REQUIRED)
+-find_package(PkgConfig REQUIRED)
+ find_package(fastrtps REQUIRED)
+ find_package(fastcdr REQUIRED)
+ find_package(glog REQUIRED)
++find_package(Threads REQUIRED)
++find_package(PkgConfig REQUIRED)
+ find_package(Protobuf REQUIRED)
+-# find_package(Python REQUIRED COMPONENTS Interpreter Development)
++find_package(TinyXML2 REQUIRED)
++
+ pkg_check_modules(Python REQUIRED python3)
+ pkg_check_modules(Uuid REQUIRED uuid)
+-pkg_check_modules(Gflags REQUIRED gflags)
+ pkg_check_modules(NlohmannJson REQUIRED nlohmann_json)
+ 
+-# set(Python_VERSION "${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}")
+ set(Python_VERSION "${Python_VERSION}")
+ set(CYBER_PYTHON_PATH "lib/python${Python_VERSION}/site-packages/cyber/python")
+ set(CYBER_PYTHON_INTERNAL_PATH "${CYBER_PYTHON_PATH}/internal")
+ set(CYBER_PYTHON_PROTOBUF_PATH "lib/python${Python_VERSION}/site-packages/cyber/proto")
+-set(CYBER_MSGS_CACHE ON CACHE BOOL "generate cyber proto msgs flag.")
+-
+-if(NOT DEFINED glog_LIBRARIES)
+-  set(glog_LIBRARIES "glog")
+-endif()
+-
+-if(NOT DEFINED Uuid_LIBRARIES)
+-  set(Uuid_LIBRARIES "uuid")
+-endif()
+-
+-set(DEPENCENCY_INCLUDE_DIRS
+-  ${fastcdr_INCLUDE_DIR}
+-  ${fastrtps_INCLUDE_DIR}
+-  ${Protobuf_INCLUDE_DIRS}
+-  ${Python_INCLUDE_DIRS}
+-  ${Uuid_INCLUDE_DIRS}
+-  ${glog_INCLUDE_DIRS}
+-  ${Gflags_INCLUDE_DIRS}
+-  ${NlohmannJson_INCLUDE_DIRS}
+-)
+-
+-set(DEPENCENCY_LIB_DIRS
+-  ${fastcdr_LIB_DIR}
+-  ${fastrtps_LIB_DIR}
+-  ${Protobuf_LIBRARIES_DIRS}
+-  ${Python_LIBRARIES_DIRS}
+-  ${Uuid_LIBRARIES_DIRS}
+-  ${glog_LIBRARY_DIRS}
+-  ${Gflags_LIBRARY_DIRS}
+-  ${NlohmannJson_LIBRARY_DIRS}
+-)
+-
+-set(DEPENCENCY_LIBS
+-  ${glog_LIBRARIES}
+-  ${Gflags_LIBRARIES}
+-)
++set(CYBER_MSGS_CACHE ON)
+ 
+ include_directories(
+   ${CMAKE_CURRENT_SOURCE_DIR}
+-  ${DEPENCENCY_INCLUDE_DIRS}
++  ${Protobuf_INCLUDE_DIRS}
++  ${NlohmannJson_INCLUDE_DIRS}
++  ${Python_INCLUDE_DIRS}
+ )
+ 
+-link_directories(${DEPENCENCY_LIB_DIRS})
+-
+ file(GLOB CYBER_PROTO_FILES
+   "${CMAKE_CURRENT_SOURCE_DIR}/modules/common_msgs/**/*.proto"
+   "${CMAKE_CURRENT_SOURCE_DIR}/cyber/proto/*.proto"
+@@ -105,8 +61,9 @@ file(GLOB CYBER_PROTO_FILES
+ 
+ if(${CYBER_MSGS_CACHE})
+   set(CYBER_MSGS_CACHE OFF CACHE BOOL "generate cyber proto msgs flag." FORCE)
++
+   foreach(FIL ${CYBER_PROTO_FILES})
+-    message("### generate proto file: ${FIL}")
++    message("# generate proto file: ${FIL}")
+     get_filename_component(FIL_WE ${FIL} NAME_WE)
+     string(REGEX REPLACE ".+/(.+)\\..*" "\\1" FILE_NAME ${FIL})
+     string(REGEX REPLACE "(.+)\\${FILE_NAME}.*" "\\1" FILE_PATH ${FIL})
+@@ -121,162 +78,171 @@ if(${CYBER_MSGS_CACHE})
+   endforeach()
+ endif()
+ 
+-file(GLOB CYBER_PROTO_SRCS
+-    "cyber/proto/*.pb.cc"
+-    "cyber/proto/*.pb.h"
+-    "cyber/examples/proto/*.pb.cc"
+-    "cyber/examples/proto/*.pb.h"
+-    "modules/common_msgs/**/*.pb.cc"
+-    "modules/common_msgs/**/*.pb.h"
++file(GLOB PROTO_SRCS
++  "cyber/proto/*.pb.cc"
++  "cyber/proto/*.pb.h"
++  "cyber/examples/proto/*.pb.cc"
++  "cyber/examples/proto/*.pb.h"
++  "modules/common_msgs/**/*.pb.cc"
++  "modules/common_msgs/**/*.pb.h"
+ )
+ 
+-file(GLOB CYBER_SRCS
+-    "cyber/base/*.cc"
+-    "cyber/blocker/*.cc"
+-    "cyber/class_loader/*.cc"
+-    "cyber/class_loader/*/*.cc"
+-    "cyber/common/*.cc"
+-    "cyber/component/*.cc"
+-    "cyber/croutine/*.cc"
+-    "cyber/croutine/*/*.cc"
+-    "cyber/data/*.cc"
+-    "cyber/event/*.cc"
+-    "cyber/io/*.cc"
+-    "cyber/logger/*.cc"
+-    "cyber/message/*.cc"
+-    "cyber/node/*.cc"
+-    "cyber/parameter/*.cc"
+-    "cyber/plugin_manager/*.cc"
+-    "cyber/record/*.cc"
+-    "cyber/record/*/*.cc"
+-    "cyber/scheduler/*.cc"
+-    "cyber/scheduler/*/*.cc"
+-    "cyber/service/*.cc"
+-    "cyber/service_discovery/*.cc"
+-    "cyber/service_discovery/*/*.cc"
+-    "cyber/task/*.cc"
+-    "cyber/time/*.cc"
+-    "cyber/timer/*.cc"
+-    "cyber/transport/*.cc"
+-    "cyber/transport/*/*.cc"
+-    "cyber/*.cc"
+-    "cyber/sysmo/*.cc"
+-    ${CROUTINE_FILE}
++file(GLOB PROJECT_SRCS
++  "cyber/base/*.cc"
++  "cyber/blocker/*.cc"
++  "cyber/class_loader/*.cc"
++  "cyber/class_loader/*/*.cc"
++  "cyber/common/*.cc"
++  "cyber/component/*.cc"
++  "cyber/croutine/*.cc"
++  "cyber/croutine/*/*.cc"
++  "cyber/data/*.cc"
++  "cyber/event/*.cc"
++  "cyber/io/*.cc"
++  "cyber/logger/*.cc"
++  "cyber/message/*.cc"
++  "cyber/node/*.cc"
++  "cyber/parameter/*.cc"
++  "cyber/plugin_manager/*.cc"
++  "cyber/record/*.cc"
++  "cyber/record/*/*.cc"
++  "cyber/scheduler/*.cc"
++  "cyber/scheduler/*/*.cc"
++  "cyber/service/*.cc"
++  "cyber/service_discovery/*.cc"
++  "cyber/service_discovery/*/*.cc"
++  "cyber/task/*.cc"
++  "cyber/time/*.cc"
++  "cyber/timer/*.cc"
++  "cyber/transport/*.cc"
++  "cyber/transport/*/*.cc"
++  "cyber/sysmo/*.cc"
++  "cyber/*.cc"
++  ${CROUTINE_FILE}
+ )
+ 
+-list(FILTER CYBER_SRCS EXCLUDE REGEX .*test[.]cc)
+-list(FILTER CYBER_SRCS EXCLUDE REGEX .*/cyber/class_loader/test/*)
+-list(REMOVE_ITEM CYBER_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/cyber/class_loader/shared_library/sample.cc")
++list(FILTER PROJECT_SRCS EXCLUDE REGEX .*test[.]cc)
++list(FILTER PROJECT_SRCS EXCLUDE REGEX .*/cyber/class_loader/test/*)
++list(REMOVE_ITEM PROJECT_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/cyber/class_loader/shared_library/sample.cc")
+ 
+-add_library(${TARGET_NAME} SHARED
+-    ${CYBER_PROTO_SRCS}
+-    ${CYBER_SRCS}
++add_library(${PROJECT_NAME} SHARED
++  ${PROTO_SRCS}
++  ${PROJECT_SRCS}
+ )
+ 
+-target_link_libraries(${TARGET_NAME}
+-    ${glog_LIBRARIES}
+-    ${Gflags_LIBRARIES}
+-    ${NlohmannJson_LIBRARIES}
+-    ${Protobuf_LIBRARIES}
+-    ${Uuid_LIBRARIES}
+-    fastrtps
+-    fastcdr
+-    atomic
+-    dl
+-    rt
++target_link_libraries(${PROJECT_NAME}
++  ${Uuid_LIBRARIES}
++  ${Protobuf_LIBRARIES}
++  tinyxml2::tinyxml2
++  glog::glog
++  fastrtps
++  fastcdr
++  atomic
++  dl
++  rt
+ )
+ 
+ add_subdirectory(cyber/mainboard)
+-add_subdirectory(cyber/examples)
+ add_subdirectory(cyber/python)
+ add_subdirectory(cyber/tools)
+-# --------------------------------------------------------------
+-#                      CPack
+-# --------------------------------------------------------------
+-# 打包方式
++add_subdirectory(cyber/examples)
++
++# CPack
+ include(InstallRequiredSystemLibraries)
+ set(CPACK_GENERATOR DEB)
+ set(CPACK_SOURCE_GENERATOR TGZ ZIP)
+-set(CPACK_PACKAGE_NAME   "${TARGET_NAME}")
+-set(CPACK_PACKAGE_CONTACT "job@minhang.me")
++set(CPACK_PACKAGE_NAME "${PROJECT_NAME}")
++set(CPACK_PACKAGE_CONTACT "zhiqi.jia@hirain.com")
+ set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
+ set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+ set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+ set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Apollo CyberRT")
+-set(CPACK_INSTALL_PREFIX              "${CMAKE_INSTALL_PREFIX}")
+-set(CPACK_OUTPUT_FILE_PREFIX          "packages")
+-set(CPACK_PACKAGE_RELOCATABLE         TRUE)
+-set(CPACK_MONOLITHIC_INSTALL          TRUE)
++set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Hirain GaeaRT")
++set(CPACK_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
++set(CPACK_OUTPUT_FILE_PREFIX "packages")
++set(CPACK_PACKAGE_RELOCATABLE TRUE)
++set(CPACK_MONOLITHIC_INSTALL TRUE)
+ set(CPACK_PACKAGING_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
+ set(CPACK_RPM_PACKAGE_GROUP "Development/Libraries")
+ set(CPACK_RPM_PACKAGE_LICENSE "MIT")
+-set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "https://github.com/minhanghuang/CyberRT")
+-set(CPACK_PACKAGE_FILE_NAME   "lib${CPACK_PACKAGE_NAME}")
+-set(CPACK_PACKAGE_FILE_NAME   "${CPACK_PACKAGE_FILE_NAME}_${CPACK_PACKAGE_VERSION}_${CMAKE_SYSTEM_PROCESSOR}")
++set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "https://gerrit-crdc.hirain.com/admin/repos/huixi/r1sdk/GaeaRT")
++set(CPACK_PACKAGE_FILE_NAME "lib${CPACK_PACKAGE_NAME}")
++set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_FILE_NAME}_${CPACK_PACKAGE_VERSION}_${CMAKE_SYSTEM_PROCESSOR}")
+ 
+ include(CPack)
+-# --------------------------------------------------------------
+-#                       package
+-# --------------------------------------------------------------
+-configure_file("cmake/${TARGET_NAME}.pc.in"
+-  "${PROJECT_BINARY_DIR}/pkgconfig/${TARGET_NAME}.pc" @ONLY)
++
++# package
++configure_file(
++  "cmake/${PROJECT_NAME}.pc.in"
++  "${PROJECT_BINARY_DIR}/pkgconfig/${PROJECT_NAME}.pc" @ONLY
++)
+ 
+ configure_package_config_file(
+-  "${CMAKE_CURRENT_SOURCE_DIR}/cmake/${TARGET_NAME}-config.cmake.in"
+-  "cmake/${TARGET_NAME}-config.cmake"
+-  INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${TARGET_NAME}"
++  "${CMAKE_CURRENT_SOURCE_DIR}/cmake/${PROJECT_NAME}-config.cmake.in"
++  "cmake/${PROJECT_NAME}-config.cmake"
++  INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}"
+   NO_CHECK_REQUIRED_COMPONENTS_MACRO
+-  PATH_VARS CMAKE_INSTALL_INCLUDEDIR CMAKE_INSTALL_LIBDIR TARGET_NAME
++  PATH_VARS CMAKE_INSTALL_INCLUDEDIR CMAKE_INSTALL_LIBDIR PROJECT_NAME
+ )
+ 
+-write_basic_package_version_file(cmake/${TARGET_NAME}-config-version.cmake
++write_basic_package_version_file(
++  cmake/${PROJECT_NAME}-config-version.cmake
+   VERSION ${PROJECT_VERSION}
+   COMPATIBILITY AnyNewerVersion
+ )
+ 
+-install(FILES
+-  "${PROJECT_BINARY_DIR}/pkgconfig/${TARGET_NAME}.pc"
++install(
++  FILES "${PROJECT_BINARY_DIR}/pkgconfig/${PROJECT_NAME}.pc"
+   DESTINATION "${CMAKE_INSTALL_DATADIR}/pkgconfig"
+ )
+ 
+-install(FILES
+-  "${PROJECT_BINARY_DIR}/cmake/${TARGET_NAME}-config.cmake"
+-  "${PROJECT_BINARY_DIR}/cmake/${TARGET_NAME}-config-version.cmake"
+-  DESTINATION "${CMAKE_INSTALL_DATADIR}/cmake/${TARGET_NAME}"
++install(
++  FILES
++  "${PROJECT_BINARY_DIR}/cmake/${PROJECT_NAME}-config.cmake"
++  "${PROJECT_BINARY_DIR}/cmake/${PROJECT_NAME}-config-version.cmake"
++  DESTINATION "${CMAKE_INSTALL_DATADIR}/cmake/${PROJECT_NAME}"
+ )
+ 
+-install(EXPORT ${TARGET_NAME}-targets
+-  DESTINATION "${CMAKE_INSTALL_DATADIR}/cmake/${TARGET_NAME}"
++install(
++  EXPORT ${PROJECT_NAME}-targets
++  DESTINATION "${CMAKE_INSTALL_DATADIR}/cmake/${PROJECT_NAME}"
+ )
+ 
+-# cyber .h files
+-install(DIRECTORY cyber/
+-    DESTINATION include/cyber/
+-    FILES_MATCHING
+-    PATTERN "*.h"
++# include header
++install(
++  DIRECTORY cyber/
++  DESTINATION include/cyber/
++  FILES_MATCHING
++  PATTERN "*.h"
+ )
+ 
+ # apollo conf
+-file(COPY cyber/conf/
++file(
++  COPY cyber/conf/
+   DESTINATION ${CMAKE_BINARY_DIR}/share/conf/
+ )
+-install(DIRECTORY ${CMAKE_BINARY_DIR}/share/conf/
++install(
++  DIRECTORY ${CMAKE_BINARY_DIR}/share/conf/
+   DESTINATION share/conf/
+ )
+ 
+ # setup.zsh
+ configure_file("setup.bash.in" "${CMAKE_BINARY_DIR}/setup.bash" @ONLY)
+ configure_file("setup.zsh.in" "${CMAKE_BINARY_DIR}/setup.zsh" @ONLY)
+-install(FILES ${CMAKE_BINARY_DIR}/setup.zsh ${CMAKE_BINARY_DIR}/setup.bash
++install(
++  FILES
++  ${CMAKE_BINARY_DIR}/setup.zsh
++  ${CMAKE_BINARY_DIR}/setup.bash
+   DESTINATION .
+ )
+ 
+ # cyber python api
+-file(COPY cyber/python/
++file(
++  COPY cyber/python/
+   DESTINATION ${CMAKE_BINARY_DIR}/${CYBER_PYTHON_PATH}
+ )
+-install(DIRECTORY ${CMAKE_BINARY_DIR}/${CYBER_PYTHON_PATH}/
++install(
++  DIRECTORY ${CMAKE_BINARY_DIR}/${CYBER_PYTHON_PATH}/
+   DESTINATION ${CYBER_PYTHON_PATH}
+   FILES_MATCHING
+   PATTERN "*.py"
+@@ -286,20 +252,22 @@ install(DIRECTORY ${CMAKE_BINARY_DIR}/${CYBER_PYTHON_PATH}/
+ file(WRITE ${CMAKE_BINARY_DIR}/${CYBER_PYTHON_PROTOBUF_PATH}/__init__.py "import os\n")
+ file(APPEND ${CMAKE_BINARY_DIR}/${CYBER_PYTHON_PROTOBUF_PATH}/__init__.py "import sys\n")
+ file(APPEND ${CMAKE_BINARY_DIR}/${CYBER_PYTHON_PROTOBUF_PATH}/__init__.py "sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))\n")
+-file(COPY cyber/proto/
++file(
++  COPY cyber/proto/
+   DESTINATION ${CMAKE_BINARY_DIR}/${CYBER_PYTHON_PROTOBUF_PATH}
+   FILES_MATCHING
+   PATTERN "*.py"
+ )
+ 
+-install(DIRECTORY ${CMAKE_BINARY_DIR}/${CYBER_PYTHON_PROTOBUF_PATH}/
++install(
++  DIRECTORY ${CMAKE_BINARY_DIR}/${CYBER_PYTHON_PROTOBUF_PATH}/
+   DESTINATION ${CYBER_PYTHON_PROTOBUF_PATH}
+ )
+ 
+-# install
+-install(TARGETS ${TARGET_NAME}
+-    EXPORT ${TARGET_NAME}-targets
+-    ARCHIVE DESTINATION lib
+-    LIBRARY DESTINATION lib
+-    RUNTIME DESTINATION bin
++install(
++  TARGETS ${PROJECT_NAME}
++  EXPORT ${PROJECT_NAME}-targets
++  ARCHIVE DESTINATION lib
++  LIBRARY DESTINATION lib
++  RUNTIME DESTINATION bin
+ )
+diff --git a/cyber/examples/common_component_example/CMakeLists.txt b/cyber/examples/common_component_example/CMakeLists.txt
+index d4aada3..b51f39f 100644
+--- a/cyber/examples/common_component_example/CMakeLists.txt
++++ b/cyber/examples/common_component_example/CMakeLists.txt
+@@ -42,4 +42,3 @@ install(FILES common.dag common.launch
+ install(TARGETS common_component_example
+   LIBRARY DESTINATION lib
+ )
+-
+diff --git a/cyber/examples/timer_component_example/CMakeLists.txt b/cyber/examples/timer_component_example/CMakeLists.txt
+index f2af98a..bd06b29 100644
+--- a/cyber/examples/timer_component_example/CMakeLists.txt
++++ b/cyber/examples/timer_component_example/CMakeLists.txt
+@@ -21,6 +21,5 @@ install(FILES timer.dag timer.launch
+ )
+ 
+ install(TARGETS timer_component_example
+-    LIBRARY DESTINATION lib
++  LIBRARY DESTINATION lib
+ )
+-
+diff --git a/cyber/mainboard/CMakeLists.txt b/cyber/mainboard/CMakeLists.txt
+index f91571f..5b50c7d 100644
+--- a/cyber/mainboard/CMakeLists.txt
++++ b/cyber/mainboard/CMakeLists.txt
+@@ -7,10 +7,10 @@ add_executable(mainboard
+ )
+ 
+ target_link_libraries(mainboard
+-    ${TARGET_NAME}
+-    pthread
++  ${TARGET_NAME}
++  pthread
+ )
+ 
+ set_target_properties(mainboard PROPERTIES
+-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/cyber/mainboard
++  RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/cyber/mainboard
+ )
+diff --git a/cyber/python/internal/CMakeLists.txt b/cyber/python/internal/CMakeLists.txt
+index 2bc8ff9..85c5958 100644
+--- a/cyber/python/internal/CMakeLists.txt
++++ b/cyber/python/internal/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-add_library(_cyber_wrapper SHARED 
++add_library(_cyber_wrapper SHARED
+   py_cyber.cc
+ )
+ 
+@@ -19,7 +19,7 @@ target_link_libraries(_cyber_wrapper
+ )
+ add_library(py_cyber ALIAS _cyber_wrapper)
+ 
+-add_library(_cyber_record_wrapper SHARED 
++add_library(_cyber_record_wrapper SHARED
+   py_record.cc
+ )
+ target_link_libraries(_cyber_record_wrapper
+@@ -39,7 +39,7 @@ target_link_libraries(_cyber_time_wrapper
+ )
+ add_library(py_time ALIAS _cyber_time_wrapper)
+ 
+-add_library(_cyber_parameter_wrapper SHARED 
++add_library(_cyber_parameter_wrapper SHARED
+   py_parameter.cc
+ )
+ target_link_libraries(_cyber_parameter_wrapper
+@@ -50,15 +50,15 @@ target_link_libraries(_cyber_parameter_wrapper
+ add_library(py_parameter ALIAS _cyber_parameter_wrapper)
+ 
+ set_target_properties(_cyber_wrapper
+-    PROPERTIES PREFIX ""
+-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CYBER_PYTHON_INTERNAL_PATH}"
++  PROPERTIES PREFIX ""
++  LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CYBER_PYTHON_INTERNAL_PATH}"
+ )
+ set_target_properties(_cyber_record_wrapper
+   PROPERTIES PREFIX ""
+   LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CYBER_PYTHON_INTERNAL_PATH}"
+ )
+-set_target_properties(_cyber_time_wrapper 
+-  PROPERTIES PREFIX "" 
++set_target_properties(_cyber_time_wrapper
++  PROPERTIES PREFIX ""
+   LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CYBER_PYTHON_INTERNAL_PATH}"
+ )
+ set_target_properties(_cyber_parameter_wrapper
+@@ -67,10 +67,9 @@ set_target_properties(_cyber_parameter_wrapper
+ )
+ 
+ install(TARGETS
+-  _cyber_wrapper 
++  _cyber_wrapper
+   _cyber_record_wrapper
+   _cyber_time_wrapper
+   _cyber_parameter_wrapper
+   DESTINATION ${CYBER_PYTHON_INTERNAL_PATH}
+ )
+-
+diff --git a/cyber/tools/CMakeLists.txt b/cyber/tools/CMakeLists.txt
+index c893a6d..80c8596 100644
+--- a/cyber/tools/CMakeLists.txt
++++ b/cyber/tools/CMakeLists.txt
+@@ -35,7 +35,7 @@ add_executable(cyber_recorder
+   cyber_recorder/player/player.cc
+ )
+ target_link_libraries(cyber_recorder
+- ${TARGET_NAME}
++  ${TARGET_NAME}
+ )
+ set_target_properties(cyber_recorder PROPERTIES
+   RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/cyber/tools/cyber_recorder/"
+diff --git a/package.xml b/package.xml
+new file mode 100644
+index 0000000..2bb6821
+--- /dev/null
++++ b/package.xml
+@@ -0,0 +1,19 @@
++<?xml version="1.0"?>
++<package format="2">
++    <name>cyber_rt</name>
++    <version>9.0.0</version>
++    <description>cyber-rt</description>
++
++    <maintainer email="zhiqi.jia@hirain.com">zhiqi.jia</maintainer>
++    <license>TODO</license>
++
++    <!-- <buildtool_depend>ament_cmake</buildtool_depend> -->
++    <!-- <depend>glog</depend> -->
++    <depend>libncurses5-dev</depend>
++    <depend>libncursesw5-dev</depend>
++    <!-- <test_depend>ament_lint_common</test_depend> -->
++
++    <export>
++        <!-- <build_type>ament_cmake</build_type> -->
++    </export>
++</package>
+-- 
+2.43.0
+

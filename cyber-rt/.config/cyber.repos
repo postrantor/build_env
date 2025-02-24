@@ -1,0 +1,51 @@
+repositories:
+  cyber-rt:
+    type: git
+    url: https://github.com/minhanghuang/CyberRT.git
+    version: v9.0.0
+
+  dds/fast-rtps:
+    type: git
+    url: https://github.com/eProsima/Fast-RTPS.git
+    version: v1.5.0
+  dds/fast-cdr:
+    type: git
+    url: http://github.com/eProsima/Fast-CDR.git
+    version: affa48d
+
+  # thirdpart
+  thirdpart/gflags:
+    type: git
+    url: https://github.com/gflags/gflags.git
+    version: v2.2.0
+
+  thirdpart/glog:
+    type: git
+    url: https://github.com/google/glog.git
+    version: v0.4.0
+
+  thirdpart/googletest:
+    type: git
+    url: https://github.com/google/googletest.git
+    version: release-1.10.0
+
+  thirdpart/protobuf:
+    type: git
+    url: https://github.com/protocolbuffers/protobuf.git
+    version: v3.14.0
+
+  thirdpart/nlohmann-json:
+    type: git
+    url: https://github.com/nlohmann/json.git
+    version: v3.11.3
+
+  thirdpart/tinyxml2:
+    type: git
+    url: https://github.com/leethomason/tinyxml2.git
+    version: 8.0.0
+
+  # apt install libncurses5-dev libncursesw5-dev
+  # thirdpart/ncurses:
+  #   type: git
+  #   url: https://github.com/mirror/ncurses.git
+  #   version: master
