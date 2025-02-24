@@ -1,8 +1,9 @@
-From 65e7d2afebc6c603d319135b23f6b8e84a447c04 Mon Sep 17 00:00:00 2001
-From: trantor <postrantor@gmail.com>
-Date: Wed, 18 Dec 2024 18:56:30 +0800
+From cd7f4885d966583690fdb906e7d2656b6ac1e71f Mon Sep 17 00:00:00 2001
+From: postrantor <postrantor@gmail.com>
+Date: Mon, 24 Feb 2025 17:13:38 +0800
 Subject: [PATCH 1/1] [cyber] refactor build
 
+Signed-off-by: postrantor <postrantor@gmail.com>
 ---
  CMakeLists.txt                                | 306 ++++++++----------
  .../common_component_example/CMakeLists.txt   |   1 -
@@ -15,7 +16,7 @@ Subject: [PATCH 1/1] [cyber] refactor build
  create mode 100644 package.xml
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index bbfe81d..bdabb04 100644
+index bbfe81d..ccdd2c9 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -1,102 +1,58 @@
@@ -75,7 +76,7 @@ index bbfe81d..bdabb04 100644
 +find_package(PkgConfig REQUIRED)
  find_package(Protobuf REQUIRED)
 -# find_package(Python REQUIRED COMPONENTS Interpreter Development)
-+find_package(TinyXML2 REQUIRED)
++find_package(tinyxml2 REQUIRED)
 +
  pkg_check_modules(Python REQUIRED python3)
  pkg_check_modules(Uuid REQUIRED uuid)
@@ -565,13 +566,13 @@ index c893a6d..80c8596 100644
    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/cyber/tools/cyber_recorder/"
 diff --git a/package.xml b/package.xml
 new file mode 100644
-index 0000000..2bb6821
+index 0000000..7e0b3b7
 --- /dev/null
 +++ b/package.xml
 @@ -0,0 +1,19 @@
 +<?xml version="1.0"?>
 +<package format="2">
-+    <name>cyber_rt</name>
++    <name>cyber</name>
 +    <version>9.0.0</version>
 +    <description>cyber-rt</description>
 +
@@ -589,5 +590,5 @@ index 0000000..2bb6821
 +    </export>
 +</package>
 -- 
-2.43.0
+2.34.1
 
