@@ -15,22 +15,6 @@
         "tinyxml2"
       ]
     },
-    "gaea": {
-      "cmake-args": [
-        "-DCMAKE_C_COMPILER=gcc",
-        "-DCMAKE_CXX_COMPILER=g++"
-      ],
-      "dependencies": [
-        "fastrtps",
-        "mcap",
-        "nlohmann_json",
-        "protobuf",
-        "gflags",
-        "glog",
-        "googletest",
-        "tinyxml2"
-      ]
-    },
     "protobuf": {
       "cmake-args": [
         "-Dprotobuf_BUILD_TESTS=OFF",

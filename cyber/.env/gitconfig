@@ -1,0 +1,22 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	editor = vim
+[user]
+	email = user_name@gmail.com
+	name = user_name
+[alias]
+	ca = commit --amend --no-edit
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p
+[credential]
+	helper = store
+[init]
+	defaultBranch = main
