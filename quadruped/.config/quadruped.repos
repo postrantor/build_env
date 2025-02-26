@@ -85,6 +85,10 @@ repositories:
     # url: https://github.com/ros-controls/ros2_controllers.git
     url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/ros2-control/ros2_controllers.git
     version: humble
+  ros2-control/ros2-control-demos:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/ros2-control/ros2_control_demos.git
+    version: humble
   ros2-control/quad-controllers:
     type: git
     url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/ros2-control/quad-controllers.git
@@ -164,6 +168,10 @@ repositories:
   hardware/unitree-sdk:
     type: git
     url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/hardware/unitree/unitree_sdk.git
+    version: ros2
+  hardware/joy/logitech-f710:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/hardware/joy/logitech-f710.git
     version: ros2
 
   interfaces/geometry2:
