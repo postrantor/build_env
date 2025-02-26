@@ -287,6 +287,7 @@ function ignore-colcon-pkg() {
   declare -A IGNORE_LIST=(
     [control]="ros2-control/ros2-control"
     [controllers]="ros2-control/ros2-controllers"
+    [control_demos]="ros2-control/ros2-control-demos"
     [parameter]="ros2-control/generate-parameter-library"
     [infrastructure]="ros2-infrastructure"
     [reference]="reference"
