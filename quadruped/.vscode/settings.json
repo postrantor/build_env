@@ -118,12 +118,19 @@
     ".clang-format": "markdown",
     "*.repos": "yaml",
     "*.meta": "json",
+    "config": "yaml",
     "*.ipp": "cpp",
     "typeindex": "cpp",
     "typeinfo": "cpp",
     "chrono": "cpp",
     "text_encoding": "cpp",
-    "type_traits": "cpp"
+    "type_traits": "cpp",
+    "cmath": "cpp",
+    "memory": "cpp",
+    "sstream": "cpp",
+    "vector": "cpp",
+    "future": "cpp",
+    "filesystem": "cpp"
   },
   "xml.downloadExternalResources.enabled": true,
   "ros.distro": "humble"
