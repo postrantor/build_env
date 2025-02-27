@@ -169,10 +169,6 @@ repositories:
     type: git
     url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/hardware/unitree/unitree_sdk.git
     version: ros2
-  hardware/joy/logitech-f710:
-    type: git
-    url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/hardware/joy/logitech-f710.git
-    version: ros2
   hardware/joy/joystick_drivers:
     type: git
     url: ssh://p7xxtm1/~/repositories/posgraduate/baa_project/hardware/joy/joystick_drivers.git
