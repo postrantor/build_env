@@ -1,0 +1,46 @@
+{
+  "names": {
+    "beatles": {
+      "cmake-args": [
+        "-DCMAKE_C_COMPILER=clang",
+        "-DCMAKE_CXX_COMPILER=clang++"
+      ],
+      "dependencies": []
+    },
+    "cream": {
+      "cmake-args": [
+        "-DCMAKE_C_COMPILER=clang",
+        "-DCMAKE_CXX_COMPILER=clang++",
+        "-DBUILD_TESTING=OFF"
+      ],
+      "dependencies": [
+        "protobuf",
+        "cyclonedds-cxx"
+      ]
+    },
+    "CycloneDDS-CXX": {
+      "cmake-args": [],
+      "dependencies": [
+        "cyclonedds"
+      ]
+    },
+    "protobuf": {
+      "cmake-args": [
+        "-Dprotobuf_BUILD_TESTS=OFF",
+        "-DBUILD_SHARED_LIBS=ON",
+        "-Dprotobuf_BUILD_LIBPROTOC=ON",
+        "-Dprotobuf_BUILD_EXAMPLES=ON"
+      ]
+    },
+    "spdlog_vendor": {
+      "cmake-args": [
+        "-DFORCE_BUILD_VENDOR_PKG=ON"
+      ]
+    },
+    "yaml_cpp_vendor": {
+      "cmake-args": [
+        "-DFORCE_BUILD_VENDOR_PKG=ON"
+      ]
+    }
+  }
+}
