@@ -1,0 +1,12 @@
+export http_proxy=http://192.168.31.201:7891
+export https_proxy=http://192.168.31.201:7891
+
+export PATH=.:${HOME}/.local/bin:$PATH
+
+# set workdir
+export MACHINE=vmware
+export ROS_DISTRO=humble
+export ROS2_WORKDIR=replace_to_script_path
+source ${ROS2_WORKDIR}/.env/bashrc.bash
+source ${ROS2_WORKDIR}/.env/system.bash
+source ${ROS2_WORKDIR}/.env/robot.bash
