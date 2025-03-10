@@ -65,14 +65,14 @@ SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 echo "current script path: ${SCRIPT_PATH}"
 
 # install ros2
-bash ${SCRIPT_PATH}/.env/install-ros2.bash
+bash ${SCRIPT_PATH}/.env/install-ros2-dependence.bash
 export ROS_DISTRO=humble
-export QUAD_WORKDIR=${SCRIPT_PATH}
+export ROS2_WORKDIR=${SCRIPT_PATH}
 
 # source bash script
-source ${QUAD_WORKDIR}/.env/bashrc.bash
-source ${QUAD_WORKDIR}/.env/system.bash
-source ${QUAD_WORKDIR}/.env/robot.bash
+source ${ROS2_WORKDIR}/.env/bashrc.bash
+source ${ROS2_WORKDIR}/.env/system.bash
+source ${ROS2_WORKDIR}/.env/robot.bash
 
 # Initialize the workspace
 update-gitconfig
@@ -80,10 +80,10 @@ update-bashrc-config
 
 update-rosdep
 
-import-quad-src
+import-ros2-src
 ignore-colcon-pkg
-install-dependencies ${QUAD_WORKDIR}
+install-dependencies ${ROS2_WORKDIR}
 
-echo "quadruped workspace initialized."
-echo "please run the following command to start the quadruped project:"
+echo "ros2 workspace initialized."
+echo "please run the following command to start the ros2 project:"
 echo "colcon build"
