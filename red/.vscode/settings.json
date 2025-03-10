@@ -1,13 +1,11 @@
 {
   "python.envFile": "${workspaceFolder}/.env/python",
-
   // https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
     "**/node_modules/*/**": true
   },
-
   // @editor
   // "editor.fontSize": 16,
   // "editor.fontFamily": "'trantor', 'CaskaydiaCove Nerd Font Mono', 'ubuntu mono'",
@@ -17,7 +15,9 @@
   "editor.accessibilitySupport": "off",
   "editor.tabSize": 2,
   "editor.tabCompletion": "on",
-  "editor.rulers": [120],
+  "editor.rulers": [
+    120
+  ],
   "editor.wordWrap": "on",
   "editor.wordWrapColumn": 150,
   "editor.fontLigatures": true,
@@ -27,14 +27,11 @@
   "editor.acceptSuggestionOnEnter": "off",
   "editor.suggestSelection": "first",
   "editor.snippetSuggestions": "inline",
-
   // @workbench
   "workbench.startupEditor": "none",
-
   // @files
   "files.autoSaveDelay": 2000,
   "files.autoSave": "afterDelay",
-
   "files.autoGuessEncoding": true,
   "files.exclude": {
     "**/.classpath": true,
@@ -42,7 +39,6 @@
     "**/.settings": true,
     "**/.factorypath": true
   },
-
   // @markdown
   "[markdown]": {
     "editor.quickSuggestions": {
@@ -54,7 +50,6 @@
   },
   // "markdown.preview.fontSize": 16,
   // "markdown.preview.fontFamily": "Trantor, -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
-
   // @python
   "[python]": {
     "editor.formatOnSaveMode": "file",
@@ -62,7 +57,11 @@
     "editor.defaultFormatter": "ms-python.autopep8",
     "editor.formatOnType": true
   },
-  "yapf.args": ["--style", "{indent_width: 4}", "{column_limit: 120}"],
+  "yapf.args": [
+    "--style",
+    "{indent_width: 4}",
+    "{column_limit: 120}"
+  ],
   "autopep8.args": [
     "--indent-size",
     "4",
@@ -74,7 +73,6 @@
   "python.analysis.completeFunctionParens": true,
   "python.terminal.activateEnvInCurrentTerminal": true,
   "python.globalModuleInstallation": true,
-
   // @c_cpp
   "C_Cpp.default.compilerPath": "/usr/bin/clang",
   "C_Cpp.formatting": "clangFormat",
@@ -90,7 +88,6 @@
     "editor.defaultFormatter": "zachflower.uncrustify"
   },
   "uncrustify.configPath.linux": "${workspaceFolder}/uncrustify.cfg",
-
   // @cmake
   "cmake.pinnedCommands": [
     "workbench.action.tasks.configureTaskRunner",
@@ -126,7 +123,9 @@
     "typeinfo": "cpp",
     "chrono": "cpp",
     "text_encoding": "cpp",
-    "type_traits": "cpp"
+    "type_traits": "cpp",
+    "cstring": "cpp",
+    "iostream": "cpp"
   },
   "xml.downloadExternalResources.enabled": true
 }
