@@ -19,6 +19,7 @@ setup_shell() {
     source ${ROS2_WORKDIR}/install/setup.zsh
   fi
   export PATH=${ROS2_WORKDIR}/install/af_configurator/lib/af_configurator:$PATH
+  export PATH=${ROS2_WORKDIR}/install/vcstool/bin:$PATH
 }
 
 # 3. RMW Implementation
