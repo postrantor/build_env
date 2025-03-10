@@ -3,4 +3,7 @@ build/
 install/
 log/
 .cache/
+infra/
+docs/rep
+
 extensions.tar.gz
