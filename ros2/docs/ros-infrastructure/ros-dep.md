@@ -14,4 +14,6 @@ date: 2025-01-05 12:29:33
 
 ### reference
 
-> [](https://docs.ros.org/en/independent/api/rosdep/html/sources_list.html)
+[docs](https://docs.ros.org/en/independent/api/rosdep/html/sources_list.html)
+[ros-infrastructure/rosdep: rosdep multi-package manager system dependency tool](https://github.com/ros-infrastructure/rosdep)
+[ROS packages — rosdep 0.25.1 documentation](https://docs.ros.org/en/independent/api/rosdep/html/)

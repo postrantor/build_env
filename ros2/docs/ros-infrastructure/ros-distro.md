@@ -1,3 +1,12 @@
+---
+data: 2025-03-08 19:21:31
+---
+
+[ros/rosdistro: This repo maintains a lists of repositories for each ROS distribution](https://github.com/ros/rosdistro/tree/master)
+
+## "20-default.list"
+
+```
 # os-specific listings first
 yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/osx-homebrew.yaml osx
 
@@ -8,3 +17,4 @@ yaml https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/ruby.yaml
 gbpdistro https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte.yaml fuerte
 
 # newer distributions (Groovy, Hydro, ...) must not be listed anymore, they are being fetched from the rosdistro index.yaml instead
+```
