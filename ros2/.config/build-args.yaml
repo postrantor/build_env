@@ -1,6 +1,7 @@
 # https://colcon.readthedocs.io/en/released/user/using-multiple-workspaces.html
 # export COLCON_DEFAULTS_FILE=/workspaces/cream_ws/defaults.yaml
 build:
+  continue-on-error: true
   packages-select:
     # - quadruped
   cmake-args:
@@ -17,7 +18,7 @@ build:
   cmake-force-configure: true
   symlink-install: true
   merge-install: false
-  parallel-workers: 15
+  parallel-workers: 12
   event-handlers:
     - console_direct+
     - console_cohesion+
