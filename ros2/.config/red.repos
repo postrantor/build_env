@@ -1,0 +1,52 @@
+repositories:
+  3part/protobuf:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/3part/protobuf.git
+    version: 5cba162a5d93f8df786d828621019e03e50edb4f
+
+  beatles/af_interfaces:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/red/af_interfaces.git
+    version: dev
+  beatles/beatles:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/red/beatles.git
+    version: dev
+  beatles/events_executor:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/red/events_executor.git
+    version: AF_dev
+  beatles/examples:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/red/examples.git
+    version: dev
+  beatles/performance:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/red/performance.git
+    version: dev
+  beatles/reference-system:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/red/reference-system.git
+    version: dev
+  beatles/tools:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/red/tools.git
+    version: dev
+
+  cream/cream:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/red/cream.git
+    version: dev
+  cream/examples:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/red/cream_examples.git
+    version: dev
+
+  dds/examples:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/dds/dds.git
+    version: dev
+  dds/record:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/dds/dds_record.git
+    version: AF_dev
