@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-    <name>quadruped_docs</name>
+    <name>ros2_docs</name>
     <version>0.0.1</version>
-    <description>The quadruped package for ros2</description>
+    <description>The ros2 package for ros2</description>
 
     <maintainer email="postrantor@gmail.com">postrantor</maintainer>
     <license>MIT</license>
