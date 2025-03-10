@@ -2,4 +2,8 @@ repositories:
   docs/rep:
     type: git
     url: ssh://p7xxtm1/~/repositories/ros2/ros-infrastructure/rep.git
-    version: tdev
+    version: trantor/dev
+  infra/vcstool:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/ros-infrastructure/rep.git
+    version: trantor/dev
