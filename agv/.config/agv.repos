@@ -9,9 +9,13 @@ repositories:
     version: main
   agv_control_model:
     type: git
-    url: ssh://p7xxtm1/~/repositories/hirain/agv/model.git
+    url: ssh://p7xxtm1/~/repositories/hirain/agv/agv_control_model.git
     version: main
   agv_interfaces:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/agv/interfaces.git
+    version: main
+  model:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/agv/model.git
     version: main
