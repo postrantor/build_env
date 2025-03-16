@@ -5,6 +5,12 @@ repositories:
     url: ssh://p7xxtm1/~/repositories/hirain/af/plantform/af.git
     version: dev
 
+  ## adapter
+  red/red_adapter:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/red/red_adapter.git
+    version: dev
+
   ## beatles
   red/beatles/beatles:
     type: git

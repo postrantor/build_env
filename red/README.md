@@ -1,5 +1,5 @@
 ---
-date: 2025-01-05 00:23:56
+date: 2025-03-16 21:29:00
 ---
 
 ```bash
@@ -21,4 +21,16 @@ ignore-colcon-pkg
 install-despendencies
 
 colcon build
+```
+
+## lcov
+
+```shell
+apt install python3-colcon-lcov-result
+```
+
+## plantform/af
+
+```shell
+apt install bison flex
 ```
