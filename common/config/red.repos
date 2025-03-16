@@ -2,7 +2,7 @@ repositories:
   ## plantform
   red/plantform:
     type: git
-    url: ssh://p7xxtm1/~/repositories/hirain/af/plantform/af.git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/plantform/af3.git
     version: dev
 
   ## adapter
