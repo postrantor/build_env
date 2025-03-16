@@ -1,5 +1,48 @@
 {
   "names": {
+    "aidl": {
+      "cmake-args": [
+        "-DCMAKE_C_COMPILER=clang",
+        "-DCMAKE_CXX_COMPILER=clang++"
+      ],
+      "dependencies": []
+    },
+    "libbase": {
+      "cmake-args": [
+        "-DCMAKE_C_COMPILER=clang",
+        "-DCMAKE_CXX_COMPILER=clang++"
+      ],
+      "dependencies": []
+    },
+    "libbinder": {
+      "cmake-args": [
+        "-DCMAKE_C_COMPILER=clang",
+        "-DCMAKE_CXX_COMPILER=clang++"
+      ],
+      "dependencies": []
+    },
+    "libframework": {
+      "cmake-args": [
+        "-DCMAKE_C_COMPILER=clang",
+        "-DCMAKE_CXX_COMPILER=clang++"
+      ],
+      "dependencies": []
+    },
+    "sqlite3pp": {
+      "cmake-args": [
+        "-DCMAKE_C_COMPILER=clang",
+        "-DCMAKE_CXX_COMPILER=clang++"
+      ],
+      "dependencies": []
+    },
+    "stduuid": {
+      "cmake-args": [
+        "-DCMAKE_C_COMPILER=clang",
+        "-DCMAKE_CXX_COMPILER=clang++"
+      ],
+      "dependencies": []
+    },
+
     "beatles": {
       "cmake-args": [
         "-DCMAKE_C_COMPILER=clang",

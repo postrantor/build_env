@@ -1,4 +1,10 @@
 repositories:
+  ## plantform
+  red/plantform:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/hirain/af/plantform/af.git
+    version: dev
+
   ## beatles
   red/beatles/beatles:
     type: git
