@@ -262,9 +262,8 @@ function ignore-directory() {
 #  @endcode
 function ignore-colcon-pkg() {
   declare -A IGNORE_LIST=(
-    [executor]="beatles/events_executor"
-    [reference]="beatles/reference-system"
-    [protobuf]="3part/protobuf/python"
+    [reference]="red/beatles/reference-system"
+    [protobuf]="red/3part/protobuf/python"
   )
 
   # Iterate over the ignore list
