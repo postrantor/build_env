@@ -1,0 +1,213 @@
+{
+  // https://docs.continue.dev/reference#models
+  "ui": {
+    "codeBlockToolbarPosition": "bottom",
+    "fontSize": 17,
+    "displayRawMarkdown": false
+  },
+  "completionOptions": {
+    "stream": true,
+    "temperature": 0.0 // for deepseek
+  },
+  "models": [
+    {
+      // https://github.com/deepseek-ai/awesome-deepseek-integration/blob/main/docs/continue/README_cn.md
+      "title": "deepseek",
+      "model": "deepseek-coder",
+      // "model": "deepseek-chat",
+      "apiBase": "https://api.deepseek.com",
+      "apiKey": "",
+      "contextLength": 128000,
+      "provider": "deepseek"
+    },
+    {
+      "title": "deepseek-reasoner",
+      "model": "deepseek-reasoner",
+      "apiBase": "https://api.deepseek.com",
+      "apiKey": "",
+      "contextLength": 128000,
+      "provider": "deepseek"
+    },
+    {
+      "title": "deepseek-r1-distill-qwen-32b",
+      "model": "DeepSeek-R1-Distill-Qwen-32B",
+      "apiBase": "https://ai.gitee.com/v1",
+      "apiKey": "",
+      "contextLength": 128000,
+      "provider": "openai"
+    },
+    {
+      "title": "deepseek-r1:14b",
+      "model": "deepseek-r1:14b",
+      "apiBase": "http://192.168.31.205:11434/",
+      "apiKey": "[ollama]",
+      "provider": "ollama"
+    },
+    {
+      "title": "deepseek-coder-v2:16b",
+      "model": "deepseek-coder-v2:16b",
+      "apiBase": "http://192.168.31.205:11434/",
+      "apiKey": "[ollama]",
+      "provider": "ollama"
+    },
+    {
+      "title": "llama3.2:latest",
+      "model": "llama3.2:latest",
+      "apiBase": "http://192.168.31.205:11434/",
+      // "apiBase": "http://www.postrantor.com:2346",
+      // "apiBase": "http://[240e:304:27f5:d900:341a:b3c6:d00:beca]:11434/",
+      "apiKey": "[ollama]",
+      "provider": "ollama"
+      // "contextLength": 4096
+    }
+  ],
+  "customCommands": [
+    {
+      "name": "test2",
+      "prompt": "{{{ input }}}\n\n您很聪明，乐于助人，是一位专业的开发人员，总是给出正确的答案，并且只按照指示进行。您总是如实回答，不会编造故事。(当回复以下提示时，请确保使用 Github Flavored Markdown 正确设置您的回复样式。对标题、列表、彩色文本、代码块、突出显示等内容使用 Markdown 语法。确保不要在您的文档中提及 Markdown 或样式实际反应。)以“简体中文”给出的回复。",
+      // "prompt": "{{{ input }}}\n\nYou are intelligent, helpful and an expert developer, who always gives the correct answer and only does what instructed.You always answer truthfully and don 't make things up. (When responding to the following prompt, please make sure to properly style your response using Github Flavored Markdown. Use markdown syntax for things like headings, lists, colored text, code blocks, highlights etc. Make sure not to mention markdown or styling in your actual response.)",
+      "description": "coder response"
+    },
+    {
+      "name": "ask-markdown",
+      "prompt": "{{{ input }}}\n\n这是关于linux的一段代码，请按照 `@brief @param` 的风格，对每个函数添加详细的中文注释，解释其中每个函数的详细功能。我希望给出的注释可以依据函数的实现，并前后联系，给出的注释更具体详细。同时可以对函数的具体实现，分析函数的内在逻辑，也同样以详细注释的形式插入在函数的关键地方。",
+      "description": "ask-quadruped"
+    },
+    {
+      "name": "ask-quad",
+      "prompt": "{{{ input }}}\n\n这是通过 MPC 算法控制四足机器人的一段代码，请按照 `@brief @param` 的风格，对每个函数添加详细的中文注释，解释其中每个函数的详细功能。我希望给出的注释可以依据函数的实现，并前后联系，给出的注释更具体详细。同时可以对函数的具体实现，分析函数的内在逻辑，也同样以详细注释的形式插入在函数的关键地方。",
+      "description": "ask-quadruped"
+    },
+    {
+      "name": "onboard",
+      "description": "Familiarize yourself with the codebase"
+    },
+    {
+      "name": "commit",
+      "description": "Generate a commit message for the current changes"
+    },
+    {
+      "name": "check",
+      "description": "Check for mistakes in my code",
+      "prompt": "{{{ input }}}\n\nPlease read the highlighted code and check for any mistakes. You should look for the following, and be extremely vigilant:\n- Syntax errors\n- Logic errors\n- Security vulnerabilities\n- Performance issues\n- Anything else that looks wrong\n\nOnce you find an error, please explain it as clearly as possible, but without using extra words. For example, instead of saying 'I think there is a syntax error on line 5', you should say 'Syntax error on line 5'. Give your answer as one bullet point per mistake found."
+    }
+  ],
+  // https://docs.continue.dev/customize/context-providers#built-in-context-providers
+  "contextProviders": [
+    {
+      "name": "os"
+    },
+    {
+      // https://docs.continue.dev/customize/deep-dives/codebase
+      "name": "codebase",
+      "params": {
+        "nRetrieve": 25,
+        "nFinal": 5,
+        "useReranking": true
+      }
+    },
+    {
+      "name": "folder"
+    },
+    {
+      "name": "open",
+      "params": {
+        "onlyPinned": false
+      }
+    },
+    {
+      "name": "terminal",
+      "params": {}
+    },
+    {
+      "name": "search"
+    },
+    {
+      "name": "clipboard"
+    },
+    {
+      "name": "tree"
+    },
+    {
+      "name": "problems"
+    },
+    {
+      "name": "debugger",
+      "params": {
+        "stackDepth": 3
+      }
+    },
+    {
+      "name": "repo-map",
+      "params": {
+        "includeSignatures": false // default true
+      }
+    },
+    {
+      "name": "commit",
+      "params": {
+        "Depth": 50,
+        "LastXCommitsDepth": 10
+      }
+    },
+    {
+      "name": "code",
+      "params": {}
+    },
+    {
+      "name": "docs",
+      "params": {}
+    },
+    {
+      "name": "diff",
+      "params": {}
+    },
+    {
+      "name": "web",
+      "params": {}
+    },
+    {
+      "name": "file",
+      "params": {}
+    }
+  ],
+  "tabAutocompleteModel": {
+    "title": "deepseek-tab",
+    "model": "deepseek-coder",
+    "apiBase": "https://api.deepseek.com/beta",
+    "apiKey": "",
+    "provider": "openai"
+  },
+  "tabAutocompleteOptions": {
+    "debounceDelay": 500,
+    "maxPromptTokens": 1500,
+    "multilineCompletions": "always",
+    "disableInFiles": ["*.md"]
+  },
+  "allowAnonymousTelemetry": false,
+  // https://docs.continue.dev/customize/model-providers/ollama#embeddings-model
+  // https://docs.continue.dev/customize/model-types/embeddings
+  "embeddingsProvider": {
+    "provider": "ollama",
+    "model": "nomic-embed-text",
+    "maxChunkSize": 256,
+    "maxBatchSize": 5
+  },
+  "slashCommands": [
+    {
+      "name": "share",
+      "description": "Export the current chat session to markdown",
+      "params": {
+        "outputDir": "~/.continue/session-transcripts"
+      }
+    },
+    {
+      "name": "commit",
+      "description": "Generate a commit message for the current changes"
+    },
+    {
+      "name": "cmd",
+      "description": "Generate a shell command"
+    }
+  ]
+}

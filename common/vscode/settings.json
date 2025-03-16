@@ -1,0 +1,137 @@
+{
+  "python.envFile": "${workspaceFolder}/.env/python",
+  // https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true
+  },
+  // @editor
+  // "editor.fontSize": 16,
+  // "editor.fontFamily": "'trantor', 'CaskaydiaCove Nerd Font Mono', 'ubuntu mono'",
+  "editor.stickyScroll.enabled": false,
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "editor.unicodeHighlight.nonBasicASCII": false,
+  "editor.accessibilitySupport": "off",
+  "editor.tabSize": 2,
+  "editor.tabCompletion": "on",
+  "editor.rulers": [
+    120
+  ],
+  "editor.wordWrap": "on",
+  "editor.wordWrapColumn": 150,
+  "editor.fontLigatures": true,
+  "editor.formatOnType": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.suggestSelection": "first",
+  "editor.snippetSuggestions": "inline",
+  // @workbench
+  "workbench.startupEditor": "none",
+  // @files
+  "files.autoSaveDelay": 2000,
+  "files.autoSave": "afterDelay",
+  "files.autoGuessEncoding": true,
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  // @markdown
+  "[markdown]": {
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "strings": "on",
+      "other": "on"
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // "markdown.preview.fontSize": 16,
+  // "markdown.preview.fontFamily": "Trantor, -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
+  // @python
+  "[python]": {
+    "editor.formatOnSaveMode": "file",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.formatOnType": true
+  },
+  "yapf.args": [
+    "--style",
+    "{indent_width: 4}",
+    "{column_limit: 120}"
+  ],
+  "autopep8.args": [
+    "--indent-size",
+    "4",
+    "--ignore",
+    "E501",
+    "--max-line-length",
+    "120"
+  ],
+  "python.analysis.completeFunctionParens": true,
+  "python.terminal.activateEnvInCurrentTerminal": true,
+  "python.globalModuleInstallation": true,
+  // @c_cpp
+  "C_Cpp.default.compilerPath": "/usr/bin/clang",
+  "C_Cpp.formatting": "clangFormat",
+  "C_Cpp.codeAnalysis.clangTidy.enabled": true,
+  "C_Cpp.codeAnalysis.runAutomatically": true,
+  "C_Cpp.clang_format_fallbackStyle": "LLVM",
+  "C_Cpp.clang_format_sortIncludes": true,
+  "C_Cpp.autocompleteAddParentheses": true,
+  "[c]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  "[cpp]": {
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+  "uncrustify.configPath.linux": "${workspaceFolder}/uncrustify.cfg",
+  // @cmake
+  "cmake.pinnedCommands": [
+    "workbench.action.tasks.configureTaskRunner",
+    "workbench.action.tasks.runTask"
+  ],
+  "cmake.configureOnOpen": false,
+  "cmake.cmakePath": "cmake",
+  "cmake.useCMakePresets": "always",
+  "cmake.configureSettings": {
+    "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+  },
+  "[cmake]": {
+    "editor.defaultFormatter": "josetr.cmake-language-support-vscode"
+  },
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "python.autoComplete.extraPaths": [
+    "/opt/ros/humble/lib/python3.10/site-packages",
+    "/opt/ros/humble/local/lib/python3.10/dist-packages"
+  ],
+  "python.analysis.extraPaths": [
+    "/opt/ros/humble/lib/python3.10/site-packages",
+    "/opt/ros/humble/local/lib/python3.10/dist-packages"
+  ],
+  "files.associations": {
+    "*.m": "matlab",
+    ".clang-format": "markdown",
+    "*.repos": "yaml",
+    "*.meta": "json",
+    "config": "yaml",
+    "*.ipp": "cpp",
+    "typeindex": "cpp",
+    "typeinfo": "cpp",
+    "chrono": "cpp",
+    "text_encoding": "cpp",
+    "type_traits": "cpp",
+    "cmath": "cpp",
+    "memory": "cpp",
+    "sstream": "cpp",
+    "vector": "cpp",
+    "future": "cpp",
+    "filesystem": "cpp"
+  },
+  "xml.downloadExternalResources.enabled": true,
+  "ros.distro": "humble"
+}

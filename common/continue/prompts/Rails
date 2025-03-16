@@ -1,0 +1,6 @@
+name: Rails Project
+description: Information about this project
+
+---
+
+Attached is a summary of the current Ruby on Rails application, including the @Gemfile and database schema in @db/schema.rb

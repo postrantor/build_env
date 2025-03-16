@@ -1,0 +1,326 @@
+// Empty
+[
+  {
+    "key": "alt+c",
+    "command": "markdown.extension.editing.toggleCodeBlock"
+  },
+  {
+    "key": "ctrl+shift+c",
+    "command": "markdown.extension.editing.toggleCodeSpan"
+  },
+  {
+    "key": "ctrl+shift+v",
+    "command": "html.showPreviewToSide",
+    "when": "editorLangId == 'html'"
+  },
+  {
+    "key": "ctrl+k v",
+    "command": "-html.showPreviewToSide",
+    "when": "editorLangId == 'html'"
+  },
+  {
+    "key": "ctrl+shift+p",
+    "command": "html.showPreview",
+    "when": "editorLangId == 'html'"
+  },
+  {
+    "key": "ctrl+shift+v",
+    "command": "-html.showPreview",
+    "when": "editorLangId == 'html'"
+  },
+  {
+    "key": "ctrl+u",
+    "command": "editor.action.transformToUppercase"
+  },
+  {
+    "key": "ctrl+shift+u",
+    "command": "editor.action.transformToLowercase"
+  },
+  {
+    "key": "ctrl+shift+j",
+    "command": "jupyter.createnewnotebook"
+  },
+  {
+    "key": "ctrl+oem_3",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  },
+  {
+    "key": "ctrl+oem_3",
+    "command": "-workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  },
+  {
+    "key": "ctrl+alt+p",
+    "command": "workbench.action.pinEditor",
+    "when": "!activeEditorIsPinned"
+  },
+  {
+    "key": "ctrl+k shift+enter",
+    "command": "-workbench.action.pinEditor",
+    "when": "!activeEditorIsPinned"
+  },
+  {
+    "key": "ctrl+k v",
+    "command": "-markdown.showPreviewToSide",
+    "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+  },
+  {
+    "key": "ctrl+shift+v",
+    "command": "-markdown.showPreview",
+    "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+  },
+  {
+    "key": "alt+enter",
+    "command": "editor.action.revealDefinition",
+    "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+  },
+  {
+    "key": "f12",
+    "command": "-editor.action.revealDefinition",
+    "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+  },
+  {
+    "key": "ctrl+shift+v",
+    "command": "-markdown-preview-enhanced.openPreview",
+    "when": "editorLangId == 'markdown'"
+  },
+  {
+    "key": "ctrl+shift+v",
+    "command": "-markdown.extension.togglePreview",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+k v",
+    "command": "-markdown-preview-enhanced.openPreviewToTheSide",
+    "when": "editorLangId == 'markdown'"
+  },
+  {
+    "key": "ctrl+c",
+    "command": "toggleSearchEditorCaseSensitive",
+    "when": "inSearchEditor && searchInputBoxFocus"
+  },
+  {
+    "key": "alt+c",
+    "command": "-toggleSearchEditorCaseSensitive",
+    "when": "inSearchEditor && searchInputBoxFocus"
+  },
+  {
+    "key": "ctrl+shift+b",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "ctrl+b",
+    "command": "-workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "shift+enter",
+    "command": "python.execSelectionInTerminal",
+    "when": "editorTextFocus && !findInputFocussed && !jupyter.ownsSelection && !notebookEditorFocused && !replaceInputFocussed && editorLangId == 'python'"
+  },
+  {
+    "key": "shift+enter",
+    "command": "-python.execSelectionInTerminal",
+    "when": "editorTextFocus && !findInputFocussed && !jupyter.ownsSelection && !notebookEditorFocused && !replaceInputFocussed && editorLangId == 'python'"
+  },
+  {
+    "key": "shift+enter",
+    "command": "jupyter.execSelectionInteractive",
+    "when": "editorTextFocus && isWorkspaceTrusted && jupyter.ownsSelection && !findInputFocussed && !notebookEditorFocused && !replaceInputFocussed && editorLangId == 'python'"
+  },
+  {
+    "key": "shift+enter",
+    "command": "-jupyter.execSelectionInteractive",
+    "when": "editorTextFocus && isWorkspaceTrusted && jupyter.ownsSelection && !findInputFocussed && !notebookEditorFocused && !replaceInputFocussed && editorLangId == 'python'"
+  },
+  {
+    "key": "ctrl+shift+p",
+    "command": "markdown.showPreviewToSide"
+  },
+  {
+    "key": "ctrl+v",
+    "command": "-office.markdown.paste",
+    "when": "!filesExplorerFocus && !terminalFocus && resourceLangId == 'markdown'"
+  },
+  {
+    "key": "ctrl+shift+up",
+    "command": "editor.action.insertCursorAbove",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+down",
+    "command": "editor.action.insertCursorBelow",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+oem_4",
+    "command": "-markdown.extension.editing.toggleHeadingDown",
+    "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^markdown$|^rmd$|^qmd$/"
+  },
+  {
+    "key": "ctrl+shift+oem_6",
+    "command": "-markdown.extension.editing.toggleHeadingUp",
+    "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^markdown$|^rmd$|^qmd$/"
+  },
+  {
+    "key": "shift+alt+t",
+    "command": "-extension.translateTextPreferred",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+alt+t",
+    "command": "extension.translateLinesUnderCursorPreferred"
+  },
+  {
+    "key": "shift+alt+g",
+    "command": "easycode.ask"
+  },
+  {
+    "key": "ctrl+alt+numpad5",
+    "command": "chatgpt-vscode.addComments",
+    "when": "editorHasSelection"
+  },
+  {
+    "key": "ctrl+k ctrl+shift+5",
+    "command": "-chatgpt-vscode.addComments",
+    "when": "editorHasSelection"
+  },
+  {
+    "key": "ctrl+alt+numpad8",
+    "command": "chatgpt-vscode.customPrompt1",
+    "when": "editorHasSelection"
+  },
+  {
+    "key": "ctrl+k ctrl+shift+8",
+    "command": "-chatgpt-vscode.customPrompt1",
+    "when": "editorHasSelection"
+  },
+  {
+    "key": "shift+tab",
+    "command": "-easycode.inlineCompletion",
+    "when": "editorTextFocus && !editorHasSelection"
+  },
+  {
+    "key": "ctrl+alt+n",
+    "command": "chatgpt-vscode.newChat"
+  },
+  {
+    "key": "alt+oem_5",
+    "command": "editor.action.jumpToBracket",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+oem_5",
+    "command": "-editor.action.jumpToBracket",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+down ctrl+down",
+    "command": "-codetour.endTour",
+    "when": "codetour:inTour && !terminalFocus && !textInputFocus"
+  },
+  {
+    "key": "ctrl+up ctrl+up",
+    "command": "-codetour.startTour",
+    "when": "!terminalFocus && !textInputFocus"
+  },
+  {
+    "key": "ctrl+right",
+    "command": "-codetour.nextTourStep",
+    "when": "codetour:inTour && !terminalFocus && !textInputFocus"
+  },
+  {
+    "key": "ctrl+left",
+    "command": "-codetour.previousTourStep",
+    "when": "codetour:inTour && !terminalFocus && !textInputFocus"
+  },
+  {
+    "key": "ctrl+alt+numpad4",
+    "command": "chatgpt-vscode.explain",
+    "when": "editorHasSelection"
+  },
+  {
+    "key": "ctrl+k ctrl+shift+4",
+    "command": "-chatgpt-vscode.explain",
+    "when": "editorHasSelection"
+  },
+  {
+    "key": "ctrl+shift+alt+oem_4",
+    "command": "workbench.action.terminal.moveToEditor"
+  },
+  {
+    "key": "ctrl+shift+alt+oem_6",
+    "command": "workbench.action.terminal.moveToTerminalPanel"
+  },
+  {
+    "key": "ctrl+shift+[",
+    "command": "-markdown.extension.editing.toggleHeadingDown",
+    "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
+  },
+  {
+    "key": "ctrl+shift+oem_6",
+    "command": "-markdown.extension.editing.toggleHeadingUp",
+    "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
+  },
+  {
+    "key": "alt+oem_3",
+    "command": "workbench.action.toggleMaximizedPanel"
+  },
+  {
+    "key": "ctrl+shift+alt+left",
+    "command": "workbench.action.terminal.resizePaneLeft"
+  },
+  {
+    "key": "ctrl+shift+alt+right",
+    "command": "workbench.action.terminal.resizePaneRight"
+  },
+  {
+    "key": "ctrl+shift+alt+down",
+    "command": "workbench.action.terminal.resizePaneDown"
+  },
+  {
+    "key": "ctrl+shift+alt+up",
+    "command": "workbench.action.terminal.resizePaneUp"
+  },
+  {
+    "key": "shift+alt+oem_minus",
+    "command": "workbench.action.terminal.splitInActiveWorkspace"
+  },
+  {
+    "key": "ctrl+shift+i",
+    "command": "-workbench.action.chat.openEditSession",
+    "when": "chatEditingParticipantRegistered && chatIsEnabled && view != 'workbench.panel.chat.view.edits'"
+  },
+  {
+    "key": "shift+alt+l",
+    "command": "continue.focusContinueInputWithoutClear"
+  },
+  {
+    "key": "ctrl+shift+l",
+    "command": "-continue.focusContinueInputWithoutClear"
+  },
+  {
+    "key": "alt+l",
+    "command": "continue.focusContinueInput"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "-continue.focusContinueInput"
+  },
+  {
+    "key": "ctrl+shift+o",
+    "command": "continue.focusEditWithoutClear"
+  },
+  {
+    "key": "ctrl+shift+i",
+    "command": "-continue.focusEditWithoutClear"
+  },
+  {
+    "key": "shift+alt+k",
+    "command": "continue.applyCodeFromChat"
+  },
+  {
+    "key": "alt+a",
+    "command": "-continue.applyCodeFromChat"
+  }
+]
