@@ -19,7 +19,7 @@ repositories:
   red/beatles/examples:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/examples.git
-    version: dev
+    version: AF_dev
   red/beatles/af_interfaces:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/af_interfaces.git
