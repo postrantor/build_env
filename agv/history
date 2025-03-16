@@ -1,0 +1,17 @@
+```shell
+ros2 --help
+ros2 af launch install/example_vip_channel/
+
+pip install ./
+simulink_app_create -i ./ --name agv_control_model --type AGVControlModelClass
+
+ros2 af launch install/AGV_CONTROL_MODEL/
+ros2 launch joy joy.launch.py
+ros2 topic pub --rate 10 /agv/joy sensor_msgs/msg/Joy "{axes: [0.0, 1.0], buttons: [0,0,0,0,0,0,0,1]}"
+
+ros2 topic list
+ros2 topic list
+ros2 topic info -v /RemotCtrlTest_Topic
+ros2 topic echo /RemotCtrlTest_Topic
+ros2 topic echo /PLCRealTimeControl_Topic
+```

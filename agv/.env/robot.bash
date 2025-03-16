@@ -6,7 +6,7 @@
 
 # 1. Environment Directory
 # --------------------------
-ENV_DIR=${RED_WORKDIR}/.env/
+ENV_DIR=${AGV_WORKDIR}/.env/
 
 # 2. Shell-Specific Setup
 # --------------------------
@@ -14,13 +14,13 @@ setup_shell() {
   if [ -n "$BASH_VERSION" ]; then
     source /opt/ros/${ROS_DISTRO}/setup.bash
     source ${RED_WORKDIR}/install/setup.bash
-    source ${RED_WORKDIR}/../agv/install/setup.bash
+    source ${AGV_WORKDIR}/install/setup.bash
   elif [ -n "$ZSH_VERSION" ]; then
     source /opt/ros/${ROS_DISTRO}/setup.zsh
     source ${RED_WORKDIR}/install/setup.zsh
-    source ${RED_WORKDIR}/../agv/install/setup.zsh
+    source ${AGV_WORKDIR}/install/setup.zsh
   fi
-  export PATH=${RED_WORKDIR}/install/af_configurator/lib/af_configurator:$PATH
+  export PATH=${AGV_WORKDIR}/install/af_configurator/lib/af_configurator:$PATH
 }
 
 # 3. RMW Implementation
@@ -48,20 +48,20 @@ setup_gazebo() {
 # 5. Colcon Configuration
 # --------------------------
 setup_colcon() {
-  export _colcon_cd_root=${RED_WORKDIR}  # Set root directory for `colcon_cd`
+  export _colcon_cd_root=${AGV_WORKDIR}  # Set root directory for `colcon_cd`
   source ${ENV_DIR}/colcon_cd.sh          # Source colcon_cd script
   source ${ENV_DIR}/colcon-argcomplete.bash  # Source colcon argument completion
 
   # Set colcon build arguments and home directory
-  export COLCON_DEFAULTS_FILE=${RED_WORKDIR}/.config/build-args.yaml  # Default build arguments
-  export COLCON_HOME=${RED_WORKDIR}/.config/  # Colcon configuration directory
+  export COLCON_DEFAULTS_FILE=${AGV_WORKDIR}/.config/build-args.yaml  # Default build arguments
+  export COLCON_HOME=${AGV_WORKDIR}/.config/  # Colcon configuration directory
 }
 
 # 6. Version Control System (VCS) Tool
 # --------------------------
 setup_vcs() {
   source ${ENV_DIR}/vcs.bash
-  export RED_REPO=${RED_WORKDIR}/.config/red.repos
+  export AGV_REPO=${AGV_WORKDIR}/.config/agv.repos
 }
 
 # 7. Code Formatting Tool

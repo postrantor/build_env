@@ -17,7 +17,7 @@
 #  @code
 #  source /home/trantor/build_env/red/.env/manage-project.bash
 #  update-rosdep
-#  import-red-src
+#  import-agv-src
 #  install-dependencies ./src
 #  colcon_ws model
 #  @endcode
@@ -32,7 +32,7 @@
 #  @note https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/sources.list.d/20-default.list
 #  Example usage:
 #  @code
-#  sudo -E bash ${RED_WORKDIR}/.env/update-rosdep.bash
+#  sudo -E bash ${AGV_WORKDIR}/.env/update-rosdep.bash
 #  @endcode
 function update-rosdep() {
   # Check if rosdep is initialized
@@ -72,7 +72,7 @@ function update-rosdep() {
 #  @endcode
 function cd_ws() {
   declare -A paths=(
-    ["model"]="${RED_WORKDIR}"
+    ["model"]="${AGV_WORKDIR}"
     ["control"]="${HOME}/project/control_ws"
     ["unitree"]="${HOME}/project/unitree_ws"
   )
@@ -150,7 +150,7 @@ function colcon_remove() {
   done
 }
 
-## @function import-red-src
+## @function import-agv-src
 #  @brief Import red robot source repositories using vcs.
 #
 #  This function imports the source repositories specified in the `RED_REPO`
@@ -158,10 +158,10 @@ function colcon_remove() {
 #
 #  Example usage:
 #  @code
-#  import-red-src
+#  import-agv-src
 #  @endcode
-function import-red-src() {
-  echo "importing red src..."
+function import-agv-src() {
+  echo "importing agv src..."
   # Create src directory if it doesn't exist
   if ! mkdir -p ./src; then
     echo "Error: Failed to create ./src directory." >&2
@@ -176,18 +176,18 @@ function import-red-src() {
   return 0
 }
 
-## @function pull-red-src
-#  @brief Import red robot source repositories using vcs.
+## @function pull-agv-src
+#  @brief Import agv robot source repositories using vcs.
 #
-#  This function imports the source repositories specified in the `RED_REPO`
+#  This function imports the source repositories specified in the `AGV_REPO`
 #  file into the `./src` directory.
 #
 #  Example usage:
 #  @code
-#  pull-red-src
+#  pull-agv-src
 #  @endcode
-function pull-red-src() {
-  echo "pulling red src..."
+function pull-agv-src() {
+  echo "pulling agv src..."
   # pull repositories using vcs
   if ! vcs pull --workers 5 --repos ./src; then
     echo "Error: Failed to pull repositories using vcs." >&2
@@ -233,7 +233,7 @@ function install-dependencies() {
 #  ignore-directory control "ros2-control/ros2-control"
 #  @endcode
 function ignore-directory() {
-  local ignore_file="${RED_WORKDIR}/src/.colcon-ignore-$1"
+  local ignore_file="${AGV_WORKDIR}/src/.colcon-ignore-$1"
   local path_pattern="*/$2"
 
   touch "$ignore_file"

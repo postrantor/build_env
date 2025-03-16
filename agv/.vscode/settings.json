@@ -15,9 +15,7 @@
   "editor.accessibilitySupport": "off",
   "editor.tabSize": 2,
   "editor.tabCompletion": "on",
-  "editor.rulers": [
-    120
-  ],
+  "editor.rulers": [120],
   "editor.wordWrap": "on",
   "editor.wordWrapColumn": 150,
   "editor.fontLigatures": true,
@@ -57,11 +55,7 @@
     "editor.defaultFormatter": "ms-python.autopep8",
     "editor.formatOnType": true
   },
-  "yapf.args": [
-    "--style",
-    "{indent_width: 4}",
-    "{column_limit: 120}"
-  ],
+  "yapf.args": ["--style", "{indent_width: 4}", "{column_limit: 120}"],
   "autopep8.args": [
     "--indent-size",
     "4",
@@ -127,5 +121,8 @@
     "cstring": "cpp",
     "iostream": "cpp"
   },
-  "xml.downloadExternalResources.enabled": true
+  "xml.downloadExternalResources.enabled": true,
+  "[matlab]": {
+    "editor.defaultFormatter": "AffenWiesel.matlab-formatter"
+  }
 }

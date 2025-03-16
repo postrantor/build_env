@@ -6,7 +6,8 @@ export PATH=.:${HOME}/.local/bin:$PATH
 # set workdir
 export MACHINE=vmware
 export ROS_DISTRO=humble
-export RED_WORKDIR=replace_to_script_path
-source ${RED_WORKDIR}/.env/bashrc.bash
-source ${RED_WORKDIR}/.env/system.bash
-source ${RED_WORKDIR}/.env/robot.bash
+export AGV_WORKDIR=replace_to_script_path
+
+source ${AGV_WORKDIR}/.env/bashrc.bash
+source ${AGV_WORKDIR}/.env/system.bash
+source ${AGV_WORKDIR}/.env/robot.bash
