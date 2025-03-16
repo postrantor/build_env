@@ -1,30 +1,30 @@
 repositories:
   ## beatles
-  beatles/beatles:
+  red/beatles/beatles:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/beatles.git
     version: AF_dev
-  beatles/examples:
+  red/beatles/examples:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/examples.git
     version: dev
-  beatles/af_interfaces:
+  red/beatles/af_interfaces:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/af_interfaces.git
     version: dev
-  # beatles/events_executor:
+  # red/beatles/events_executor:
   #   type: git
   #   url: ssh://p7xxtm1/~/repositories/hirain/af/red/events_executor.git
   #   version: AF_dev
-  beatles/tools:
+  red/beatles/tools:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/tools.git
     version: dev
-  beatles/performance:
+  red/beatles/performance:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/performance.git
     version: dev
-  beatles/reference-system:
+  red/beatles/reference-system:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/reference-system.git
     version: dev
@@ -35,35 +35,35 @@ repositories:
   #   version: r2023a
 
   ## cream
-  # cream/examples:
+  # red/cream/examples:
   #   type: git
   #   url: ssh://p7xxtm1/~/repositories/hirain/af/red/cream_examples.git
   #   version: dev
-  # cream/cream:
+  # red/cream/cream:
   #   type: git
   #   url: ssh://p7xxtm1/~/repositories/hirain/af/red/cream.git
   #   version: dev
 
   ## third-part
-  3part/protobuf:
+  red/3part/protobuf:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/3part/protobuf.git
     version: v3.19.6
 
   ## dds
-  dds/cyclonedds:
+  red/dds/cyclonedds:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/dds/cyclonedds.git
     version: AF_dev
-  dds/examples:
+  red/dds/examples:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/dds/dds.git
     version: AF_dev
-  dds/record:
+  red/dds/record:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/dds/dds_record.git
     version: AF_dev
-  dds/cyclonedds-cxx:
+  red/dds/cyclonedds-cxx:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/dds/cyclonedds-cxx.git
     version: releases/0.10.x
