@@ -12,10 +12,8 @@ ENV_DIR=${ROS2_WORKDIR}/.env/
 # --------------------------
 setup_shell() {
   if [ -n "$BASH_VERSION" ]; then
-    # source /opt/ros/${ROS_DISTRO}/setup.bash
     source ${ROS2_WORKDIR}/install/setup.bash
   elif [ -n "$ZSH_VERSION" ]; then
-    # source /opt/ros/${ROS_DISTRO}/setup.zsh
     source ${ROS2_WORKDIR}/install/setup.zsh
   fi
   export PATH=${ROS2_WORKDIR}/install/af_configurator/lib/af_configurator:$PATH

@@ -12,10 +12,8 @@ ENV_DIR=${RED_WORKDIR}/.env/
 # --------------------------
 setup_shell() {
   if [ -n "$BASH_VERSION" ]; then
-    source /opt/ros/${ROS_DISTRO}/setup.bash
     source ${RED_WORKDIR}/install/setup.bash
   elif [ -n "$ZSH_VERSION" ]; then
-    source /opt/ros/${ROS_DISTRO}/setup.zsh
     source ${RED_WORKDIR}/install/setup.zsh
   fi
   export PATH=${RED_WORKDIR}/install/af_configurator/lib/af_configurator:$PATH

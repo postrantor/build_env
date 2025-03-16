@@ -12,10 +12,10 @@ repositories:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/af_interfaces.git
     version: dev
-  beatles/events_executor:
-    type: git
-    url: ssh://p7xxtm1/~/repositories/hirain/af/red/events_executor.git
-    version: AF_dev
+  # beatles/events_executor:
+  #   type: git
+  #   url: ssh://p7xxtm1/~/repositories/hirain/af/red/events_executor.git
+  #   version: AF_dev
   beatles/tools:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/red/tools.git
@@ -32,7 +32,7 @@ repositories:
   # red/af_toolbox:
   #   type: git
   #   url: ssh://p7xxtm1/~/repositories/hirain/af/red/af_toolbox.git
-  #   version: dev
+  #   version: r2023a
 
   ## cream
   # cream/examples:
@@ -68,12 +68,18 @@ repositories:
     url: ssh://p7xxtm1/~/repositories/hirain/af/dds/cyclonedds-cxx.git
     version: releases/0.10.x
 
+  ## rosbag
+  red/ros2/rosbag2:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/rosbag2
+    version: 0.15.5
+
   ## trace
-  ros2/ros-tracing/ros2_tracing.git:
+  red/ros2/ros2_tracing:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/ros2/ros-tracing/ros2_tracing.git
     version: AF_dev
-  ros2/ros-tracing/tracetools_analysis.git:
+  red/ros2/tracetools_analysis:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/ros2/ros-tracing/tracetools_analysis.git
     version: AF_dev
@@ -149,4 +155,372 @@ repositories:
   red/ros2/ros2cli_common_extensions:
     type: git
     url: ssh://p7xxtm1/~/repositories/hirain/af/ros2/ros2cli_common_extensions.git
+    version: humble
+
+
+  ## ros2-humble
+  ament/ament_cmake:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ament/ament_cmake
+    version: humble
+  ament/ament_index:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ament/ament_index
+    version: humble
+  ament/ament_lint:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ament/ament_lint
+    version: humble
+  ament/ament_package:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ament/ament_package
+    version: humble
+  ament/google_benchmark_vendor:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ament/google_benchmark_vendor
+    version: humble
+  ament/googletest:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ament/googletest
+    version: humble
+  ament/uncrustify_vendor:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ament/uncrustify_vendor
+    version: humble
+
+  eProsima/Fast-CDR:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/eProsima/Fast-CDR
+    version: da2987299ee3104bb0393cf0afc8aad6fb848dc1
+  eProsima/Fast-DDS:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/eProsima/Fast-DDS
+    version: 2.6.x
+  eProsima/foonathan_memory_vendor:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/eProsima/foonathan_memory_vendor
+    version: master
+  # eclipse-cyclonedds/cyclonedds:
+  #   type: git
+  #   url: ssh://p7xxtm1/~/repositories/ros2/humble/eclipse-cyclonedds/cyclonedds
+  #   version: releases/0.10.x
+  eclipse-iceoryx/iceoryx:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/eclipse-iceoryx/iceoryx
+    version: release_2.0
+  ignition/ignition_cmake2_vendor:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ignition/ignition_cmake2_vendor
+    version: humble
+  ignition/ignition_math6_vendor:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ignition/ignition_math6_vendor
+    version: humble
+  osrf/osrf_pycommon:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/osrf/osrf_pycommon
+    version: master
+  osrf/osrf_testing_tools_cpp:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/osrf/osrf_testing_tools_cpp
+    version: humble
+  ros-perception/image_common:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-perception/image_common
+    version: humble
+  ros-perception/laser_geometry:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-perception/laser_geometry
+    version: humble
+  ros-planning/navigation_msgs:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-planning/navigation_msgs
+    version: humble
+  ros-tooling/keyboard_handler:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-tooling/keyboard_handler
+    version: humble
+  ros-tooling/libstatistics_collector:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-tooling/libstatistics_collector
+    version: humble
+  ros-visualization/interactive_markers:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-visualization/interactive_markers
+    version: humble
+  ros-visualization/python_qt_binding:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-visualization/python_qt_binding
+    version: humble
+  ros-visualization/qt_gui_core:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-visualization/qt_gui_core
+    version: humble
+  ros-visualization/rqt:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-visualization/rqt
+    version: humble
+  ros-visualization/rqt_action:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-visualization/rqt_action
+    version: humble
+  ros-visualization/rqt_bag:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-visualization/rqt_bag
+    version: humble
+  ros-visualization/rqt_console:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-visualization/rqt_console
+    version: humble
+  ros-visualization/rqt_graph:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-visualization/rqt_graph
+    version: humble
+  ros-visualization/rqt_msg:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-visualization/rqt_msg
+    version: humble
+  ros-visualization/rqt_plot:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-visualization/rqt_plot
+    version: humble
+  ros-visualization/rqt_publisher:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-visualization/rqt_publisher
+    version: humble
+  ros-visualization/rqt_py_console:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-visualization/rqt_py_console
+    version: humble
+  ros-visualization/rqt_reconfigure:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-visualization/rqt_reconfigure
+    version: humble
+  ros-visualization/rqt_service_caller:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-visualization/rqt_service_caller
+    version: humble
+  ros-visualization/rqt_shell:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-visualization/rqt_shell
+    version: humble
+  ros-visualization/rqt_srv:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-visualization/rqt_srv
+    version: humble
+  ros-visualization/rqt_topic:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-visualization/rqt_topic
+    version: humble
+  ros-visualization/tango_icons_vendor:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros-visualization/tango_icons_vendor
+    version: humble
+  ros/class_loader:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros/class_loader
+    version: humble
+  ros/kdl_parser:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros/kdl_parser
+    version: humble
+  ros/pluginlib:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros/pluginlib
+    version: humble
+  ros/resource_retriever:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros/resource_retriever
+    version: humble
+  ros/robot_state_publisher:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros/robot_state_publisher
+    version: humble
+  ros/ros_environment:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros/ros_environment
+    version: humble
+  ros/ros_tutorials:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros/ros_tutorials
+    version: humble
+  ros/urdfdom:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros/urdfdom
+    version: humble
+  ros/urdfdom_headers:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros/urdfdom_headers
+    version: humble
+  ros2/ament_cmake_ros:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/ament_cmake_ros
+    version: humble
+  ros2/common_interfaces:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/common_interfaces
+    version: humble
+  ros2/console_bridge_vendor:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/console_bridge_vendor
+    version: humble
+  ros2/demos:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/demos
+    version: humble
+  ros2/eigen3_cmake_module:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/eigen3_cmake_module
+    version: humble
+  ros2/example_interfaces:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/example_interfaces
+    version: humble
+  ros2/examples:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/examples
+    version: humble
+  ros2/geometry2:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/geometry2
+    version: humble
+  ros2/launch:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/launch
+    version: humble
+  ros2/launch_ros:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/launch_ros
+    version: humble
+  ros2/libyaml_vendor:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/libyaml_vendor
+    version: humble
+  ros2/message_filters:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/message_filters
+    version: humble
+  ros2/mimick_vendor:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/mimick_vendor
+    version: humble
+  ros2/orocos_kdl_vendor:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/orocos_kdl_vendor
+    version: humble
+  ros2/performance_test_fixture:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/performance_test_fixture
+    version: humble
+  ros2/pybind11_vendor:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/pybind11_vendor
+    version: humble
+  ros2/python_cmake_module:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/python_cmake_module
+    version: humble
+  ros2/rcl_interfaces:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/rcl_interfaces
+    version: humble
+  ros2/rcl_logging:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/rcl_logging
+    version: humble
+  ros2/rclpy:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/rclpy
+    version: humble
+  ros2/realtime_support:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/realtime_support
+    version: humble
+  ros2/rmw_connextdds:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/rmw_connextdds
+    version: humble
+  ros2/rmw_fastrtps:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/rmw_fastrtps
+    version: humble
+  ros2/ros_testing:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/ros_testing
+    version: humble
+  ros2/rosidl:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/rosidl
+    version: humble
+  ros2/rosidl_dds:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/rosidl_dds
+    version: humble
+  ros2/rosidl_defaults:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/rosidl_defaults
+    version: humble
+  ros2/rosidl_python:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/rosidl_python
+    version: humble
+  ros2/rosidl_runtime_py:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/rosidl_runtime_py
+    version: humble
+  ros2/rosidl_typesupport:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/rosidl_typesupport
+    version: humble
+  ros2/rosidl_typesupport_fastrtps:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/rosidl_typesupport_fastrtps
+    version: humble
+  ros2/rpyutils:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/rpyutils
+    version: humble
+  ros2/rviz:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/rviz
+    version: humble
+  ros2/spdlog_vendor:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/spdlog_vendor
+    version: humble
+  ros2/sros2:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/sros2
+    version: humble
+  ros2/system_tests:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/system_tests
+    version: humble
+  ros2/test_interface_files:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/test_interface_files
+    version: humble
+  ros2/tinyxml2_vendor:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/tinyxml2_vendor
+    version: humble
+  ros2/tinyxml_vendor:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/tinyxml_vendor
+    version: humble
+  ros2/tlsf:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/tlsf
+    version: humble
+  ros2/unique_identifier_msgs:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/unique_identifier_msgs
+    version: humble
+  ros2/urdf:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/urdf
+    version: humble
+  ros2/yaml_cpp_vendor:
+    type: git
+    url: ssh://p7xxtm1/~/repositories/ros2/humble/ros2/yaml_cpp_vendor
     version: humble
