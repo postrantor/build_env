@@ -7,6 +7,17 @@
       ],
       "dependencies": []
     },
+    "cream": {
+      "cmake-args": [
+        "-DCMAKE_C_COMPILER=clang",
+        "-DCMAKE_CXX_COMPILER=clang++",
+        "-DBUILD_TESTING=OFF"
+      ],
+      "dependencies": [
+        "protobuf",
+        "cyclonedds-cxx"
+      ]
+    },
     "CycloneDDS-CXX": {
       "cmake-args": [],
       "dependencies": [
@@ -26,7 +37,10 @@
     },
     "protobuf": {
       "cmake-args": [
-        "-Dprotobuf_BUILD_TESTS=OFF"
+        "-Dprotobuf_BUILD_TESTS=OFF",
+        "-DBUILD_SHARED_LIBS=ON",
+        "-Dprotobuf_BUILD_LIBPROTOC=ON",
+        "-Dprotobuf_BUILD_EXAMPLES=ON"
       ]
     },
     "spdlog_vendor": {
@@ -42,6 +56,63 @@
     "qpOASES": {
       "cmake-args": [
         "-DQPOASES_BUILD_EXAMPLES=OFF"
+      ]
+    },
+    "cyber_rt": {
+      "cmake-args": [
+        "-DCMAKE_C_COMPILER=gcc",
+        "-DCMAKE_CXX_COMPILER=g++"
+      ],
+      "dependencies": [
+        "fastrtps",
+        "nlohmann_json",
+        "protobuf",
+        "gflags",
+        "glog",
+        "googletest",
+        "tinyxml2"
+      ]
+    },
+    "fastrtps": {
+      "cmake-args": [
+        "-DTHIRDPARTY=ON",
+        "-DEPROSIMA_BUILD=OFF",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DEPROSIMA_INSTALLER=OFF",
+        "-DCOMPILE_EXAMPLES=OFF",
+        "-DCMAKE_C_COMPILER=gcc",
+        "-DCMAKE_CXX_COMPILER=g++"
+      ]
+    },
+    "nlohmann_json": {
+      "cmake-args": []
+    },
+    "tinyxml2": {
+      "cmake-args": []
+    },
+    "gflags": {
+      "cmake-args": [
+        "-DCMAKE_CXX_FLAGS=-fPIC",
+        "-DBUILD_SHARED_LIBS=ON",
+        "-DWITH_GFLAGS=ON"
+      ]
+    },
+    "glog": {
+      "cmake-args": [
+        "-DCMAKE_CXX_FLAGS=-fPIC",
+        "-DBUILD_SHARED_LIBS=ON",
+        "-DCMAKE_BUILD_TYPE=OFF"
+      ]
+    },
+    "googletest-distribution": {
+      "cmake-args": [
+        "-DCMAKE_CXX_FLAGS=-Wno-error=maybe-uninitialized"
+      ]
+    },
+    "googletest": {
+      "cmake-args": [
+        "-DCMAKE_CXX_FLAGS=-fPIC",
+        "-DBUILD_SHARED_LIBS=ON"
       ]
     }
   }
