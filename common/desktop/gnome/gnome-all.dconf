@@ -1,0 +1,183 @@
+[control-center]
+last-panel='background'
+
+[deja-dup]
+backend='google'
+prompt-check='2025-12-15T02:51:57.417484Z'
+
+[desktop/app-folders]
+folder-children=['Utilities', 'YaST']
+
+[desktop/app-folders/folders/Utilities]
+apps=['gnome-abrt.desktop', 'gnome-system-log.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Connections.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.eog.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop', 'vinagre.desktop']
+categories=['X-GNOME-Utilities']
+name='X-GNOME-Utilities.directory'
+translate=true
+
+[desktop/app-folders/folders/YaST]
+categories=['X-SuSE-YaST']
+name='suse-yast.directory'
+translate=true
+
+[desktop/background]
+color-shading-type='solid'
+picture-options='zoom'
+picture-uri=''
+picture-uri-dark=''
+primary-color='#57549b'
+secondary-color='#000000'
+
+[desktop/input-sources]
+per-window=false
+sources=[('xkb', 'us')]
+xkb-options=@as []
+
+[desktop/interface]
+color-scheme='prefer-dark'
+cursor-theme='Breeze-Adapta-Cursor'
+font-hinting='slight'
+gtk-theme='Yaru-dark'
+icon-theme='Yaru'
+
+[desktop/notifications]
+application-children=['update-manager', 'org-gnome-software', 'gnome-network-panel', 'code', 'org-gnome-dejadup', 'firefox', 'apport-gtk', 'org-gnome-terminal', 'org-gnome-baobab']
+
+[desktop/notifications/application/apport-gtk]
+application-id='apport-gtk.desktop'
+
+[desktop/notifications/application/code]
+application-id='code.desktop'
+
+[desktop/notifications/application/firefox]
+application-id='firefox.desktop'
+
+[desktop/notifications/application/gnome-network-panel]
+application-id='gnome-network-panel.desktop'
+
+[desktop/notifications/application/org-gnome-baobab]
+application-id='org.gnome.baobab.desktop'
+
+[desktop/notifications/application/org-gnome-dejadup]
+application-id='org.gnome.DejaDup.desktop'
+
+[desktop/notifications/application/org-gnome-software]
+application-id='org.gnome.Software.desktop'
+
+[desktop/notifications/application/org-gnome-terminal]
+application-id='org.gnome.Terminal.desktop'
+
+[desktop/notifications/application/update-manager]
+application-id='update-manager.desktop'
+
+[desktop/peripherals/keyboard]
+numlock-state=true
+
+[desktop/privacy]
+report-technical-problems=true
+
+[desktop/screensaver]
+color-shading-type='solid'
+picture-options='zoom'
+picture-uri='file:///usr/share/backgrounds/DSC2943_by_kcpru.jpg'
+primary-color='#000000'
+secondary-color='#000000'
+
+[desktop/session]
+idle-delay=uint32 0
+
+[desktop/wm/keybindings]
+activate-window-menu=@as []
+cycle-group=@as []
+cycle-group-backward=@as []
+cycle-panels=@as []
+cycle-panels-backward=@as []
+cycle-windows=@as []
+cycle-windows-backward=@as []
+move-to-monitor-down=@as []
+move-to-monitor-left=@as []
+move-to-monitor-right=@as []
+move-to-monitor-up=@as []
+move-to-workspace-1=@as []
+move-to-workspace-last=@as []
+move-to-workspace-left=@as []
+move-to-workspace-right=@as []
+show-desktop=@as []
+switch-applications=@as []
+switch-applications-backward=@as []
+switch-panels=@as []
+switch-panels-backward=@as []
+switch-to-workspace-1=@as []
+switch-to-workspace-last=@as []
+switch-to-workspace-left=@as []
+switch-to-workspace-right=@as []
+
+[eog/view]
+background-color='rgb(0,0,0)'
+use-background-color=true
+
+[evolution-data-server]
+migrated=true
+network-monitor-gio-name=''
+
+[gedit/preferences/editor]
+scheme='Yaru-dark'
+
+[nautilus/icon-view]
+default-zoom-level='large'
+
+[nautilus/preferences]
+default-folder-viewer='icon-view'
+search-filter-time-type='last_modified'
+
+[nautilus/window-state]
+initial-size=(1182, 700)
+maximized=false
+sidebar-width=197
+
+[settings-daemon/plugins/media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+home=['<Super>e']
+terminal=['<Primary><Shift>d']
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Shift><Super>braceright'
+command='/usr/local/bin/Agt4Chk/Agt4Chk'
+name='Agt4Chk'
+
+[settings-daemon/plugins/power]
+sleep-inactive-ac-timeout=3600
+sleep-inactive-ac-type='nothing'
+
+[shell]
+favorite-apps=['org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'code.desktop', 'firefox.desktop']
+welcome-dialog-last-shown-version='42.9'
+
+[shell/extensions/dash-to-dock]
+dash-max-icon-size=64
+dock-fixed=true
+dock-position='LEFT'
+extend-height=false
+show-mounts=false
+show-trash=false
+
+[shell/extensions/ding]
+keep-arranged=true
+show-home=false
+sort-special-folders=true
+start-corner='top-right'
+
+[software]
+check-timestamp=int64 1766548594
+update-notification-timestamp=int64 1758768156
+
+[system/location]
+enabled=false
+
+[terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+background-color='rgb(46,52,54)'
+default-size-columns=104
+default-size-rows=27
+font='Maple Mono NF CN Medium 13'
+foreground-color='rgb(211,215,207)'
+use-system-font=false
+use-theme-colors=false

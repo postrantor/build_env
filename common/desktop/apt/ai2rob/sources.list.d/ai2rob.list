@@ -1,0 +1,9 @@
+# AI2 ROBOTICS 企业 APT 源 (端侧 OTA 功能包仓库)
+#
+# 升级容器内 10.updated.user.sh 会将本文件安装到 /etc/apt/sources.list.d/ai2rob.list,
+# 随后 `apt-get install ros-ai2rob-<project>=<version>`。
+#
+# 部署时按实际企业仓库地址 / 发行代号 (jammy) / 组件 / 签名方式校准:
+#   - 生产建议改用 signed-by 指向仓库公钥, 移除 [trusted=yes]。
+#   - aarch64 (jetson) 与 x86_64 共用同一仓库, 由仓库按架构分发。
+deb [trusted=yes] https://apt.ai2rob.com/ubuntu jammy main

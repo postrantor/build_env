@@ -1,0 +1,1 @@
+deb [signed-by=/usr/share/keyrings/isaac-ros.gpg] https://isaac.download.nvidia.cn/isaac-ros/release-3 jammy release-3.0

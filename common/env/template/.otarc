@@ -1,0 +1,27 @@
+## date: 2026-04-14 10:08:59
+
+## --- 预先声明 ---
+export HOSTNAME=ota.robot # e.g. "robot.2.0131"
+source ${HOME}/ai2-robot/.env/bashrc
+source /opt/ros/ai2rob/setup.bash
+
+## --- 覆盖默认环境变量 ---
+export ROS_DOMAIN_ID=58
+#export CYCLONEDDS_URI=file://${CONFIG_PATH}/.runtime/cyclonedds/config/bot2/orin.xml
+unset CYCLONEDDS_URI
+source ${AI2_WORKDIR}/.env/check-environment.bash
+
+## --- set x11 display ---
+#export DISPLAY=:10.0
+
+## --- set alpha-bot ---
+export ROBOT_TYPE="bot2" # bot1s/bot2
+export CHASSIS_TYPE="bot2" # bot1s/bot2
+export ARM_TYPE="rm_zpf_73" # rm_65/rm_zpf_73
+export EFFECTOR_TYPE="inspire" # changingtek/inspire
+
+## --- set model vender ---
+#export VENTOR_DOWNLOAD_PATH="${AI2_WORKDIR}/dependencies/"
+
+## 切换到工作路径
+#cw

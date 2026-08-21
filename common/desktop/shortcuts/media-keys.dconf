@@ -1,0 +1,9 @@
+[/]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+home=['<Super>e']
+terminal=['<Primary><Shift>d']
+
+[custom-keybindings/custom0]
+binding='<Shift><Super>braceright'
+command='/usr/local/bin/Agt4Chk/Agt4Chk'
+name='Agt4Chk'

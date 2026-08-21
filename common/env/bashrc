@@ -1,0 +1,85 @@
+# ---
+# date: 2026-04-14 09:45:13
+# update: 2026-08-20
+# author: postrantor@gmail.com
+# description: bashrc for build_env projects
+# ---
+
+## --- set proxy ---
+#export http_proxy=http://clash.ai2rob.com:7891
+#export https_proxy=http://clash.ai2rob.com:7891
+export no_proxy='172.16., .ai2rob.com, localhost, 127., 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 172.29.0.0/16, ::1'
+
+export PATH=.:${HOME}/.local/bin:$PATH
+export LANG=en_US.UTF-8
+
+## --- set workdir ---
+export ROS_DISTRO=humble
+export ROS_PYTHON_VERSION=3
+export ROS_VERSION=2
+export RCUTILS_COLORIZED_OUTPUT=1         # 1:enable color output 0:禁用颜色输出，避免ANSI颜色码污染日志文件
+export RCUTILS_LOGGING_USE_STDOUT=0       # 强制使用stderr而不是stdout，确保日志系统能正确捕获
+export RCUTILS_LOGGING_BUFFERED_STREAM=1  # 启用缓冲流，确保所有日志都能及时写入文件
+export TERM=xterm-256color
+#export ROS_LOG_DIR=${HOME}/.ros/log/launch
+
+## --- project identity ---
+# 经 ${PROJECT}/.env/bashrc (符号链接) source 时, 逻辑路径的上一级即工程根。
+if [[ -z "${PROJECT_WORKDIR:-}" ]]; then
+  _env_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  _candidate="$(cd "${_env_dir}/.." && pwd)"
+  if [[ "$(basename "${_candidate}")" != "common" ]]; then
+    export PROJECT_WORKDIR="${_candidate}"
+  elif [[ -n "${AI2_WORKDIR:-}" ]]; then
+    export PROJECT_WORKDIR="${AI2_WORKDIR}"
+  else
+    export PROJECT_WORKDIR="${HOME}/ai2-robot"
+  fi
+  unset _env_dir _candidate
+fi
+# shellcheck disable=SC1091
+source "${PROJECT_WORKDIR}/.env/project.bash"
+
+export CONFIG_PATH=${PROJECT_WORKDIR}/install/config_description/share/config_description/config/
+source ${PROJECT_WORKDIR}/.env/bashrc.bash
+source ${PROJECT_WORKDIR}/.env/system.bash
+source ${PROJECT_WORKDIR}/.env/robot.bash
+# docker.bash 在 common/setup/; 先 cd 进 .env 再 .., 避免符号链接被词法折叠。
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd ../setup && pwd)/docker.bash"
+source ${PROJECT_WORKDIR}/.env/hostrc.bash
+
+## --- set gazebo plugin path ---
+# export GAZEBO_MASTER_URI=http://127.0.0.1:11346 # default:11345
+# robot_description: libgazebo_ros_mimic_joint.so (Inspire mimic) 等 Gazebo 插件安装目录
+export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:${PROJECT_WORKDIR}/install/robot_description/lib/robot_description
+export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:${PROJECT_WORKDIR}/install/rm_description/lib/rm_description
+export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:${PROJECT_WORKDIR}/install/effector_description/lib/effector_description
+export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:${PROJECT_WORKDIR}/install/abc_description/lib/abc_description
+
+## --- set alias ---
+alias cw="cd ${PROJECT_WORKDIR}"
+if [[ -n "${PROJECT_CM_RELPATH:-}" ]]; then
+  alias cm="cd ${PROJECT_WORKDIR}/${PROJECT_CM_RELPATH}"
+fi
+
+## --- set alpha-bot ---
+#export CHASSIS_TYPE="bot2" # bot1s/bot2
+#export ARM_TYPE="rm_zpf_73" # rm_65/rm_zpf_73
+#export EFFECTOR_TYPE="changingtek" # changingtek/inspire
+#export ROBOT_TYPE="bot2" # bot1s/bot2
+
+## --- set ros domain ---
+#export ROS_DOMAIN_ID=36
+#export CYCLONEDDS_URI=file://${PROJECT_WORKDIR}/.runtime/cyclonedds/config/cyclonedds.xml # not ready
+source ${PROJECT_WORKDIR}/.env/check-environment.bash # check environment
+
+## --- set onnxruntime binary path ---
+#export ONNXRUNTIME_VENTOR_DOWNLOADi_PATH=${PROJECT_WORKDIR}/dependencies/
+
+## --- set cuda path ---
+export PATH=/usr/local/cuda/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+# set gcc version for build cuda dependencies
+#export CC=/usr/bin/gcc-11
+#export CXX=/usr/bin/g++-11
+#export CUDAHOSTCXX=/usr/bin/g++-11

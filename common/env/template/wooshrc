@@ -1,0 +1,41 @@
+## date: 20260109
+
+export WOOSH_HOME="/home/woosh"
+
+#source /opt/ros/noetic/setup.bash
+#source ${WOOSH_HOME}/catkin_ws/install/setup.bash
+source ${WOOSH_HOME}/catkin_ws/devel/setup.bash
+
+# custom urdf
+# 自定义URDF
+# 如果需要修改模型（比如添加传感器，自定义模型大小等功能），请将CUSTOM_URDF设置为true, 并
+# 重新 source ~/wooshrc 使生效。
+# 当 CUSTOM_URDF 为 true 且 mobile_base_param 下面的模型及urdf文件不存在时，脚本会
+# 自动拷贝当前生效模型的相关配置文件前往 mobile_base_param 目录中。
+export CUSTOM_URDF=false
+
+# 临时保留 URDF_CALIBRATION 及 URDF_XACRO_FILE，后期会去掉
+export URDF_CALIBRATION=true
+export URDF_XACRO_FILE=${WOOSH_HOME}/.wooshconfig/robot_param/mobile_base_param/urdf/index.urdf.xacro
+
+# #global xml config file
+export WOOSH_ROBOT_DESCRIPTION="${WOOSH_HOME}/robot_desc.xml"
+export WOOSH_ROBOT_DESCRIPTION_SCHEME="/usr/share/woosh-xml-tool/robot_desc.xsd"
+
+#multi PCs
+export ROS_MASTER_URI=http://169.254.128.2:11311
+export ROS_IP=169.254.128.2
+
+#export MAP=/home/woosh/.wooshconfig/maps/woosh/T1 #mapserver默认地图，若不设置则使用打包的woosh。使用调度或任务默认是不需要配置
+#export USE_USER_CONFIG=true #配置文件路径。若设置则使用当前用户下 .wooshconfig 中的配置，若不设置则使用软件包中打包的配置
+
+## Enviornment variables below is moved to ~/robot_desc.xml.
+## Please edit ~/robot_desc.xml. After that, source ~/wooshrc again to become effective.
+
+## 下面的环境变量已经移动到 ~/robot_desc.xml
+## 请编辑 ~/robot_desc.xml。 编辑完成后，重新 source ~/wooshrc 使生效。
+
+#########################################################################
+source /usr/share/woosh-xml-tool/woosh_env
+export WOOSH_SYS_VERSION=BASECOL-UNRELEASE-R20250903
+

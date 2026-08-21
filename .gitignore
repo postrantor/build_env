@@ -1,0 +1,17 @@
+__pycache__/
+.cache/
+.cursor/
+
+*build/
+*install/
+*log/
+*src/
+
+extensions.tar.gz
+rosbag/
+debug/
+
+quadruped_fyn/
+quadruped_noetic/
+
+wiki

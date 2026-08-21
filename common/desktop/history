@@ -1,0 +1,145 @@
+   51  cat .xsessionrc 
+   54  sudo cp --no-preserve=all /home/robot/.xsessionrc .
+   58  sudo chown zhiqi.jia:zhiqi.jia .xsessionrc
+
+  104  git clone https://github.com/mustafaozhan/Breeze-Adapta.git && cd Breeze-Adapta && chmod +x install.sh && sh install.sh
+  108  rm -rf Breeze-Adapta/
+  111  sudo apt install gnome-tweaks 
+
+  113  cat /etc/xrdp/startwm.sh
+  115  pwd
+  117  sudo cd /etc/polkit-1/localauthority
+  118  sudo cat /etc/polkit-1/localauthority
+  119  tail -f /var/log/xrdp.log
+  120  sudo tail -f /var/log/xrdp.log
+
+  173  sudo nmcli connection show
+  174  sudo nmcli connection delete "AI2R_Robot_xiaomi_5G"
+  177  sudo nmcli show
+  178  sudo nmcli connection show
+
+  179  ifconfig
+  180  # 设置静态 IP 和掩码，例如 172.16.201.102/24
+  181  sudo nmcli connection modify "AI2ROBOTICS" ipv4.addresses 172.16.201.102/24
+  182  # 设置默认网关，例如 172.16.201.1
+  183  sudo nmcli connection modify "AI2ROBOTICS" ipv4.gateway 172.16.201.1
+  184  # 设置 DNS，例如 Google DNS
+  185  sudo nmcli connection modify "AI2ROBOTICS" ipv4.dns "8.8.8.8 8.8.4.4"
+  186  # 设置为手动方式
+  187  sudo nmcli connection modify "AI2ROBOTICS" ipv4.method manual
+  188  # 确保开机自动连接
+  189  sudo nmcli connection modify "AI2ROBOTICS" connection.autoconnect yes
+  190  # 重新启用该连接
+  191  sudo nmcli connection up "AI2ROBOTICS"
+
+  192  ip addr show wlx90de806e08a9
+  202  ip route 
+  203  ifconfig
+  212  sudo nmcli connection show
+
+  219  ifconfig
+  220  sudo nmcli connection show
+  221  sudo nmcli device wifi connect AI2ROBOTICS
+  222  sudo nmcli device wifi connect AI2ROBOTICS password AI2Rocks!
+  223  sudo nmcli connection show
+
+  233  sudo systemctl status xrdp
+
+  284  cat /etc/os-release 
+  285  uname -a
+
+  462  sudo busybox devmem 0x0c303018 w 0xc458
+  464  sudo apt-get install busybox
+
+  525  sudo nmcli connection show
+  526  sudo nmcli device wifi connect AI2R_Robot_xiaomi password AI2Rocks!
+  527  sudo nmcli connection show
+
+  529  # 设置静态 IP 和掩码，例如 192.168.3.52/24
+  530  sudo nmcli connection modify "AI2R_Robot_xiaomi" ipv4.addresses 192.168.3.52/24
+  531  # 设置默认网关，例如 172.16.201.1
+  532  sudo nmcli connection modify "AI2R_Robot_xiaomi" ipv4.gateway 192.168.3.1
+  533  # 设置 DNS，例如 Google DNS
+  534  sudo nmcli connection modify "AI2R_Robot_xiaomi" ipv4.dns "8.8.8.8 8.8.4.4"
+  535  # 设置为手动方式
+  536  sudo nmcli connection modify "AI2R_Robot_xiaomi" ipv4.method manual
+  537  # 确保开机自动连接
+  538  sudo nmcli connection modify "AI2R_Robot_xiaomi" connection.autoconnect yes
+  539  # 重新启用该连接
+  540  sudo nmcli connection up "AI2R_Robot_xiaomi"
+
+  543  sudo nmcli connection show
+  544  sudo nmcli connection delete Robot_Test
+  545  sudo nmcli connection delete b392d300-1b0e-4bca-ad13-3c7c5e7b9d11
+  546  sudo nmcli connection show
+  585  sudo nmcli device wifi list
+
+  588  docker logs hbbs | grep Key
+
+  589  sudo nmcli connection show
+
+  769  docker import isaac_ros_dev-aarch64_humble_noetic-cpp-251013.tar isaac_ros_dev-aarch64_humble_noetic-cpp:251013
+  811  docker run -it     --privileged     --network host     --ipc host     --name zhiqi.jia_cpp     --runtime nvidia     --entrypoint /usr/local/bin/scripts/workspace-entrypoint.sh     -e DISPLAY     -e NVIDIA_VISIBLE_DEVICES=all     -e NVIDIA_DRIVER_CAPABILITIES=all     -e FASTRTPS_DEFAULT_PROFILES_FILE=/usr/local/share/middleware_profiles/rtps_udp_profile.xml     -e ROS_DOMAIN_ID=$(od -An -N1 -i /dev/urandom | awk '{print $1 % 100}')     -e USERNAME=zhiqi.jia     -e HOST_USER_UID=$(id -u)     -e HOST_USER_GID=$(id -g)     -v /dev:/dev     -v /tmp/.X11-unix:/tmp/.X11-unix     -v $HOME/.Xauthority:/root/.Xauthority:rw     -v /home/data/pretrains:/workspace/pretrains     -v /home/zhiqi.jia/workspaces/build_env:/workspaces     isaac_ros_dev-aarch64_humble_noetic-cpp:251013     /bin/bash
+  812  docker exec -it zhiqi.jia_cpp bash 
+
+  842  sudo apt install ntp
+  843  sudo update-alternatives --config editor
+  844  sudo visudo 
+  847  sudo systemctl start ntp
+  848  sudo systemctl status ntp
+  849  sudo systemctl enable ntp
+  850  ntpq -p
+  853  . "/home/zhiqi.jia/.cursor-server/bin/9d178a4a5589981b62546448bb32920a8219a5d0/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-bash.sh"
+  855  sudo systemctl enable ntp
+  856  sudo systemctl status ntp
+
+  872  sudo systemctl restart ntp
+  880  sudo apt install chrony
+  881  sudo vim /etc/chrony/chrony.conf
+  882  cat /etc/chrony/chrony.conf
+  883  ifconfig
+  884  cat ~/.ssh/config 
+  885  sudo vim  /etc/chrony/chrony.conf
+  886  sudo systemctl restart chrony
+  887  sudo systemctl enable chrony
+  888  sudo systemctl status chrony
+  889  chronyc tracking
+
+  895  ifconfig
+  932  sudo systemctl restart chrony
+  933  chronyc tracking
+  934  date
+  935  sudo systemctl restart ntp
+  936  sudo systemctl enable ntp
+  937  date
+  938  sudo timedatectl set-ntp true
+  939  date
+  940  sudo ntpdate pool.ntp.org
+  941  ntpq -p
+  942  sudo apt install ntp
+  943  sudo systemctl start ntp
+  944  sudo systemctl status ntp
+  945  sudo systemctl enable ntp
+  946  ntpq -p
+  947  date
+
+  988  bash can_up.sh 
+
+ 1069  xhost +
+ 1071  export DISPLAY=:10.0
+
+ 1355  nmcli connection show 
+ 1364  sudo nmcli connection show
+ 1365  ifconfig 
+ 1368  sudo nmcli con mod "AI2R_Robot" ipv4.addresses 192.168.3.206/24
+ 1369  sudo nmcli con mod "AI2R_Robot" ipv4.gateway 192.168.3.1
+ 1370  sudo nmcli con mod "AI2R_Robot" ipv4.dns "114.114.114.114 8.8.8.8"
+ 1371  sudo nmcli con mod "AI2R_Robot" ipv4.method manual
+ 1372  sudo nmcli con down "AI2R_Robot"
+ 1373  sudo nmcli con up "AI2R_Robot"
+ 1374  ifconfig 
+ 1377  sudo nmcli connection up "AI2R_Robot"
+
+ 1427  chmod 600 id_rsa
+
+ 1601  nohup rsync -avzP --delete ~/workspaces ai2.robot.2.0058:~/ > _rsync.log 2>&1 &

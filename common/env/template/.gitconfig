@@ -1,0 +1,38 @@
+# 2026-04-14 10:02:20
+
+[core]
+  repositoryformatversion = 0
+  filemode = true
+  bare = false
+  logallrefupdates = true
+  editor = vim
+
+[user]
+  email = user_name@ai2robotics.com
+  name = user_name
+
+[alias]
+  ca = commit --amend --no-edit
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
+  repull = pull --rebase
+  fpush = !git add --all && git commit --amend --no-edit && git push --force
+
+[credential]
+  helper = store
+
+[init]
+  defaultBranch = main
+
+[fetch]
+  # 同步远端分支状态，包括删除操作
+  prune = true
+
+[pull]
+  # 在拉取时，自动合并远端分支状态，包括删除操作
+  rebase = true

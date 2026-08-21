@@ -1,0 +1,32 @@
+[core]
+  repositoryformatversion = 0
+  filemode = true
+  bare = false
+  logallrefupdates = true
+  editor = vim
+[user]
+  email = zhiqi.jia@ai2robotics.com
+  name = zhiqi.jia
+[alias]
+  ca = commit --amend --no-edit
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  repull = pull --rebase
+  type = cat-file -t
+  dump = cat-file -p
+  fpush = !git add --all && git ca && git push -f
+[init]
+  defaultBranch = main
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+[credential "https://huggingface.co"]
+  provider = generic
+  helper = store
+[credential]
+  helper = store
